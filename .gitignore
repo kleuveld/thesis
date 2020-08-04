@@ -1,0 +1,12 @@
+# Specify filepatterns you want git to ignore.
+*.sublime-workspace
+*.bbl
+*.aux
+*.bib
+*.bbl
+*.bbl
+*.blg
+*.log
+*.pdf
+*.out
+*.synctex.gz
