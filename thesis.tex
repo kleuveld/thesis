@@ -1,0 +1,143 @@
+%layout
+\documentclass[11pt,a4paper]{scrartcl} %scrartcl from KOMA-script uses sans headers and looks less latexy than article
+\usepackage[doublespacing]{setspace}
+%\usepackage[capposition=top]{floatrow} %for notes under pics
+%\usepackage[nomarkers]{endfloat}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[blocks]{authblk} %for affil
+\usepackage{lineno, blindtext} %for linenumbers
+
+%graphics, equations and math 
+\usepackage{amsmath}
+\usepackage{graphicx}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+
+%bibliography and references
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[pdftex, hidelinks]{hyperref} %creates warnings when used with float
+
+
+%tables
+\usepackage{tabularx}
+\usepackage{float} %allows the H positioning specifier; conflicts with hyperref
+\usepackage[flushleft]{threeparttable}
+\usepackage{csvsimple}
+\usepackage[nomessages]{fp}
+\usepackage{booktabs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%cheat sheets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%citations
+	%\ cite{key}				Jones et al. (1990)
+	% \citet{key1,key2}			Jones et al. (1990); Ladze (1986)
+	% \citet{key}				Jones et al. (1990)
+	% \citet*{key}				Jones, Baker, and Smith (1990)
+	% \citep{key}				(Jones et al. 1990)
+	% \citep{key1,key2}			(Jones et al. 1990; Ladze 1986)
+	% \citep*{key}				(Jones, Baker, and Smith 1990)
+	% \citep[p.~99]{key}		(Jones et al., 1990, p. 99)
+	% \citep[e.g.][]{key}		(e.g. Jones et al., 1990)
+	% \citep[e.g.][p.~99]{key}	(e.g. Jones et al., 1990, p. 99)
+	% \citeauthor{key}			Jones et al.
+	% \citeauthor*{key}			Jones, Baker, and Smith
+	% \citeyear{key}			1990
+	% \citealt{key} 			Jones et al. 1990
+
+%tables
+% \begin{threeparttable}[htb]
+% 	\caption{CAPTION}
+% 	\label{tab:LABEL}
+% 	\centering
+% 	\input{FILE}
+% 	\begin{tablenotes}
+% 		\item NOTES
+% 		\item
+% 	\end{tablenotes}
+% \end{threeparttable}
+
+%figures
+% \begin{figure}[htb]
+%   \includegraphics[width=0.8\linewidth]{FILE}
+%   \caption{CAPTION}
+%   \label{fig:LABEL}
+% \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%misc commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlist{noitemsep} % \setlist{nosep} to remove separation around lists as well
+%\newcommand{\figureloc}{PATH}
+%\newcommand{\tableloc}{PATH}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{Koen Leuveld}
+
+\affil{Development Economics Group, Wageningen University}
+
+
+
+\title{TITLE}
+%\subtitle{SUB-TITLE} %needs scrartcl
+
+\maketitle
+
+%\linenumbers
+
+\section*{Abstract}
+\begin{abstract}
+ABSTRACT
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Sample and data}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage 
+\bibliographystyle{chicago}
+%path to .bib file (e.g. automatically exported by mendeley) DO NOT include the file extension!
+\bibliography{PATH}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+% \section*{Appendix}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \setcounter{table}{0}
+% \renewcommand{\thetable}{A\arabic{table}}
+
+
+\end{document}
