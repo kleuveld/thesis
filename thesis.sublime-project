@@ -2,10 +2,26 @@
 	"folders":
 	[
 		{
+			"path": "."
+		},
+		{
 			"path": "C:\\Users\\Koen\\Documents\\GitHub\\cameroontrust"
 		},
 		{
 			"path": "C:\\Users\\Koen\\Dropbox (Personal)\\PhD\\Papers\\CameroonTrust"
+		},
+		{
+			"path": "C:\\Users\\Koen\\Documents\\GitHub\\congogbv"
 		}
-	]
+	],
+	"settings" : {
+        //"TEXroot": "main.tex",
+        "tex_file_exts": [".tex"],
+        "builder": "thesisBuilder",
+        "builder_path": "User/LaTeXTools-Builders",
+        "builder_settings": {
+            "options": "--shell-escape"
+        }
+    }
+
 }

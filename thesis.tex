@@ -1,6 +1,7 @@
 %layout
-\documentclass[11pt,a4paper]{scrartcl} %scrartcl from KOMA-script uses sans headers and looks less latexy than article
-\usepackage[doublespacing]{setspace}
+\documentclass[12pt]{report}
+%\documentclass[11pt,a4paper]{scrartcl} %scrartcl from KOMA-script uses sans headers and looks less latexy than article
+%\usepackage[doublespacing]{setspace}
 %\usepackage[capposition=top]{floatrow} %for notes under pics
 %\usepackage[nomarkers]{endfloat}
 \usepackage[utf8]{inputenc}
@@ -10,17 +11,25 @@
 \usepackage[blocks]{authblk} %for affil
 \usepackage{lineno, blindtext} %for linenumbers
 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\usepackage{pdflscape}
+
 %graphics, equations and math 
 \usepackage{amsmath}
 \usepackage{graphicx}
 %\usepackage{amsfonts}
 %\usepackage{amssymb}
 
+
 %bibliography and references
 \usepackage{natbib}
 \usepackage{url}
 \usepackage[pdftex, hidelinks]{hyperref} %creates warnings when used with float
+%\defbibheading{bibliography}[\refname]{\section*{#1}}
 
+\usepackage{chapterbib} %https://stmorse.github.io/journal/Thesis-writeup.html
 
 %tables
 \usepackage{tabularx}
@@ -82,53 +91,52 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\title{
+	{Thesis Title}\\
+	{\large Wageningen University}\\
+}
 \author{Koen Leuveld}
-
-\affil{Development Economics Group, Wageningen University}
-
-
-
-\title{TITLE}
-%\subtitle{SUB-TITLE} %needs scrartcl
-
+\date{2020}
 \maketitle
 
-%\linenumbers
 
-\section*{Abstract}
-\begin{abstract}
-ABSTRACT
-\end{abstract}
+
+\tableofcontents
+
+\input{tex_helpers/congogbv_customfunctions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{"chapters/introduction"} 
+\include{"chapters/cameroontrust_paper"}
+\include{chapters/congogbv}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conlusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Introduction}
+\clearpage
+\chapter{Samenvatting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Sample and data}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Results}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\chapter{Summary}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Conclusion}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\chapter{Acknowlegdements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage 
-\bibliographystyle{chicago}
-%path to .bib file (e.g. automatically exported by mendeley) DO NOT include the file extension!
-\bibliography{PATH}
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

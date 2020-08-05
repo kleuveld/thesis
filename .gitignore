@@ -9,4 +9,6 @@
 *.log
 *.pdf
 *.out
+*.dvi
+*.toc
 *.synctex.gz
