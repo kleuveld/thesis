@@ -1,0 +1,120 @@
+%layout
+\documentclass[12pt]{report}
+%\usepackage[doublespacing]{setspace}
+\usepackage[utf8]{inputenc}
+%\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[left=2.5cm,right=5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[blocks]{authblk} %for affil
+\usepackage{lineno, blindtext} %for linenumbers
+\usepackage{fancyhdr}
+\usepackage{pdflscape}
+\usepackage[colorinlistoftodos]{todonotes} %add disable option to hide notes
+\setlength{\marginparwidth}{4cm}
+
+%graphics, equations and math 
+\usepackage{amsmath}
+\usepackage{graphicx}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+
+
+%bibliography and references
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[pdftex, hidelinks]{hyperref} %creates warnings when used with float
+%\defbibheading{bibliography}[\refname]{\section*{#1}}
+
+\usepackage{chapterbib} %https://stmorse.github.io/journal/Thesis-writeup.html
+
+%tables
+\usepackage{tabularx}
+\usepackage{float} %allows the H positioning specifier; conflicts with hyperref
+\usepackage[flushleft]{threeparttable}
+\usepackage{csvsimple}
+\usepackage[nomessages]{fp}
+\usepackage{booktabs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%cheat sheets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%citations
+	%\ cite{key}				Jones et al. (1990)
+	% \citet{key1,key2}			Jones et al. (1990); Ladze (1986)
+	% \citet{key}				Jones et al. (1990)
+	% \citet*{key}				Jones, Baker, and Smith (1990)
+	% \citep{key}				(Jones et al. 1990)
+	% \citep{key1,key2}			(Jones et al. 1990; Ladze 1986)
+	% \citep*{key}				(Jones, Baker, and Smith 1990)
+	% \citep[p.~99]{key}		(Jones et al., 1990, p. 99)
+	% \citep[e.g.][]{key}		(e.g. Jones et al., 1990)
+	% \citep[e.g.][p.~99]{key}	(e.g. Jones et al., 1990, p. 99)
+	% \citeauthor{key}			Jones et al.
+	% \citeauthor*{key}			Jones, Baker, and Smith
+	% \citeyear{key}			1990
+	% \citealt{key} 			Jones et al. 1990
+
+%tables
+% \begin{threeparttable}[htb]
+% 	\caption{CAPTION}
+% 	\label{tab:LABEL}
+% 	\centering
+% 	\input{FILE}
+% 	\begin{tablenotes}
+% 		\item NOTES
+% 		\item
+% 	\end{tablenotes}
+% \end{threeparttable}
+
+%figures
+% \begin{figure}[htb]
+%   \includegraphics[width=0.8\linewidth]{FILE}
+%   \caption{CAPTION}
+%   \label{fig:LABEL}
+% \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%misc commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlist{noitemsep} % \setlist{nosep} to remove separation around lists as well
+%\newcommand{\figureloc}{PATH}
+%\newcommand{\tableloc}{PATH}
+\input{tex_helpers/congogbv_customfunctions}
+
+%https://stackoverflow.com/questions/1037905/bibliography-as-section-in-latex-bibtex
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\section{\bibname}% <-- this line was changed from \chapter* to \section*
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
+
+
+%fancy header
+\pagestyle{fancy}
+%https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
+\fancyhead{}
+\fancyhead[L]{Social Capital and Behaviour in Fragile States}
+\fancyhead[R]{\leftmark}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}

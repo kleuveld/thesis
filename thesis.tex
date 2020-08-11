@@ -1,158 +1,57 @@
-%layout
-\documentclass[12pt]{report}
-%\documentclass[11pt,a4paper]{scrartcl} %scrartcl from KOMA-script uses sans headers and looks less latexy than article
-%\usepackage[doublespacing]{setspace}
-%\usepackage[capposition=top]{floatrow} %for notes under pics
-%\usepackage[nomarkers]{endfloat}
-\usepackage[utf8]{inputenc}
-\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
-\usepackage{xcolor}
-\usepackage{enumitem}
-\usepackage[blocks]{authblk} %for affil
-\usepackage{lineno, blindtext} %for linenumbers
+\input{thesis_preamble}
 
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-
-\usepackage{pdflscape}
-
-%graphics, equations and math 
-\usepackage{amsmath}
-\usepackage{graphicx}
-%\usepackage{amsfonts}
-%\usepackage{amssymb}
-
-
-%bibliography and references
-\usepackage{natbib}
-\usepackage{url}
-\usepackage[pdftex, hidelinks]{hyperref} %creates warnings when used with float
-%\defbibheading{bibliography}[\refname]{\section*{#1}}
-
-\usepackage{chapterbib} %https://stmorse.github.io/journal/Thesis-writeup.html
-
-%tables
-\usepackage{tabularx}
-\usepackage{float} %allows the H positioning specifier; conflicts with hyperref
-\usepackage[flushleft]{threeparttable}
-\usepackage{csvsimple}
-\usepackage[nomessages]{fp}
-\usepackage{booktabs}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%cheat sheets
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%citations
-	%\ cite{key}				Jones et al. (1990)
-	% \citet{key1,key2}			Jones et al. (1990); Ladze (1986)
-	% \citet{key}				Jones et al. (1990)
-	% \citet*{key}				Jones, Baker, and Smith (1990)
-	% \citep{key}				(Jones et al. 1990)
-	% \citep{key1,key2}			(Jones et al. 1990; Ladze 1986)
-	% \citep*{key}				(Jones, Baker, and Smith 1990)
-	% \citep[p.~99]{key}		(Jones et al., 1990, p. 99)
-	% \citep[e.g.][]{key}		(e.g. Jones et al., 1990)
-	% \citep[e.g.][p.~99]{key}	(e.g. Jones et al., 1990, p. 99)
-	% \citeauthor{key}			Jones et al.
-	% \citeauthor*{key}			Jones, Baker, and Smith
-	% \citeyear{key}			1990
-	% \citealt{key} 			Jones et al. 1990
-
-%tables
-% \begin{threeparttable}[htb]
-% 	\caption{CAPTION}
-% 	\label{tab:LABEL}
-% 	\centering
-% 	\input{FILE}
-% 	\begin{tablenotes}
-% 		\item NOTES
-% 		\item
-% 	\end{tablenotes}
-% \end{threeparttable}
-
-%figures
-% \begin{figure}[htb]
-%   \includegraphics[width=0.8\linewidth]{FILE}
-%   \caption{CAPTION}
-%   \label{fig:LABEL}
-% \end{figure}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%misc commands
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setlist{noitemsep} % \setlist{nosep} to remove separation around lists as well
-%\newcommand{\figureloc}{PATH}
-%\newcommand{\tableloc}{PATH}
-\input{tex_helpers/congogbv_customfunctions}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{
-	{Thesis Title}\\
+	{Social Capital and Behaviour in Fragile States}\\
 	{\large Wageningen University}\\
 }
 \author{Koen Leuveld}
 \date{2020}
+
 \maketitle
-
-
-
 \tableofcontents
+\todototoc
+\listoftodos
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
 \include{"chapters/introduction"} 
+\include{chapters/slfootball}
+\include{chapters/n2a}
 \include{"chapters/cameroontrust_paper"}
 \include{chapters/congogbv}
+\include{chapters/conclusion}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Conlusion}
+\clearpage
+\addcontentsline{toc}{chapter}{Samenvatting}
+\chapter*{Samenvatting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-\chapter{Samenvatting}
+\addcontentsline{toc}{chapter}{Summary}
+chapter*{Summary}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\chapter{Summary}
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Acknowlegdements}
+\addcontentsline{toc}{chapter}{Acknowlegdements}
+\chapter*{Acknowlegdements}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 First of all the late Dieudonnee Mundi. Avenue Nyofu was a quiet harbor amidst stormy waters. Unfortunately, the storm took Dieudonnee as well.
 
+Respondents.
+
 Thanks to the folks at DEC.
+
+EDI.
+
+Familie
 
 
 There's no reason only two-legged persons can be valuable to PhD students, as was proven time and time again by Houdini, Hartpatient, Louwe, Papichulo and Zaza.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%bibliography
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \clearpage
-% \section*{Appendix}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \setcounter{table}{0}
-% \renewcommand{\thetable}{A\arabic{table}}
-
 
 \end{document}
