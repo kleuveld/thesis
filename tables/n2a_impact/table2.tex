@@ -1,0 +1,22 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Knowledge, input use, yield, and food security \label{tab:n2aimpact:main}}
+\begin{tabular}{l*{7}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}\\
+                    &\multicolumn{1}{c}{\specialcell{Inoculant\\knowledge}}&\multicolumn{1}{c}{\specialcell{Fertilizer\\knowledge}}&\multicolumn{1}{c}{\specialcell{Inoculant\\use}}&\multicolumn{1}{c}{\specialcell{Fertilizer\\Use}}&\multicolumn{1}{c}{\specialcell{Beans\\Yield}}&\multicolumn{1}{c}{\specialcell{Casava\\Yield}}&\multicolumn{1}{c}{\specialcell{HFIAS\\Score}}\\
+\midrule
+Subsidy             &      0.0391         &      0.0165         &      0.0301\sym{**} &      0.0513\sym{**} &       0.140         &      -0.175         &       0.845         \\
+                    &    (0.0235)         &    (0.0227)         &    (0.0127)         &    (0.0209)         &     (0.444)         &     (0.313)         &     (0.777)         \\
+\addlinespace
+Lagged dep. var.    &       0.248\sym{***}&     -0.0263         &       0.211\sym{**} &       0.208\sym{*}  &      0.0593         &     0.00364         &       0.233\sym{***}\\
+                    &    (0.0932)         &    (0.0293)         &    (0.0936)         &     (0.118)         &    (0.0804)         &    (0.0496)         &    (0.0580)         \\
+\midrule
+N                   &         520         &         520         &         520         &         520         &         167         &         270         &         512         \\
+Mean Control Group  &        0.06         &        0.93         &        0.01         &        0.03         &        5.06         &        7.72         &       14.10         \\
+SD Control Group    &        0.25         &        0.25         &        0.09         &        0.18         &        2.38         &        1.94         &        6.90         \\
+No. clusters        &          64         &          64         &          64         &          64         &          54         &          61         &          64         \\
+\bottomrule
+\multicolumn{8}{l}{\footnotesize * p$<$0.10, ** p$<$0.05, *** p$<$0.01; Standard errors clustered at the village level in parentheses; controls include stratum fixed effect and baseline levels of food insecurity.}\\
+\end{tabular}
+\end{table}
