@@ -2,8 +2,8 @@
 \documentclass[12pt]{report}
 %\usepackage[doublespacing]{setspace}
 \usepackage[utf8]{inputenc}
-%\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
-\usepackage[left=2.5cm,right=5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+%\usepackage[left=2.5cm,right=5cm,top=3cm,bottom=3cm]{geometry}
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage[blocks]{authblk} %for affil
@@ -12,6 +12,7 @@
 \usepackage{pdflscape}
 \usepackage[colorinlistoftodos]{todonotes} %add disable option to hide notes
 \setlength{\marginparwidth}{4cm}
+\usepackage{pbox}
 
 %graphics, equations and math 
 \usepackage{amsmath}
@@ -35,7 +36,7 @@
 \usepackage{csvsimple}
 \usepackage[nomessages]{fp}
 \usepackage{booktabs}
-
+%\usepackage{longtable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %cheat sheets
@@ -56,6 +57,24 @@
 	% \citeauthor*{key}			Jones, Baker, and Smith
 	% \citeyear{key}			1990
 	% \citealt{key} 			Jones et al. 1990
+
+
+% The following table shows the changes in font size depending on the selected standard font size (article, report, book und letter):
+
+%                 standard font size
+% command         10pt  11pt  12pt
+% \tiny           5pt   6pt   6pt
+% \scriptsize     7pt   8pt   8pt
+% \footnotesize   8pt   9pt   10pt
+% \small          9pt   10pt  11pt
+% \normalsize     10pt  11pt  12pt
+% \large          12pt  12pt  14pt
+% \Large          14pt  14pt  17pt
+% \LARGE          17pt  17pt  20pt
+% \huge           20pt  20pt  25pt
+% \Huge           25pt  25pt  25pt
+
+%source: https://www.sascha-frank.com/latex-font-size.html
 
 %tables
 % \begin{threeparttable}[htb]
@@ -111,10 +130,12 @@
 
 
 %fancy header
-\pagestyle{fancy}
-%https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
-\fancyhead{}
-\fancyhead[L]{Social Capital and Behaviour in Fragile States}
-\fancyhead[R]{\leftmark}
-\fancyfoot{}
-\fancyfoot[C]{\thepage}
+% \pagestyle{fancy}
+% %https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
+% \fancyhead{}
+% \fancyhead[L]{Social Capital and Behaviour in Fragile States}
+% \fancyhead[R]{\leftmark}
+% \fancyfoot{}
+% \fancyfoot[C]{\thepage}
+
+\includeonly{chapters/n2a_impact}
