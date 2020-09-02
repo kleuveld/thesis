@@ -38,18 +38,20 @@ Do files needed
 */
 //nothing special is needed.
 
+
+/*
+Set stata version
+*/
+
+version 12
+
 /*
 Set working dir
 */
 	*make sure to cd to the directory containing this Do File
 
 		*Dropbox FC
-	capture cd "D:/Dropbox/Football/Paper/Replication"
-	*Dropbox KL
-	capture cd "D:/Dropbox/Sierra Leone/Football/Paper/Replication"
-	*Dropbox MV
-	capture cd "$DROPLOC/Sierra Leone Football Paper/Paper/Replication"
-
+		capture cd "C:\Users\Koen\Documents\GitHub\thesis\analysis\slfootball"
 
 
 
@@ -307,8 +309,8 @@ Get data
 	*if the following lines of code are run, the output will be saved to file, otherwise output is displayed on screen
 	
 	**put file names in locals
-	foreach i in 3 4 5 6 a1 a2 a3 a4{
-		local t`i'`"using "tables\t`i'.rtf""'
+	foreach i in 1 3 4 5 6 a1 a2 a3 a4{
+		local t`i'`"using "tables\t`i'.tex""'
 	}
 
 	**put replace option in a local (empty if this not run, thus not specified)
@@ -319,8 +321,14 @@ Table 1: Descriptive stats
 *
 */
 	use "cleaned data\foot_cleaned.dta", clear
-	su we_all ind_parfight ind_age ind_edu ind_mealpd ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken foot_foul foot_whole foot_selfskill foot_score foot_won foot_left life_risk life_dictout life_dictin  life_outtour life_intour life_expperf life_ballshit
+	eststo summ: estpost su we_all ind_parfight ind_age ind_edu ind_mealpd ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken foot_foul foot_whole foot_selfskill foot_score foot_won foot_left life_risk life_dictout life_dictin  life_outtour life_intour life_expperf life_ballshit
 	*no fancy stuff here, just dumb copy to word
+
+	//eststo summ: estpost su tdg sentvill risk fracexpected avfracreturn market $controls if !missing(market)
+	esttab summ `t1', cells("count mean(fmt(2)) sd(fmt(2)) min(fmt(2)) max(fmt(2))") label noobs replace nonumbers
+
+
+
 
 /*
 Table 2 is the design of the risk game
@@ -335,7 +343,8 @@ Table 3: Exposure to conflict
 	eststo t3_4: qui reg we_all ind_age ind_age2 ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight , robust
 	esttab t3_* `t3', `replace'  star(* 0.10 ** 0.05 *** 0.01) label ///
 	stats(N r2,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
-		 order(ind_age ind_age2 ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight )
+		 order(ind_age ind_age2 ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken ///
+		 ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight )
 
 
 /*

@@ -3,16 +3,17 @@
 %\usepackage[doublespacing]{setspace}
 \usepackage[utf8]{inputenc}
 %\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
-\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[left=2.5cm,right=5cm,top=3cm,bottom=3cm]{geometry}
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage[blocks]{authblk} %for affil
 \usepackage{lineno, blindtext} %for linenumbers
 \usepackage{fancyhdr}
 \usepackage{pdflscape}
-\usepackage[colorinlistoftodos,disable]{todonotes} %add disable option to hide notes
+\usepackage[colorinlistoftodos,textsize=tiny]{todonotes} %add disable option to hide notes
 \setlength{\marginparwidth}{4cm}
 \usepackage{pbox}
+\usepackage{subcaption}
 
 %graphics, equations and math 
 \usepackage{amsmath}
@@ -32,7 +33,7 @@
 %tables
 \usepackage{tabularx}
 \usepackage{float} %allows the H positioning specifier; conflicts with hyperref
-\usepackage[flushleft]{threeparttable}
+\usepackage{threeparttable}
 \usepackage{csvsimple}
 \usepackage[nomessages]{fp}
 \usepackage{booktabs}
@@ -99,7 +100,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %misc commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setlist{noitemsep} % \setlist{nosep} to remove separation around lists as well
+%\setlist{noitemsep} % \setlist{nosep} to remove separation around lists as well
 %\newcommand{\figureloc}{PATH}
 %\newcommand{\tableloc}{PATH}
 \input{tex_helpers/thesis_customfunctions}
@@ -128,6 +129,20 @@
 \makeatother
 
 
+%prevent abstracts from resetting page number
+\makeatletter
+\renewenvironment{abstract}{%
+  \if@twocolumn
+    \section*{\abstractname}%
+  \else
+    \small
+    \begin{center}%
+      {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+    \end{center}%
+    \quotation
+  \fi}
+  {\if@twocolumn\else\endquotation\fi}
+\makeatother
 
 %fancy header
 % \pagestyle{fancy}
