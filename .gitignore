@@ -13,3 +13,4 @@
 *.toc
 *.synctex.gz
 *.tdo
+tex_helpers/thesis_paths.tex
