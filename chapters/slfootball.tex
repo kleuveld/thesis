@@ -247,6 +247,26 @@ Our findings are tentative; different types of conflicts could have varying lega
 \todo{add appendix tables}
 
 
+\textit{Exposure to Conflict.} An individual victimization index resulting from the average response to these violence related questions: ``during war time...'' ``did you ever witness combat, shooting and explosions?'', ``did you ever see a person injured because of war-related violence?'' and ``did you personally suffer from physical injury because of war-related violence?''. 
+\textit{Parents Fought in War.} Individual level dummy variable taking value of unity if any one of parents of respondent $i$ have been active belligerents during the civil conflict, regardless of combatting sides.
+\textit{Age.} Age of respondent $i$ as measured in years, rounded down to the age at the last birthday.
+\textit{Education Level.} Individual level variable taking value 1 if the respondent was currently in primary school, 2 if the respondent was currently in junior secondary school, 3 if the respondent was currently in senior secondary school, 4 if respondent was enrolled or had completed tertiary education. 
+\textit{Mende (Fula, Mandingo, Temne) Tribe.} Individual level dummy taking value of unity if the $i$-th respondent self-declared to be ethically Mende (Fula, Mandingo, Temne), zero if else.
+\textit{Muslim Religion.} Individual level dummy taking value of unity if the $i$-th respondent self-declared to be Muslim by religion, zero if else.
+\textit{Meals per Day.} Household level index representing the self-reported full meal consumtion patterns of respondent $i$’s household.
+\textit{Always in Kenema.} Individual level dummy variable taking value of unity if the i-th respondent never left Kenema district over the course of the war.
+\textit{Left Footed.} Individual level dummy variable taking value of unity if the $i$-th respondent self-declared to be predominantly left-footed, zero if else.
+\textit{Played Whole Game.} Individual level dummy variable taking value of unity if the $i$-th respondent had respondent positively to the question ``did you play the whole football game?'', zero if else. The answer was crosschecked with the control questions ``how many minutes did you play in this game'' and ``How many minutes did the game last in total?''; the dummy would take a value of zero if the ratio of their responses differed from unity.
+\textit{Self-declared Skills.} Individual level index constructed as the answer to the question ``Compared to your team mates, how skillful would you say you are?''; on a scale of 1 (least skilled) to 5 (most skilled), standardized between 0 and 1. 
+\textit{Scored.} Individual level dummy variable taking value of unity if the $i$-th respondent had scored at least one goal during the football game, zero if else.
+\textit{Won the Football Game.} Team level dummy variable taking value of 1 if the team of respondent $i$ has won the football game, zero if else. Out of 14 games 1 ended up in a draw and the penalty kicks were postponed to the next day due to insufficient light.
+\textit{Foul Card in Football Game.} Individual level dummy variable taking value of unity if the $i$-th respondent had received at least one yellow/red card up to that stage of the tournament.
+\textit{Risk Propensity.} Individual level variable based on the respondents’ six choices in the risk game, spanning from zero (i.e. never gamble) to one (i.e. always gamble), and allowing for indifference by taking the last switch point as significant. The index is standardized.
+\textit{Sharing in Dictator Game.} The value donated in the relevant dictator game (standardized).
+\textit{Expected Relative Performance.} Individual level index constructed as the answer to the question ``Compared to the rest of today’s players, how well do you think you will perform in this game?''; on a scale of 0 (the worst) to 5 (the best), standardized between 0 and 1. 
+\textit{Balls on Target.} The number of balls shot by the $i$-th subject in the effort game, successfully entering the basket (out of 10).
+
+
 \todo{add table notes}
 \begin{threeparttable}[htb]
 	\caption{Willingness to Compete (out-group)}
@@ -255,7 +275,7 @@ Our findings are tentative; different types of conflicts could have varying lega
 	\tiny
 	\input{"\git/thesis/analysis/slfootball/Tables/ta1.tex"}
 	\begin{tablenotes}
-		\item \textit{Notes:} 
+		\item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, as well as 1-year age fixed effects. Column 2 replaces 1-year age fixed effects with 2-year age fixed effects. Column 3 replaces 2-year age fixed effects with 3-year age fixed effects. Column 4 replaces 3-year age fixed effects with 4-year age fixed effects. 14 observations dropped in (1), 5 observations dropped in (2) and 1 observation dropped in (3), due to quasi-separation issues related to small group fixed effects. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
 	\end{tablenotes}
 \end{threeparttable}
@@ -267,7 +287,7 @@ Our findings are tentative; different types of conflicts could have varying lega
 	\tiny
 	\input{"\git/thesis/analysis/slfootball/Tables/ta1.tex"}
 	\begin{tablenotes}
-		\item \textit{Notes:} 
+		\item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, for the subsample of respondents who were born and had never moved out of Kenema district. Column 2 presents the outcomes for the remaining subsample, born elsewhere or temporarily out-migrated from Kenema district during the conflict. Column 3 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group, including individual and football game related controls, and a variable capturing the absence of temporary out-migration. Column 4 presents the outcome for the pooled sample (in-group and out-group). Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
 	\end{tablenotes}
 \end{threeparttable}
