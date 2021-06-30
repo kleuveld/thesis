@@ -358,7 +358,9 @@ Table 4: Aggressiveness and risk propensity
 	eststo t4_4: qui reg life_risk we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left , robust
 
 	esttab t4_* `t4', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
-		stats(N r2_p r2,fmt(%9.0f %12.3f)  labels("N" "Pseudo R-Squared" "R2" )) se
+		mtitles("\specialcell{Foul\\Card}" "\specialcell{Foul\\Card}" ///
+			"\specialcell{Risk\\Propensity}" "\specialcell{Risk\\Propensity}") ///
+		stats(N r2_p r2,fmt(%9.0f %12.3f)  labels("N" "Pseudo R-Squared" "R2" )) se nonotes
 
 /*
 Table 5:  Dictator game donations
@@ -382,6 +384,7 @@ Table 5:  Dictator game donations
 	eststo t5_4 :qui reg dict we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if ingroup == 1, r
 	eststo t5_5 :qui reg dict we_all ingroup int_we_in ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left, r
 	esttab t5_* `t5', `replace' star(* 0.10 ** 0.05 *** 0.01) label ///
+		mtitles("Out-group" "Out-group" "In-group" "In-group" "Pooled") ///
 		stats(N r2,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
 		order(we_all ingroup int_we_in ind_age)
 
@@ -408,6 +411,7 @@ TABLE 6 WILLINGNESS TO COMPETE
 	eststo t6_5 : qui mfx
 
 	esttab t6_* `t6', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
+		mtitles("Out-group" "Out-group" "In-group" "In-group" "Pooled") ///
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "Pseudo R-Squared")) se ///
 		order(we_all life_tourin int_we_tourin)
 		
@@ -436,6 +440,8 @@ TABLE A1: WILLINGNESS TO COMPETE (out-group), age group fixed effects
 	
 	esttab ta1_* `ta1', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
+		mtitles("\specialcell{1-year\\age-group f.e.}" "\specialcell{2-year\\age-group f.e.}" ///
+			"\specialcell{3-year\\age-group f.e.}" "\specialcell{4-year\\age-group f.e.}") ///
 		drop(*dummy*)
 		
 		
