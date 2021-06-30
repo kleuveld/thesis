@@ -344,7 +344,8 @@ Table 3: Exposure to conflict
 	esttab t3_* `t3', `replace'  star(* 0.10 ** 0.05 *** 0.01) label ///
 	stats(N r2,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
 		 order(ind_age ind_age2 ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken ///
-		 ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight )
+		 ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight ) ///
+		 nonotes nomtitles
 
 
 /*
@@ -386,7 +387,7 @@ Table 5:  Dictator game donations
 	esttab t5_* `t5', `replace' star(* 0.10 ** 0.05 *** 0.01) label ///
 		mtitles("Out-group" "Out-group" "In-group" "In-group" "Pooled") ///
 		stats(N r2,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
-		order(we_all ingroup int_we_in ind_age)
+		order(we_all ingroup int_we_in ind_age) nonotes
 
 	*Get back wide data
 	restore
@@ -413,7 +414,7 @@ TABLE 6 WILLINGNESS TO COMPETE
 	esttab t6_* `t6', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		mtitles("Out-group" "Out-group" "In-group" "In-group" "Pooled") ///
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "Pseudo R-Squared")) se ///
-		order(we_all life_tourin int_we_tourin)
+		order(we_all life_tourin int_we_tourin) nonotes
 		
 		
 /*
@@ -442,7 +443,7 @@ TABLE A1: WILLINGNESS TO COMPETE (out-group), age group fixed effects
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
 		mtitles("\specialcell{1-year\\age-group f.e.}" "\specialcell{2-year\\age-group f.e.}" ///
 			"\specialcell{3-year\\age-group f.e.}" "\specialcell{4-year\\age-group f.e.}") ///
-		drop(*dummy*)
+		drop(*dummy*) nonotes
 		
 		
 /*
@@ -462,7 +463,9 @@ TABLE A2: WILLINGNESS TO COMPETE (out-group), migration
 		
 	esttab ta2_* `ta2', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		stats(N r2_p,fmt(%9.0f %12.2f)  labels("N" "R2")) se ///
-		order(we_all ind_alwaysken int_we_ken)
+		mtitles("\specialcell{Outgroup:\\Always in\\Kenema}" "\specialcell{Outgroup:\\Migrated}" ///
+			"\specialcell{Outgroup:\\All}" "\specialcell{Pooled}") ///
+		order(we_all ind_alwaysken int_we_ken) nonotes
 		
 /*
 TABLE A3: WILLINGNESS TO COMPETE (out-group), various FE
@@ -500,7 +503,7 @@ TABLE A4: WILLINGNESS TO COMPETE (out-group), risk preferences and expected perf
 	
 	esttab ta4_* `ta4', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "R2")) se  ///
-		order(we_all life_risk life_expperf life_ballshit)
+		order(we_all life_risk life_expperf life_ballshit) nonotes
 
 	
 /*
