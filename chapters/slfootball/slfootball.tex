@@ -36,7 +36,7 @@ Most of our respondents lived in Kenema during the conflict. Figure \ref{fig:slf
 
 
 \begin{figure}[htb]
-  \includegraphics[width=0.8\linewidth]{\git/thesis/analysis/slfootball/Figures/f1_violent_events.png"}
+  \includegraphics[width=0.8\linewidth]{\slfootballFigures/f1_violent_events.png"}
   \caption{Exposure to conflict, and displacement in our sample over time, combined with SLL-LED attacks events in Kenema District over the same time period.}
   \subcaption*{\textit{Notes:} distribution of SLL-LED events in Kenema (De Bruijne 2014), conflict events reported by participants and displacement events reported by participants over the course of the war in Sierra Leone. All data is presented as column totals, so 20\% of all displacement events took place in 1998.}
   \label{fig:slf:conflictexposure}
@@ -55,7 +55,7 @@ Our respondents are young males, between 14 and 31 years old (see Figure \ref{fi
 	\caption{Descriptive Statistics}
 	\label{tab:slf:summstats}
 	\centering
-	\input{"\git/thesis/analysis/slfootball/Tables/t1.tex"}
+	\input{"\slfootballTables/t1.tex"}
 	\begin{tablenotes}
 		\item \textit{Notes:} See Appendix I for variable definitions.
 	\end{tablenotes}
@@ -64,7 +64,7 @@ Our respondents are young males, between 14 and 31 years old (see Figure \ref{fi
 To measure exposure to conflict-related violence we ask respondents about a range of war related events, covering information on personal injury, seeing injured people, seeing and hearing combat.\footnote{In a robustness check we include displacement as an additional element of the victimization index. As 82\% of our sample was temporarily displaced at least once during the conflict, this brings average victimisation up to 0.63 (0.24). See section \ref{sec:slf:results} for the implications of this change for our results.} Following \cite{Bellows2009b}, we create a victimization index using the average of positive responses to these violence related questions. On average, our respondents experienced 57\% of such events.\footnote{This statistic is similar to what \citet{Bellows2009b} find in their study. Note that, as our measure of war exposure is self-reported, one may worry that types of respondents have a different propensity to report on war time events. If this is correlated with our outcome variables, then our estimates are biased. While we cannot exclude such possibility, our data show consistent patterns results for those reporting high and low levels of conflict exposure reducing concerns over bias in reporting.}  Figure \ref{fig:slf:ageconflict}B shows the average conflict exposure by age in our sample. Younger generations are relatively less victimized, but overall victimization follows a rather clear quadratic trend across age groups (a more detailed discussion on this can be found in Section \ref{sec:slf:identification}).
 
 \begin{figure}[htb]
-  \includegraphics[width=0.8\linewidth]{"\git/thesis/analysis/slfootball/Figures/f2_agefreq_agewe.png"}
+  \includegraphics[width=0.8\linewidth]{"\slfootballFigures/f2_agefreq_agewe.png"}
   \caption{Age in sample and exposure to conflict}
   \label{fig:slf:ageconflict}
   \subcaption*{\textit{Notes:} panel A shows the distribution of age in our sample. Panel B shows the relationship between age and victimization index.}
@@ -73,7 +73,7 @@ To measure exposure to conflict-related violence we ask respondents about a rang
 We implement a range of lab-in-field experiments. We measure willingness to self-select into competitive environments using an effort game, based on \cite{Niederle2007} and \cite{Bartling2009b}. Respondents are invited to participate in a game where they throw a football into a standard sized basket secured to the floor, from a distance of four meters. They choose whether to play individually – at a piece rate payment scheme of 500 Leones per ball on target – or to enter a competition against an anonymous counterpart. In the competition, the respondent wins 1500 Leones for every ball on target if the total number of hits is higher than the counterpart––zero if lower.\footnote{4400 Leones were about 1 USD at the time of data collection.}   In case of a draw with the counterpart the respondent receives 500 Leones per ball on target. It is possible for one player to enter the competition even if the counterpart does not, and vice versa. As a result, the payout of one player is determined only by his choice to compete and by the number of balls on target relative to the anonymous counterpart.\footnote{For example, even if player 1 decides to not compete, player 2 would get zero pay-out in case player 2 decides to compete and scores less than player 1. Oppositely, even if player 1 decides to compete, player 2 would not lose if he decides not to compete.}  In other words, participants cannot influence or hurt their opponents’ utility and earnings by choosing to enter the competition—but only by being better, regardless of their choice to compete or not. This setup allows us to disentangle willingness to compete from aggressiveness, as the decision to compete or not taken by each participant only affects their own private outcome, and not that of the counterpart. Respondents are randomly divided into two groups: one group plays against an anonymous player of the opponent team (out-group) and another against an anonymous player of their own team (in-group). 42\% of the respondents chose to participate in the tournament. Figure 3 shows the distribution of balls on target and relative frequency across groups. On average, respondents scored 6.27 hits (out of 10 tries), with a standard deviation of 1.82.\footnote{To control for expected performance in a sensitivity analysis, we ask respondents to assess their expected performance prior to playing the game. We create an index ranging from 0 (self-declared worst expected performance) to 1 (self-declared best expected performance).}  
 
 \begin{figure}[htb]
-  \includegraphics[width=0.8\linewidth]{"\git/thesis/analysis/slfootball/Figures/f3_ballshit.png"}
+  \includegraphics[width=0.8\linewidth]{"\slfootballFigures/f3_ballshit.png"}
   \caption{Balls hit in the effort game}
   \label{fig:slf:ballshit}
   \subcaption*{\textit{Notes:} distribution of number of balls hit for four subsamples: Panel A: Out-group, opted for tournament; Panel B: In-group opted for tournament; C: Out-group, did not opt for tournament; D: In-group, did not opt for tournament }
@@ -116,7 +116,7 @@ Our empirical strategy relies on local comparisons across war and non-war expose
 	\label{tab:slf:conflictexposure}
 	\centering
 	\tiny
-	\input{"\git/thesis/analysis/slfootball/Tables/t3.tex"}
+	\input{"\slfootballTables/t3.tex"}
 	\begin{tablenotes}
 		\item \textit{Notes:} Ordinary Least Squares regressions. Robust standard errors in parentheses. Column 1 reports the marginal effect of age and age squared on exposure to conflict related violence (as measured by the individual victimization index, see Appendix I for variable definitions). Column 2 adds individual controls. Column 3 tests for the effect of active parental belligerence at any moment and for any faction during the civil war. Column 4 includes education, number of meals per day, and a series of football related variables as additional controls.  * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
@@ -169,7 +169,7 @@ We start by analyzing our football field data. We find that individuals strongly
 	\label{tab:slf:aggrisk}
 	\centering
 	\tiny
-	\input{"\git/thesis/analysis/slfootball/Tables/t4.tex"}
+	\input{"\slfootballTables/t4.tex"}
 	\begin{tablenotes}
 		\item \textit{Notes:} Probit marginal effects in (1) and (2), Ordinary Least Squares estimates in (3) and (4). Column 1 reports the univariate marginal effect of exposure to conflict on the likelihood of having received at least one foul card. Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on an experimental measure of risk propensity (see Appendix I for variable definitions). Column 4 adds individual and football game related controls. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
@@ -183,7 +183,7 @@ We test the hypothesis that individual war exposure fosters parochial pro-egalit
 	\label{tab:slf:dictator}
 	\centering
 	\tiny
-	\input{"\git/thesis/analysis/slfootball/Tables/t5.tex"}
+	\input{"\slfootballTables/t5.tex"}
 	\begin{tablenotes}
 		\item \textit{Notes:} Ordinary Least Squares regressions. Column 1 reports the univariate marginal effect of exposure to conflict on dictator game donations towards the out-group (see Appendix I for variable definitions). Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on dictator game donations towards the in-group. Column 4 adds individual and football game related controls. Column 5 reports the pooled marginal effect of exposure to conflict on dictator game, including individual and football game related controls, a group dummy, and an interaction term. Robust standard errors in parentheses. 162 individual-level clusters in (5). * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
@@ -193,7 +193,7 @@ We test the hypothesis that individual war exposure fosters parochial pro-egalit
 Our main results on the relationship between civil war exposure and competiveness is presented in Figures \ref{fig:slf:we_competition}A-D and Table \ref{tab:slf:compete}. Figure \ref{fig:slf:we_competition}A shows the percentage of football players receiving a foul card during the football tournament for each level of war exposure. We find that higher levels of conflict exposure are associated with a higher propensity to receive a foul card (at the median of all covariates). None of the unexposed players received a foul card. While indicative of increased out-group antagonism, this result per se is not symptomatic of increased willingness to compete. We therefore proceed to look into our laboratory style competitiveness experiment. We find that the results parallel the field setting: across the two treatments, 18\% of the completely war unexposed respondents decide to join the competition, compared to 64\% of the fully war exposed respondents (Figure \ref{fig:slf:we_competition}B). A Pearson $\chi^2$ test on the pooled dataset strongly rejects the null hypothesis of independence between war exposure and choosing to compete (p=0.003). Figure \ref{fig:slf:we_competition}C and \ref{fig:slf:we_competition}D show a breakdown for subjects playing against the out-group and those playing against the in-group respectively. 
 
 \begin{figure}[htb]
-  \includegraphics[width=0.8\linewidth]{"\git/thesis/analysis/slfootball/Figures/f4_we_competition.png"}
+  \includegraphics[width=0.8\linewidth]{"\slfootballFigures/f4_we_competition.png"}
   \caption{Foul cards, competitiveness and exposure to violence}
   \label{fig:slf:we_competition}
   \subcaption*{\textit{Notes:} Competition and war expose: Panel A: Foul Card and war exposure for the entire sample; Panel B: willingness to compete and war exposure, entire sample; Panel C: willingness to compete and war exposure,  out-group only; Panel D: willingness to compete and war exposure, in-group only. All panels show binomial confidence intervals at the 95\% level.}
@@ -206,7 +206,7 @@ We find that war exposure results in out-group competition. At the median of all
 	\label{tab:slf:compete}
 	\centering
 	\tiny
-	\input{"\git/thesis/analysis/slfootball/Tables/t6.tex"}
+	\input{"\slfootballTables/t6.tex"}
 	\begin{tablenotes}
 		\item \textit{Notes:} robit marginal effects. Column 1 reports the univariate marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions). Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the in-group. Column 4 adds individual and football game related controls. Column 5 reports the pooled marginal effect of exposure to conflict our experimental measure of willingness to compete, including individual and football game related controls, a group dummy, and an interaction term. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
@@ -283,7 +283,7 @@ Our findings are tentative; different types of conflicts could have varying lega
 	\label{tab:slf:compete}
 	\centering
 	\tiny
-	\input{"\git/thesis/analysis/slfootball/Tables/ta1.tex"}
+	\input{"\slfootballTables/ta1.tex"}
 	\begin{tablenotes}
 		\item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, as well as 1-year age fixed effects. Column 2 replaces 1-year age fixed effects with 2-year age fixed effects. Column 3 replaces 2-year age fixed effects with 3-year age fixed effects. Column 4 replaces 3-year age fixed effects with 4-year age fixed effects. 14 observations dropped in (1), 5 observations dropped in (2) and 1 observation dropped in (3), due to quasi-separation issues related to small group fixed effects. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
@@ -297,7 +297,7 @@ Our findings are tentative; different types of conflicts could have varying lega
 	\label{tab:slf:compete}
 	\centering
 	\tiny
-	\input{"\git/thesis/analysis/slfootball/Tables/ta1.tex"}
+	\input{"\slfootballTables/ta1.tex"}
 	\begin{tablenotes}
 		\item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, for the subsample of respondents who were born and had never moved out of Kenema district. Column 2 presents the outcomes for the remaining subsample, born elsewhere or temporarily out-migrated from Kenema district during the conflict. Column 3 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group, including individual and football game related controls, and a variable capturing the absence of temporary out-migration. Column 4 presents the outcome for the pooled sample (in-group and out-group). Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
 		\item
