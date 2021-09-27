@@ -28,13 +28,17 @@ class thesisBuilder(PdfBuilder):
         self.display("done.\n")
 
         # now run bibtex
+        chapters =   ["chapters/cameroon_trust/cameroontrust_paper.aux",
+                     "chapters/conclusion/conclusion.aux",
+                     "chapters/congogbv/congogbv.aux",
+                     "chapters/introduction/introduction.aux",
+                     "chapters/n2a_impact/n2a_impact.aux",
+                     "chapters/slfootball/slfootball.aux"]
         self.display("Running bibtex...\n")
-        for file in os.listdir(self.tex_dir + "/chapters"):
-            if file.endswith(".aux"):
-                yield(BIBTEX + ["chapters/" + file.rstrip(".aux")], 
-                      "  (%s)\n" % file)
+        for file in chapters:
+            yield(BIBTEX + [file.rstrip(".aux")],"  (%s)\n" % file)
+            self.display("done.\n")
 
-        self.display("done.\n")
 
         # second run of pdflatex
         yield(
@@ -42,7 +46,7 @@ class thesisBuilder(PdfBuilder):
             "Running pdflatex again..."
         )
 
-        self.display("done.\n")
+        self.display("done!\n")
 
         # third run of pdflatex
         yield(
