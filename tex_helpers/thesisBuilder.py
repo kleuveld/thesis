@@ -33,7 +33,12 @@ class thesisBuilder(PdfBuilder):
                      "chapters/congogbv/congogbv.aux",
                      "chapters/introduction/introduction.aux",
                      "chapters/n2a_impact/n2a_impact.aux",
-                     "chapters/slfootball/slfootball.aux"]
+                     "chapters/slfootball/slfootball.aux",
+                     "chapters/slfootball/slfootball.aux",
+                     "chapters/acknowledgements/acknowledgements.aux",
+                     "chapters/summary_dutch/summary_dutch.aux",
+                     "chapters/summary_english/summary_english.aux"
+                     ]
         self.display("Running bibtex...\n")
         for file in chapters:
             yield(BIBTEX + [file.rstrip(".aux")],"  (%s)\n" % file)
