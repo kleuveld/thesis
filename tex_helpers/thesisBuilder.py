@@ -28,7 +28,7 @@ class thesisBuilder(PdfBuilder):
         self.display("done.\n")
 
         # now run bibtex
-        chapters =   ["chapters/cameroon_trust/cameroontrust_paper.aux",
+        chapters =   ["chapters/cameroontrust/cameroontrust_paper.aux",
                      "chapters/conclusion/conclusion.aux",
                      "chapters/congogbv/congogbv.aux",
                      "chapters/introduction/introduction.aux",
