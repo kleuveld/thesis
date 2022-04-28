@@ -3,19 +3,8 @@
 	[
 		{
 			"path": "."
-		},
-		{
-			"path": "C:\\Users\\Koen\\Documents\\GitHub\\cameroontrust"
-		},
-		{
-			"path": "C:\\Users\\Koen\\Dropbox (Personal)\\PhD\\Papers\\CameroonTrust"
-		},
-		{
-			"path": "C:\\Users\\Koen\\Documents\\GitHub\\congogbv"
-		},
-		{
-			"path": "C:\\Users\\Koen\\Documents\\GitHub\\edcc"
 		}
+		
 	],
 	"settings":
 	{
@@ -31,3 +20,4 @@
 		]
 	}
 }
+
