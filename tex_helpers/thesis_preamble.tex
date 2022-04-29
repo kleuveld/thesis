@@ -1,5 +1,5 @@
 %layout
-\documentclass[10pt,a4paper]{report}
+\documentclass[10pt,a4paper,twoside]{report}
 \usepackage[doublespacing]{setspace}
 \usepackage[utf8]{inputenc}
 %\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
@@ -40,9 +40,18 @@
 %\usepackage{longtable}
 
 
-%fancy header
-% \pagestyle{fancy}
-% %https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
+%fancy header% 
+%https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
+
+\usepackage{fancyhdr}
+\usepackage{authoraftertitle}
+
+\fancyhead{}
+\fancyhead[RO,LE]{\MyTitle}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{Chapter \thechapter}
+\fancyfoot[CO,RE]{Koen Leuveld}
 % \fancyhead{}
 % \fancyhead[L]{Social Capital and Behaviour in Fragile States}
 % \fancyhead[R]{\leftmark}
