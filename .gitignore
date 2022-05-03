@@ -1,6 +1,5 @@
 # Specify filepatterns you want git to ignore.
 *.sublime-workspace
-*.sublime-project
 *.bbl
 *.aux
 *.bib
@@ -15,5 +14,4 @@
 *.synctex.gz
 *.tdo
 thesis_paths.tex
-
-thesis.sublime-project
+thesis.synctex(busy)
