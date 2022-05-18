@@ -8,7 +8,7 @@
 	],
 	"settings":
 	{
-		"builder": "thesisBuilder",
+     	"builder": "thesisBuilder",
 		"builder_path": "User/LaTeXTools-Builders",
 		"builder_settings":
 		{
@@ -17,7 +17,8 @@
 		"tex_file_exts":
 		[
 			".tex"
-		]
+		],
+		"TEXroot": "thesis.tex"
 	}
 }
 
