@@ -13,5 +13,7 @@
 *.toc
 *.synctex.gz
 *.tdo
+*.lof
+*.lot
 thesis_paths.tex
 thesis.synctex(busy)
