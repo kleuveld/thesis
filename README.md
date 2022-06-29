@@ -1,11 +1,13 @@
 # Introduction
 
-This folder contains the files for the dissertation of Koen Leuveld.
+This folder contains the files for the dissertation of Koen Leuveld. Respondents have not consented to sharing their data, so data is stored separately, and will be archived on publication of the thesis.
 
 
 # Building LaTeX
 
-The file thesis.tex contains references to all the individual chapters. I build the file using the LaTeXTools package of SublimeText 3. The file should be built using ThesisBuilder.py, placed in sublimetext packages folder, in the subfolder User/LaTeXTools-Builders. ThesisBuilder is then included in the thesis.sublime-project file. A copy of ThesisBuilder.py is included in the tex_helpers folder. More info can be found: https://stmorse.github.io/journal/Thesis-writeup.html 
+The file thesis.tex contains references to all the individual chapters. Each chapter contains its own bibliography, through the use of the [chapterbib](https://www.ctan.org/pkg/chapterbib) package. To properly build the pdf, run pdflatex on the main file, then run biblatex on each chapter, and then run pdflatex twice.
+
+I build the file using the LaTeXTools package of Sublime Text 3. The file ThesisBuilder.py (a copy of which is included in the tex_helpers folder) implements the build instructions outlined above. More info on how to set up Sublime Text 3 to use the builder can be found [here](https://stmorse.github.io/journal/Thesis-writeup.html). 
 
 Paths are defined in thesis_paths.tex, which should not be included in git, so it can be different on each machine. Here's a template:
 
