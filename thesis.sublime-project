@@ -2,9 +2,8 @@
 	"folders":
 	[
 		{
-			"path": "."
-		}
-		
+			"path": ".",
+		},
 	],
 	"settings":
 	{
@@ -12,13 +11,12 @@
 		"builder_path": "User/LaTeXTools-Builders",
 		"builder_settings":
 		{
-			"options": "--shell-escape"
+			"options": "--shell-escape",
 		},
 		"tex_file_exts":
 		[
 			".tex"
 		],
-		"TEXroot": "thesis.tex"
-	}
+		"TEXroot": "thesis.tex",
+	},
 }
-
