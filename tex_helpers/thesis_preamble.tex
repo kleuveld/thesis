@@ -2,15 +2,15 @@
 \documentclass[10pt,a4paper,twoside]{report}
 \usepackage[doublespacing]{setspace}
 \usepackage[utf8]{inputenc}
-%\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
-\usepackage[left=2.5cm,right=5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+%\usepackage[left=2.5cm,right=5cm,top=3cm,bottom=3cm]{geometry}
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage[blocks]{authblk} %for affil
 \usepackage{lineno, blindtext} %for linenumbers
 \usepackage{fancyhdr}
 \usepackage{pdflscape}
-\usepackage[colorinlistoftodos,textsize=tiny]{todonotes} %add disable option to hide notes
+\usepackage[colorinlistoftodos,textsize=tiny,disable]{todonotes} %add disable option to hide notes
 \setlength{\marginparwidth}{4cm}
 \usepackage{pbox}
 \usepackage{subcaption}
@@ -44,16 +44,14 @@
 %https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
 
 \usepackage{fancyhdr}
-\usepackage{authoraftertitle}
+%\usepackage{authoraftertitle}
+%\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+
 
 \fancyhead{}
-\fancyhead[RO,LE]{\MyTitle}
+\fancyhead[RO,LE]{Risks and opportunities to development in Africa}
+%\fancyhead[LO,RE]{\chaptermark}
 \fancyfoot{}
 \fancyfoot[LE,RO]{\thepage}
 \fancyfoot[LO,CE]{Chapter \thechapter}
-\fancyfoot[CO,RE]{\MyAuthor}
-% \fancyhead{}
-% \fancyhead[L]{Social Capital and Behaviour in Fragile States}
-% \fancyhead[R]{\leftmark}
-% \fancyfoot{}
-% \fancyfoot[C]{\thepage}
+\fancyfoot[CO,RE]{Koen Leuveld}

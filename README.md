@@ -1,6 +1,6 @@
 # Introduction
 
-This folder contains the files for the dissertation of Koen Leuveld. Respondents have not consented to sharing their data, so data is stored separately, and will be archived on publication of the thesis.
+This folder contains the files for the PhD thesis of Koen Leuveld. Respondents have not consented to sharing their data, so data is stored separately, and will be archived on publication of the thesis.
 
 
 # Building LaTeX
