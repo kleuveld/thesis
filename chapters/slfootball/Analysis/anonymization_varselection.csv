@@ -1,0 +1,41 @@
+varname,action,explanation
+uid,ignore,random and non-senstive
+eveningid,ignore,random and non-senstive
+personid,ignore,random and non-senstive
+team,ignore,random and non-senstive
+we_displace,sensitive,
+we_hear,sensitive,
+we_sawinj,sensitive,
+we_year,sensitive,
+we_wasinj,sensitive,
+we_all,sensitive,
+we_alldisp,ignore,constructed
+we_level,ignore,constructed
+ind_age,key,
+ind_mealpd,sensitive,
+ind_parfight,sensitive,
+ind_age2,ignore,constructed
+ind_edu,key,
+ind_muslim,drop,
+ind_mende,key,
+ind_fula,drop,
+ind_mandingo,drop,
+ind_temne,drop,
+ind_alwaysken,sensitive,
+foot_left,drop,
+foot_foul,ignore,"non sensitive, and unlikely to be remembered"
+foot_whole,ignore,"non sensitive, and unlikely to be remembered"
+foot_selfskills,sensitive,
+foot_score,ignore,"non sensitive, and unlikely to be remembered"
+foot_won,ignore,"non sensitive, and unlikely to be remembered"
+life_dictout,sensitive,
+life_dictin,sensitive,
+life_ballshit,sensitive,
+life_outtour,ignore,constructed
+life_intour,ignore,
+life_risk,sensitive,
+life_tournament,sensitive,
+life_tourout,ignore,constructed
+life_tourin,ignore,constructed
+life_expperf,sensitive,
+teamid,ignore,random and non-senstive

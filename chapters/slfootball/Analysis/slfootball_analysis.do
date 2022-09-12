@@ -59,8 +59,8 @@ Set working dirs
 	*get data folders
 	*There should be a Raw Data, Cleaned Data, and Secondary Data folder
 	*(NB: PATHS IN CRYPTOMATOR ARE CASE SENSITIVE!) 
-		*Cryptomator Koen private 
-		capture cd  "D:\PhD\Papers\Football\pAPER\Replication"
+		*Cryptomator Koen private/Koen VU 
+		capture cd  "E:\PhD\Papers\Football\pAPER\Replication"
 
 		global  DATADIR = "`: pwd'"
 
@@ -68,6 +68,9 @@ Set working dirs
 	*get non-data (public) folders
 		*Git KL private
 		capture cd "C:\Users\Koen\Documents\GitHub\thesis\chapters\slfootball\Analysis"
+
+		*Git Koen VU
+		capture cd "C:\Users\kld330\Git\thesis\chapters\slfootball\Analysis"
 
 		global  PUBLICDIR `: pwd'
 
@@ -77,7 +80,7 @@ Set working dirs
 Get data
 */
 	*Import raw data from Excel
-	import excel "D:\PhD\Papers\Football\pAPER\Replication\Raw Data\Foot_raw.xlsx", sheet("data") firstrow case(lower) clear
+	import excel "$DATADIR\Raw Data\Foot_raw.xlsx", sheet("data") firstrow case(lower) clear
 
 	*Drop empty rows and columns
 	drop ds- fh
