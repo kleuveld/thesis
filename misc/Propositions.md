@@ -5,10 +5,10 @@ Koen Leuveld
 
 2. The high rates of Sexual and Gender Based Violence in Eastern DRC are due to the inferior position that women have in their households, and in Congolese society in general. (This thesis) 
 
-3. Researchers should protect their respondent's confidential data.
+3. Ethical treatment of respondent data is more important than research transparency. 
 
-4. The persistence of doping allegations in professional cycling should show researchers that people care not only about results, but also about how the results were obtained.
+4. Researchers should care more about how results are obtained than the results themselves.
 
-5. All development policy will be rendered ineffective without swift action against climate change.
+5. All development policy will be ineffective without swift action against climate change.
 
 6. The sunk cost fallacy can have positive consequences, as the completion of this thesis shows.
