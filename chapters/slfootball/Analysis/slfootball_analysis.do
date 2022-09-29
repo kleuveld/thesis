@@ -5,6 +5,7 @@ Date: 19/6/2015
 changed:29/6/2015: ???
 changed:7/7/2021: 	-output of tables tweaked to fit TeX for Thesis koen.
 					-Split folders: -one restricted access (data), and one public.
+changed 27/09/2022 - Labelled the values of various variables, for a better codebook
 
 
 Info:
@@ -60,7 +61,7 @@ Set working dirs
 	*There should be a Raw Data, Cleaned Data, and Secondary Data folder
 	*(NB: PATHS IN CRYPTOMATOR ARE CASE SENSITIVE!) 
 		*Cryptomator Koen private/Koen VU 
-		capture cd  "E:\PhD\Papers\Football\pAPER\Replication"
+		capture cd  "D:\PhD\Papers\Football\pAPER\Replication"
 
 		global  DATADIR = "`: pwd'"
 
@@ -97,23 +98,31 @@ Get data
 	save `nowrite'
 
 
+
+/* Common Labels */
+	la def yesno 0 "No"
+	la def yesno 1 "Yes", add
+
 /*team id*/
 	ren newteam teamid
 
 
 /*war exposure*/
-
 	ren q07ahear we_hear
 	la var we_hear "Heard fighting"
+	la val we_hear yesno 
 
 	ren q07csawinjured we_sawinj
 	la var we_sawinj "Saw injured person"
+	la val we_sawinj yesno
 
 	ren q09injured we_wasinj
 	la var we_wasinj "Was injured"
-	
+	la val we_wasinj yesno
+
 	ren q05displace we_displace
 	la var we_displace "Displaced"
+	la val we_displace yesno
 
 	gen we_all = (we_hear + we_sawinj + we_wasinj) / 3
 	la var we_all "War Exposure"
@@ -153,6 +162,7 @@ Get data
 	*Parents fought
 	ren q010parentsfight ind_parfight
 	la var ind_parfight "Parent fought in war"
+	la val ind_parfight yesno
 
 	*Age
 	ren q11age ind_age
@@ -164,26 +174,31 @@ Get data
 	*Education Level
 	gen ind_edu = .
 	la var ind_edu "Education Level"
+
 	
 	**categorize raw data using regular expressions:
 	***junior secondary
 	replace ind_edu = 1 if regexm(q17education,"^[Jj][Ss][Ss]") == 1
 	replace ind_edu = 1 if regexm(q17education,"^GLE$") == 1
 	replace ind_edu = 1 if q17education == ""
+	la def edu 1 "Junior Secondary" 
 	
 	***senior secondary 1 and 2
 	replace ind_edu = 2 if regexm(q17education,"^[Ss][Ss][Ss] *[12]") == 1
 	replace ind_edu = 2 if regexm(q17education,"high school") == 1
 	replace ind_edu = 2 if regexm(q17education,"[Ww]\.*[Aa]") == 1
+	la def edu 2 "Senior Secondary 1 and 2", add 
 
 	***senior secondary 3:
 	replace ind_edu = 3 if regexm(q17education,"^[Ss][Ss][Ss] *3") == 1
 	replace ind_edu = 3 if regexm(q17education,"A level") == 1
-	
+	la def edu 3 "Senior Secondary 3", add 
+
 	***Tertiary, the rest
 	replace ind_edu = 4 if ind_edu == .
-	
-	
+	la def edu 4 "Tertiary and higher", add 
+	la val ind_edu edu
+
 	*Meals per day
 	ren q15mealsperday ind_mealpd
 	
