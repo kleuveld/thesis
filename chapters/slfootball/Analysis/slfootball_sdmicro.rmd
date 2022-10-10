@@ -19,7 +19,24 @@ Add comments here
 
 This file outlines the procedures to anonymize the data set used for the paper "Conflict Exposure and Competitiveness: Experimental Evidence from the Football Field in Sierra Leone". It lists the procedures, including R output, and finally summarizes the edits made to the data. The tool to do the anonymization is the R package sdcMicro. 
 
-The goal of this excercise is to ensure that no attacker can infer information about our respondents from this data set. The attacker in this case may simply be a participant of the football tournament who dowloaded the public data set and is interested in learning more about his teammates. While he (all our respondents are male) has no names of players or teams to go on, he may identify players by unique combinations of observable characteristics. For example, if one of his friends was in the sample, 21 years old at time of the tournament, and left-footed, and if there's only one such player in the sample, his friend's would be easy to recover. To ensure this is not possible, I make sure there are at least two (or zero) observations for each combination of such easily observable characteristics in the data set, the data is anonymous (i.e. k=2).
+# Background
+
+## Anonimization
+
+The goal of this excercise is to ensure that an attacker is unlikely to be able to infer information about our respondents from this data set. The attacker in this case may simply be a participant of the football tournament who dowloaded the public data set and is interested in learning more about his teammates. While he (all our respondents are male) has no names of players or teams to go on, he may identify players by unique combinations of observable characteristics. For example, if one of his friends was in the sample, 21 years old at time of the tournament, and left-footed, and if there's only one such player in the sample, his friend's would be easy to recover. To ensure this is not possible, I ensure *k*-anonimity by ensuring there are at least *k* (or zero) observations for each combination of such easily observable characteristics (or key variables) in the data set.
+
+In choosing *k* I consider the following:
+
+- The data set is old: more than ten years. This means that many things that were once easily recognizable are now unlikely to be able to be used as key variables.
+- The composition of the sample is unlikely to be exactly known: the sample consists of football players from teams in two tournaments that were based on streets. The composition of these teams is unlikely to be exactly remembered, especially ten years later. This makes re-identification difficult.
+
+I therefore argue that a low number of *k* suffices to prevent re-identification. To maximize data utility, I choose a value of 2.
+
+## Data utility 
+
+Achieving k-anonimity is not difficult. We can just group and/or suppress as many values as needed so no one can make inferences about the data. However, that makes the data less useful. Anonymization thus always presents a trade-off between anonymity and utitlity. The standard I will use to judge utility is the ability to replicate the original paper with the anonymized data. An exact replication will be impossible, as anonymization will involve changing the data set, but replicating the paper approximately, where coefficients of our main findings don't change qualitatively should be possible. To this end, my procedure revolves around identifying ways to achieve k-anonyity with changes to the data that are as small as possible. It also means that I limit the variables from the raw data set to be published to those used in the paper.
+
+# Anonymization process
 
 The process I use for this is as follows:
 
@@ -27,7 +44,8 @@ The process I use for this is as follows:
 2. Use sdcMicro to locally suppress key variables to satisfy k-anonimity, where k=2;
 3. Check which variable is suppressed the most, and aggregate that variable in larger bins; and then,
 4. Re-run steps 2 and 3 until 2-anomimity is satisfied with a limited number of local suppressions (preferably less than 10% of the sample size).
-5. Check whether the data is still useful by attempting to replicate the published paper.
+5. Assess disclosure risk.
+6. Check whether the data is still useful by attempting to replicate the published paper.
 
 # Procedures
 
@@ -39,6 +57,8 @@ library(tidyverse) #for data manipulation
 library(haven) #for using stata files
 
 data <- read_dta("D:/PhD/Papers/Football/pAPER/Replication/Cleaned Data/foot_cleaned.dta")
+
+#datadf <- as.data.frame(data)
 ```
 
 The first step is to categorize each variable. To more easily do this, I included all the variables present in foot_cleaned.dta in a CSV file, with two more columns: "action", which contains the characterization, and "explanation", explaining the characterization. The column action contains the following: 
@@ -73,6 +93,8 @@ data <- select(data,-all_of(dropvars))
 KeyVars <- varselection[varselection$action=="key",'varname'][[1]]
 ExcludedVars <- varselection[varselection$action=="ignore",'varname'][[1]]
 SensitiveVars <- varselection[varselection$action=="sensitive",'varname'][[1]]
+pramVars <- varselection[varselection$action=="pram",'varname'][[1]]
+
 ```
 
 Before starting the anonymization, I need to do a little data manipulation first: ethnicity is included as a set of dummies, but for anonymization we need to consider the fact that these dummies are linked. The most convenient way is to just combine the dummies in a single variable, and then just drop the dummies and reconstruct them later.
@@ -80,20 +102,19 @@ Before starting the anonymization, I need to do a little data manipulation first
 ```{r}
 #coalesce the ethnicity dummies into one var
 
-#create a dataframe with only the ethnicity dummies:
-etn_cols <- c("ind_mende", "ind_fula", "ind_mandingo", "ind_temne")
-select_etn <- names(data) %in% etn_cols
-etn_data <- data[,select_etn]
+#create a vector to select the ethnicity columns
+ethn_cols <- c("ind_mende", "ind_fula", "ind_mandingo", "ind_temne")
+select_ethn <- names(data) %in% ethn_cols
 
 #count which dummy == 0 (if any)
-ind_ethn <- apply(etn_data,
+ind_ethn <- apply(data[,select_ethn],
 								  1, 
                   function(x) ifelse(sum(x) == 0, 0,which.max(x)))
 
 data$ind_ethn <- as.factor(ind_ethn)
 
-#drop the original columns
-data <- select(data,-all_of(etn_cols))
+#drop the original dummies
+data <- select(data,-all_of(ethn_cols))
 
 
 #pramming needs factor vars:
@@ -235,7 +256,27 @@ sdcInitial
 
 Now there's still  22 local suppressions left, about 14% of the data. This is a bit higher than the intended 10%. I could bin age further, but considering the importance of the variable, I choose not to bin any further and keep the data as it is.
 
+
+I calculate the risk.
+
+```{r}
+
+## calculating suda2 riskmeasure
+sdcInitial <- suda2(obj=sdcInitial, DisFraction=0.1, missing=NA)
+sdcInitial@risk$suda2 
+
+## calculating l-diversity measure
+sdcInitial <- ldiversity(obj=sdcInitial, ldiv_index=c("we_displace","we_sawinj","we_wasinj","life_dictout","life_dictin"), l_recurs_c=2, missing=NA)
+sdcInitial@risk$ldiversity 
+sdcInitial@risk$global
+
+
+
+```
+
+
 I update the data with the manipKeyVars from the sdcInitial object, and reconstruct the ethnicity dummy for Mende:
+
 ```{r}
 #data_localsuppress <- data
 data[,KeyVars] <- sdcInitial@manipKeyVars 
