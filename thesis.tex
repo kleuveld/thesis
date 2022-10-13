@@ -3,28 +3,39 @@
 \input{tex_helpers/thesis_customfunctions}
 
 \begin{document}
-\raggedbottom
-\pagenumbering{roman}
-\title{Risks and opportunities to development in Africa \\ A local perspective}
-\author{Koen Leuveld}
-\date{August 2022}
+%\raggedbottom
 
-%\maketitle
-%\tableofcontents
+
+%front matter
+\pagenumbering{roman}
+
+\input{chapters/front_back_matter/title_page}
+\tableofcontents
 %\todototoc
 %\listoftodos
 
 
-% \include{chapters/introduction/introduction} 
+%main matter
+\include{chapters/introduction/introduction} 
 \include{chapters/slfootball/slfootball}
-% \include{chapters/n2a_impact/n2a_impact}
-% \include{chapters/cameroontrust/cameroontrust_paper}
-% \include{chapters/congogbv/congogbv}
-% \include{chapters/conclusion/conclusion}
-%\include{chapters/summary_dutch/summary_dutch}
-%\include{chapters/summary_english/summary_english}
-%\include{chapters/acknowledgements/acknowledgements}
-%\include{chapters/data_statement/data_statement}
+\include{chapters/n2a_impact/n2a_impact}
+\include{chapters/cameroontrust/cameroontrust_paper}
+\include{chapters/congogbv/congogbv}
+\include{chapters/conclusion/conclusion}
 
+
+
+%backmatter
+\fancyhf{}% Clear header/footer
+\fancyhead[RO,LE]{Risks and opportunities to development in Africa}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{}
+\fancyfoot[CO,RE]{Koen Leuveld}
+
+\include{chapters/summary_dutch/summary_dutch}
+\include{chapters/summary_english/summary_english}
+\include{chapters/acknowledgements/acknowledgements}
+\include{chapters/data_statement/data_statement}
+\include{chapters/front_back_matter/acknowledgement_financial_support}
 
 \end{document}
