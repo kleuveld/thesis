@@ -271,6 +271,13 @@ I calculate the risk.
 sdcInitial <- suda2(obj=sdcInitial, DisFraction=0.1, missing=NA)
 sdcInitial@risk$suda2 
 
+# Plot a histogram of disScore
+hist(sdcInitial@risk$suda2$disScore, main = 'Histogram of DIS-SUDA scores')
+
+# Density plot
+density <- density(sdcInitial@risk$suda2$disScore)
+plot(density, main = 'Density plot of DIS-SUDA scores')
+
 ## calculating l-diversity measure
 sdcInitial <- ldiversity(obj=sdcInitial, ldiv_index=c("we_displace","we_sawinj","we_wasinj","life_dictout","life_dictin"), l_recurs_c=2, missing=NA)
 sdcInitial@risk$ldiversity 
