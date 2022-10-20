@@ -1,0 +1,20 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+                    &\multicolumn{1}{c}{TDG: tokens sent}&\multicolumn{1}{c}{RG: switch point}&\multicolumn{1}{c}{IG: Fraction expected}\\
+\hline
+Market in village   &      0.0771         &       0.578\sym{**} &     -0.0236         \\
+                    &     (0.124)         &     (0.258)         &    (0.0470)         \\
+[1em]
+Constant            &       3.826\sym{***}&       4.715\sym{***}&       1.379\sym{***}\\
+                    &     (0.411)         &     (0.790)         &    (0.0843)         \\
+[1em]
+Add. Controls       &         Yes         &         Yes         &         Yes         \\
+\hline
+N                   &        2187         &        2184         &        2185         \\
+Adj. R-Square       &        0.01         &        0.01         &        0.01         \\
+\hline\hline
+\end{tabular}
+}

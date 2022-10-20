@@ -1,0 +1,41 @@
+\begin{table}[hp] \centering
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\caption{Covariate balance, before matching}
+\label{tab:balance_noweight}
+{\footnotesize
+\begin{tabularx}{\textwidth}{lCCCCCCC}
+
+\toprule
+&{(1)}&{(2)}&{(3)}&{(4)}&{(5)}&{(6)}&{(7)} \tabularnewline
+&\multicolumn{2}{c}{All}&\multicolumn{2}{c}{Treatment}&\multicolumn{2}{c}{Control}&{(4)-(6)}\tabularnewline
+{}&{N}&{Mean}&{N}&{Mean}&{N}&{Mean}&{ } \tabularnewline
+\midrule\addlinespace[1.5ex]
+Married&3195&0.78&1808&0.76&1387&0.80&-0.03* \tabularnewline
+&&(0.42)&&(0.42)&&(0.40)& \tabularnewline
+Village Size&3278&173.42&1851&236.21&1427&91.97&144.24*** \tabularnewline
+&&(139.72)&&(152.53)&&(54.04)& \tabularnewline
+HH Size&3164&7.32&1784&7.42&1380&7.19&0.23 \tabularnewline
+&&(4.83)&&(4.98)&&(4.62)& \tabularnewline
+Muslim&3164&0.81&1784&0.83&1380&0.79&0.04 \tabularnewline
+&&(0.39)&&(0.37)&&(0.41)& \tabularnewline
+Number of wives&2272&1.57&1262&1.63&1010&1.49&0.14*** \tabularnewline
+&&(0.87)&&(0.92)&&(0.79)& \tabularnewline
+Village leader&3195&0.06&1808&0.06&1387&0.07&-0.01* \tabularnewline
+&&(0.24)&&(0.23)&&(0.25)& \tabularnewline
+Head educated&3164&0.40&1784&0.42&1380&0.37&0.05 \tabularnewline
+&&(0.49)&&(0.49)&&(0.48)& \tabularnewline
+Age HH head&3164&44.54&1784&44.59&1380&44.48&0.11 \tabularnewline
+&&(16.09)&&(15.92)&&(16.31)& \tabularnewline
+Improved roof&3157&0.56&1779&0.64&1378&0.46&0.18*** \tabularnewline
+&&(0.50)&&(0.48)&&(0.50)& \tabularnewline
+High wellbeing relative to village&2633&0.18&1483&0.18&1150&0.17&0.01 \tabularnewline
+&&(0.38)&&(0.39)&&(0.38)& \tabularnewline
+\bottomrule \addlinespace[1.5ex]
+
+\end{tabularx}
+\begin{flushleft}
+\footnotesize Standard Deviations in parantheses; *p $<$ 0.1,**p $<$ 0.05,***p $<$ 0.01
+\end{flushleft}
+}
+\end{table}

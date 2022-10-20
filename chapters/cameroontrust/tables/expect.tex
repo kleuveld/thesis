@@ -1,0 +1,21 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{3}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         \\
+\midrule
+Market in village   &      0.0279         &       0.591\sym{**} &     -0.0348         \\
+                    &      (0.24)         &      (2.53)         &     (-0.76)         \\
+\addlinespace
+Constant            &       3.330\sym{***}&       5.834\sym{***}&       1.068\sym{***}\\
+                    &     (28.02)         &     (23.28)         &     (23.51)         \\
+\addlinespace
+Add. Controls       &         Yes         &         Yes         &         Yes         \\
+\midrule
+N                   &        2531         &        2529         &        2530         \\
+Adj. R-Square       &        0.01         &        0.01         &        0.01         \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize \textit{t} statistics in parentheses}\\
+\multicolumn{4}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+}

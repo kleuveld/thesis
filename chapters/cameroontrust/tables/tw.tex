@@ -1,0 +1,32 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         \\
+                    &        Mean         &        Mean         &       Slope         &       Slope         \\
+\hline
+Market              &    0.000788         &     0.00477         &     0.00545         &     0.00614\sym{*}  \\
+                    &    (0.0228)         &    (0.0432)         &   (0.00364)         &   (0.00364)         \\
+[1em]
+rTDG (mean)         &       0.688\sym{***}&       0.691\sym{***}&                     &                     \\
+                    &    (0.0225)         &    (0.0318)         &                     &                     \\
+[1em]
+rTDG (mean) x Market&                     &    -0.00503         &                     &                     \\
+                    &                     &    (0.0446)         &                     &                     \\
+[1em]
+rTGD (slope)        &                     &                     &       0.319\sym{***}&       0.358\sym{***}\\
+                    &                     &                     &    (0.0215)         &    (0.0299)         \\
+[1em]
+rTDG (slope) x Market&                     &                     &                     &     -0.0714\sym{*}  \\
+                    &                     &                     &                     &    (0.0424)         \\
+[1em]
+Constant            &       0.461\sym{***}&       0.458\sym{***}&     0.00232         &     0.00290         \\
+                    &    (0.0729)         &    (0.0755)         &   (0.00708)         &   (0.00697)         \\
+[1em]
+Add. Controls       &         Yes         &         Yes         &         Yes         &         Yes         \\
+\hline
+N                   &        2185         &        2185         &        2185         &        2185         \\
+Adj. R-Square       &        0.35         &        0.35         &        0.13         &        0.13         \\
+\hline\hline
+\end{tabular}
+}
