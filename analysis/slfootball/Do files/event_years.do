@@ -23,7 +23,7 @@ OUTLINE
 	
 	**loop over the dispx and we events to get a count per year for each
 	foreach var in disp1 disp2 disp3 we {
-		use "Cleaned Data\foot_cleaned_all.dta", clear
+		use "$DATADIR/Cleaned Data\foot_cleaned_all.dta", clear
 		collapse (count) `var' = eveningid, by(`var'_year)
 		ren `var'_year year //we merge on year later
 		drop if year == . 	//there are some missing, nothing can be done with those
@@ -35,7 +35,7 @@ OUTLINE
 
 	**ACLED data
 	*use SLL-LED data if donwloaded
-	capture	use "Secondary Data\SLL-LED.dta", clear
+	capture	use "$DATADIR/Secondary Data\SLL-LED.dta", clear
 	
 	*Download and save if not available
 	if _rc == 601 {
@@ -81,6 +81,6 @@ OUTLINE
 	drop if year == 1990
 	
 	*save
-	save "Cleaned Data/event_years.dta",replace
+	save "$DATADIR/Cleaned Data/event_years.dta",replace
 
 

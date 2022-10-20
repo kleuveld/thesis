@@ -13,7 +13,7 @@ Goal: create migration indicators from text data
 
 
 	*Make a list of all places
-	use "Raw Data\foot_raw.dta", clear
+	use "$DATADIR\Raw Data\Foot_raw.dta", clear
 	
 	*Rename vars to make sense
 	ren q05displace displaced
@@ -115,4 +115,4 @@ Goal: create migration indicators from text data
 	*one guy did not say where he went, count if him as migrant
 	replace ind_alwaysken = 0 if ind_alwaysken == .
 	keep uid ind_alwaysken
-	save "cleaned data\foot_migrants.dta", replace
+	save "$DATADIR\Cleaned Data\foot_migrants.dta", replace

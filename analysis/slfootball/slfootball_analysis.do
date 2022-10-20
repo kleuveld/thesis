@@ -2,7 +2,10 @@
 **Replication file for Conflict Exposure and Competitiveness
 Author: Koen Leuveld
 Date: 19/6/2015
-Last changed:29/6/2015
+changed:29/6/2015: ???
+changed:7/7/2021: 	-output of tables tweaked to fit TeX for Thesis koen.
+					-Split folders: -one restricted access (data), and one public.
+
 
 Info:
 This file takes the raw data as produced in Kenema, cleans it, and produces the tables as presented in the paper.
@@ -46,14 +49,27 @@ Set stata version
 version 12
 
 /*
-Set working dir
+Set working dirs
 */
-	*make sure to cd to the directory containing this Do File
+	
+	*reset globals
+	global  PUBLICDIR //all other materials
+	global DATADIR 	//personal data, so restricted access
+	
+	*get data folders
+	*There should be a Raw Data, Cleaned Data, and Secondary Data folder
+	*(NB: PATHS IN CRYPTOMATOR ARE CASE SENSITIVE!) 
+		*Cryptomator Koen private 
+		capture cd  "D:\PhD\Papers\Football\pAPER\Replication"
 
-		*Dropbox FC
-		capture cd "C:\Users\Koen\Documents\GitHub\thesis\analysis\slfootball"
+		global  DATADIR = "`: pwd'"
 
 
+	*get non-data (public) folders
+		*Git KL private
+		capture cd "C:\Users\Koen\Documents\GitHub\thesis\chapters\slfootball\Analysis"
+
+		global  PUBLICDIR `: pwd'
 
 /*Clean and label*/
 
@@ -61,7 +77,7 @@ Set working dir
 Get data
 */
 	*Import raw data from Excel
-	import excel "Raw Data/Foot_raw.xlsx", sheet("data") firstrow case(lower) clear
+	import excel "D:\PhD\Papers\Football\pAPER\Replication\Raw Data\Foot_raw.xlsx", sheet("data") firstrow case(lower) clear
 
 	*Drop empty rows and columns
 	drop ds- fh
@@ -71,7 +87,7 @@ Get data
 	gen uid = eveningid * 100 + personid
 	
 	*Save as dta
-	save "Raw Data/Foot_raw.dta", replace
+	save "$DATADIR/Raw Data/Foot_raw.dta", replace
 
 	*Save it as a tempfile so raw data won't get overwritten accidently
 	tempfile nowrite
@@ -193,10 +209,10 @@ Get data
 	**This vasriable needs a lot of cleaning, and has been moved to separate do file
 	preserve
 	**run said do file, results are stored in foot_migrants.dta
-	run "do files/Migrants.do"
+	run "$PUBLICDIR/Do Files/Migrants.do"
 	restore
 	**merge the data to preserved data file
-	merge 1:1 uid using  "cleaned data\foot_migrants.dta", nogen
+	merge 1:1 uid using  "$DATADIR/Cleaned Data/foot_migrants.dta", nogen
 	
 /*Football*/
 	*Foul cards
@@ -295,9 +311,9 @@ Get data
 	
 	*Save
 	order ui eveningid personid team we_* ind_* foot_* life_*
-	save "cleaned data\foot_cleaned_all.dta", replace
+	save "$DATADIR/Cleaned Data\foot_cleaned_all.dta", replace
 	keep uid eveningid personid teamid we_* team ind_* foot_* life_*
-	save "cleaned data\foot_cleaned.dta", replace
+	save "$DATADIR/Cleaned Data\foot_cleaned.dta", replace
 
 	
 
@@ -310,7 +326,7 @@ Get data
 	
 	**put file names in locals
 	foreach i in 1 3 4 5 6 a1 a2 a3 a4{
-		local t`i'`"using "tables\t`i'.tex""'
+		local t`i'`"using "$PUBLICDIR\Tables\t`i'.tex""'
 	}
 
 	**put replace option in a local (empty if this not run, thus not specified)
@@ -320,15 +336,9 @@ Get data
 Table 1: Descriptive stats
 *
 */
-	use "cleaned data\foot_cleaned.dta", clear
+	use "$DATADIR/Cleaned Data\foot_cleaned.dta", clear
 	eststo summ: estpost su we_all ind_parfight ind_age ind_edu ind_mealpd ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken foot_foul foot_whole foot_selfskill foot_score foot_won foot_left life_risk life_dictout life_dictin  life_outtour life_intour life_expperf life_ballshit
-	*no fancy stuff here, just dumb copy to word
-
-	//eststo summ: estpost su tdg sentvill risk fracexpected avfracreturn market $controls if !missing(market)
 	esttab summ `t1', cells("count mean(fmt(2)) sd(fmt(2)) min(fmt(2)) max(fmt(2))") label noobs replace nonumbers
-
-
-
 
 /*
 Table 2 is the design of the risk game
@@ -509,14 +519,13 @@ TABLE A4: WILLINGNESS TO COMPETE (out-group), risk preferences and expected perf
 /*
 Figures
 */			
-
-	use "cleaned data\foot_cleaned.dta", clear
+	use "$DATADIR/Cleaned Data\foot_cleaned.dta", clear
 
 /*Figure 1: SLL-LED events and displacement*/
 	preserve
 	
 	*get data in shape to easily plot conflict events and years
-	run "do files/event_years.do"
+	run "$PUBLICDIR/do files/event_years.do"
 	
 	twoway 	(bar violence year, fcolor(none) lcolor(black) lwidth(thick)) ///
 					(connected we year, msymbol(diamond) lpattern(dash) lwidth(medthick)) ///
@@ -527,8 +536,8 @@ Figures
 					legend(cols(1))scheme(s2mono) ///
 					ysize(8) xsize(11)
 		   
-	graph export "Figures\f1_violent_events.png", as(png) replace
-	graph export "Figures\f1_violent_events.eps", as(eps) replace
+	graph export "$PUBLICDIR/Figures\f1_violent_events.png", as(png) replace
+	graph export "$PUBLICDIR/Figures\f1_violent_events.eps", as(eps) replace
 	restore
 
 /*Figure 2: Age in sample and exposure to conflict*/	
@@ -549,8 +558,8 @@ Figures
 
 	
 	graph combine agefreq agewar, ysize(4) xsize(11)
-	graph export "Figures\f2_agefreq_agewe.png", as(png) replace
-	graph export "Figures\f2_agefreq_agewe.eps", as(eps) replace
+	graph export "$PUBLICDIR/Figures\f2_agefreq_agewe.png", as(png) replace
+	graph export "$PUBLICDIR/Figures\f2_agefreq_agewe.eps", as(eps) replace
 	
 /*Figure 3: Balls hit in the effort game*/	
 	graph drop _all
@@ -563,14 +572,14 @@ Figures
 	
 	*cobmine and export
 	graph combine hist1 hist2 hist3 hist4, ysize(8) xsize(11)
-	graph export "Figures\f3_ballshit.png", as(png) replace	
-	graph export "Figures\f3_ballshit.eps", as(eps) replace	
+	graph export "$PUBLICDIR/Figures\f3_ballshit.png", as(png) replace	
+	graph export "$PUBLICDIR/Figures\f3_ballshit.eps", as(eps) replace	
 
 /*Figure 4: Foul cards, competitiveness and exposure to violence*/		
 	preserve
 	graph drop _all
 	
-	use "cleaned data\foot_cleaned.dta", clear
+	use "$DATADIR/Cleaned Data\foot_cleaned.dta", clear
 
 	*Top row (panel A and B)
 	*create mean and CI for foul cards and competition
@@ -629,5 +638,5 @@ Figures
 	graph combine foot_foul life_tournament life_tournament_0  life_tournament_1, ycommon xcommon ysize(8) xsize(11)
 
 	*Export the graphs
-	graph export "Figures\f4_we_competition.png", as(png) replace
-	graph export "Figures\f4_we_competition.eps", as(eps) replace
+	graph export "$PUBLICDIR/Figures\f4_we_competition.png", as(png) replace
+	graph export "$PUBLICDIR/Figures\f4_we_competition.eps", as(eps) replace
