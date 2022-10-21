@@ -1,57 +1,4 @@
-/*
-**Replication file for Conflict Exposure and Competitiveness
-Author: Koen Leuveld
-Date: 19/6/2015
-changed:29/6/2015: ???
-changed:7/7/2021: 	-output of tables tweaked to fit TeX for Thesis koen.
-					-Split folders: -one restricted access (data), and one public.
-changed:21/10/2022:	-updated folder structure: DATADIR; OUTPUTDIR; DODIR 
-					-removed data cleaning to separate do file
-
-
-Info:
-This file takes the raw data as produced in Kenema, cleans it, and produces the tables as presented in the paper.
-Some more elaborate data management tasks are moved to separate do files, in the "do-files" folder.
-
-The main data file needed is foot_raw.xlsx, whith data as entered in Kenema. 
-The cleaned file retains all variables needed for analysis, renamed to be consisten and comprehensible.
-For figure 1, secondary data is needed from ACLED. This data is not provided, but is downloaded by
-a do file called by this main file.
-
-If the whole do file is run tables will be outputted in the tables sub-folder, with filenames following numbering in 
-the paper. Alternatively, by not running the local statements setting table export locations, tables are outputted 
-to screen.
-*/
-
-/*
-Data files needed:
-*/
-	*Raw Excel Data: Foot_raw.xslx, located in Raw data. Due to confididentialiy,
-		*these files may not be included with the present do-file.
-		*contact authors for information on verifying the results
-	*Secondary data: SLL-LED.dta, will be downloaded if not available
-
-
-
-/*
-Do files needed
-*/
-*all do files should be included with this do file. They include:
-	*sl_football_datacleaning.do to create clean data from the raw files
-	*event_years.do, to make figure 1
-	*Migrants.do, to structure migration data
-	*Both are in the do files folder
-
-/*
-.ado files needed
-*/
-//nothing special is needed.
-
-
-/*
-Set stata version
-*/
-
+/*ANYALYSIS*/
 version 12
 
 /*
@@ -72,7 +19,7 @@ Set working dirs
 		global  DATADIR = "`: pwd'"
 
 
-	*get óutput folders
+	*get Ã³utput folders
 		*Git KL private
 		capture cd "C:\Users\kld330\git\thesis\chapters\slfootball\"
 
@@ -86,19 +33,13 @@ Set working dirs
 
 
 
-
-	
-
-	
-/*ANYALYSIS*/
-
 /*Tables*/
 
 	*if the following lines of code are run, the output will be saved to file, otherwise output is displayed on screen
 	
 	**put file names in locals
 	foreach i in 1 3 4 5 6 a1 a2 a3 a4{
-		local t`i'`"using "${OUTPUTDIR}\Tables\t`i'.tex""'
+		local t`i'`"using "$OUTPUTDIR\Tables\t`i'.tex""'
 	}
 
 	**put replace option in a local (empty if this not run, thus not specified)
@@ -108,8 +49,8 @@ Set working dirs
 Table 1: Descriptive stats
 *
 */
-	use "$DATADIR/Cleaned Data\foot_cleaned.dta", clear
-	eststo summ: estpost su we_all ind_parfight ind_age ind_edu ind_mealpd ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken foot_foul foot_whole foot_selfskill foot_score foot_won foot_left life_risk life_dictout life_dictin  life_outtour life_intour life_expperf life_ballshit
+	use "$DATADIR/Cleaned Data/foot_anon.dta", clear
+	eststo summ: estpost su we_all ind_parfight ind_age ind_edu ind_mealpd ind_muslim ind_mende ind_alwaysken foot_foul foot_whole foot_selfskill foot_score foot_won foot_left life_risk life_dictout life_dictin  life_outtour life_intour life_expperf life_ballshit
 	esttab summ `t1', cells("count mean(fmt(2)) sd(fmt(2)) min(fmt(2)) max(fmt(2))") label noobs replace nonumbers
 
 /*
@@ -119,26 +60,27 @@ Table 2 is the design of the risk game
 /*
 Table 3: Exposure to conflict
 */
-	eststo t3_1: qui reg we_all ind_age ind_age2, robust
-	eststo t3_2: qui reg we_all ind_age ind_age2 ind_muslim ind_mende ind_fula ind_mandingo ind_temne, robust
-	eststo t3_3: qui reg we_all ind_age ind_age2 ind_parfight, robust
-	eststo t3_4: qui reg we_all ind_age ind_age2 ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight , robust
-	esttab t3_* `t3', `replace'  star(* 0.10 ** 0.05 *** 0.01) label ///
-	stats(N r2,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
-		 order(ind_age ind_age2 ind_muslim ind_mende ind_fula ind_mandingo ind_temne ind_alwaysken ///
+	eststo t3_1: qui reg we_all i.ind_age, robust
+	eststo t3_2: qui reg we_all i.ind_age ind_muslim ind_mende, robust
+	eststo t3_3: qui reg we_all i.ind_age ind_parfight, robust
+	eststo t3_4: qui reg we_all i.ind_age ind_muslim ind_mende ind_alwaysken ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight , robust
+	esttab t3_* `t3', `replace'  star(* 0.10 ** 0.05 *** 0.01) ///
+	stats(N r2,fmt(%9.0f %12.3f)  labels("N" "R2")) label se ///
+		 order(?.ind_age ind_muslim ind_mende ind_alwaysken ///
 		 ind_edu ind_mealpd foot_left foot_whole foot_selfskills foot_score foot_won ind_parfight ) ///
-		 nonotes nomtitles
+		 nonotes nomtitles nobaselevels
 
-
+tab ind_age, gen(ind_age)
+drop ind_age1
 /*
 Table 4: Aggressiveness and risk propensity
 */
 	qui probit foot_foul we_all, robust
 	eststo t4_1 : qui mfx
-	qui probit foot_foul we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left , robust
+	qui probit foot_foul we_all ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left , robust
 	eststo t4_2 : qui mfx
 	eststo t4_3: qui reg life_risk we_all, robust
-	eststo t4_4: qui reg life_risk we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left , robust
+	eststo t4_4: qui reg life_risk we_all ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left , robust
 
 	esttab t4_* `t4', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		mtitles("\specialcell{Foul\\Card}" "\specialcell{Foul\\Card}" ///
@@ -159,17 +101,17 @@ Table 5:  Dictator game donations
 	
 	*generate interaction term between ingroup and war exposure.
 	gen int_we_in = ingroup * we_all 
-	la var int_we_in "Exposure to conflict × in-group "
+	la var int_we_in "Exposure to conflict Ã— in-group "
 
 	eststo t5_1 :qui reg dict we_all if ingroup == 0, r
-	eststo t5_2 :qui reg dict we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if ingroup == 0, r
+	eststo t5_2 :qui reg dict we_all i.ind_age ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if ingroup == 0, r
 	eststo t5_3 :qui reg dict we_all if ingroup == 1, r
-	eststo t5_4 :qui reg dict we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if ingroup == 1, r
-	eststo t5_5 :qui reg dict we_all ingroup int_we_in ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left, r
+	eststo t5_4 :qui reg dict we_all i.ind_age ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if ingroup == 1, r
+	eststo t5_5 :qui reg dict we_all ingroup int_we_in i.ind_age ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left, r
 	esttab t5_* `t5', `replace' star(* 0.10 ** 0.05 *** 0.01) label ///
 		mtitles("Out-group" "Out-group" "In-group" "In-group" "Pooled") ///
 		stats(N r2,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
-		order(we_all ingroup int_we_in ind_age) nonotes
+		order(we_all ingroup int_we_in ?.ind_age) nonotes nobaselevels
 
 	*Get back wide data
 	restore
@@ -179,18 +121,18 @@ TABLE 6 WILLINGNESS TO COMPETE
 */
 	*generate interaction term
 	gen int_we_tourin = we_all *  life_tourin
-	la var int_we_tourin "Exposure to conflict × in-group" 
+	la var int_we_tourin "Exposure to conflict Ã— in-group" 
 	
 	
 	qui probit life_tournament we_all if life_tourout == 1, robust
 	eststo t6_1 : qui mfx
-	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	qui probit life_tournament we_all ind_age?  ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
 	eststo t6_2 : qui mfx
 	qui probit life_tournament we_all if life_tourout == 0, robust
 	eststo t6_3 : qui mfx
-	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 0, robust
+	qui probit life_tournament we_all ind_age?  ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 0, robust
 	eststo t6_4 : qui mfx
-	qui probit life_tournament we_all life_tourin int_we_tourin  ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left, robust
+	qui probit life_tournament we_all life_tourin int_we_tourin  ind_age?  ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left, robust
 	eststo t6_5 : qui mfx
 
 	esttab t6_* `t6', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
@@ -202,7 +144,7 @@ TABLE 6 WILLINGNESS TO COMPETE
 /*
 TABLE A1: WILLINGNESS TO COMPETE (out-group), age group fixed effects
 */
-	
+/* 	
 	*dummies for 1-year FE
 	qui tab ind_age, gen(agedummy)
 	
@@ -227,20 +169,20 @@ TABLE A1: WILLINGNESS TO COMPETE (out-group), age group fixed effects
 			"\specialcell{3-year\\age-group f.e.}" "\specialcell{4-year\\age-group f.e.}") ///
 		drop(*dummy*) nonotes
 		
-		
+ */		
 /*
 TABLE A2: WILLINGNESS TO COMPETE (out-group), migration
 */		
 	*generate the interaction term
 	gen int_we_ken = we_all * ind_alwaysken
 	
-	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1 & ind_alwaysken == 1, robust
+	qui probit life_tournament we_all ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1 & ind_alwaysken == 1, robust
 	eststo ta2_1 : qui mfx		
-	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1 & ind_alwaysken == 0, robust
+	qui probit life_tournament we_all ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1 & ind_alwaysken == 0, robust
 	eststo ta2_2 : qui mfx	
-	qui probit life_tournament we_all ind_alwaysken int_we_ken ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	qui probit life_tournament we_all ind_alwaysken int_we_ken ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
 	eststo ta2_3 : qui mfx
-	qui probit life_tournament we_all ind_alwaysken int_we_ken int_we_tourin life_tourin ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left, robust
+	qui probit life_tournament we_all ind_alwaysken int_we_ken int_we_tourin life_tourin ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left, robust
 	eststo ta2_4 : qui mfx
 		
 	esttab ta2_* `ta2', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
@@ -256,13 +198,13 @@ TABLE A3: WILLINGNESS TO COMPETE (out-group), various FE
 	qui tab teamid,gen(teamdummy)
 	qui tab eveningid,gen(eveningdummy)
 	
-	qui probit life_tournament we_alldisp ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	qui probit life_tournament we_alldisp ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
 	eststo ta3_1 : qui mfx	
-	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left eveningdummy* if life_tourout == 1, robust
+	qui probit life_tournament we_all ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left eveningdummy* if life_tourout == 1, robust
 	eststo ta3_2 : qui mfx	
-	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_left teamdummy* if life_tourout == 1, robust
+	qui probit life_tournament we_all ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_left teamdummy* if life_tourout == 1, robust
 	eststo ta3_3 : qui mfx	
-	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, vce(cluster teamid) 
+	qui probit life_tournament we_all ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, vce(cluster teamid) 
 	eststo ta3_4 : qui mfx		
 	
 	esttab  ta3_*`ta3', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
@@ -274,13 +216,13 @@ TABLE A3: WILLINGNESS TO COMPETE (out-group), various FE
 /*
 TABLE A4: WILLINGNESS TO COMPETE (out-group), risk preferences and expected performance
 */	
-	qui probit life_tournament we_all life_risk  ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	qui probit life_tournament we_all life_risk  ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
 	eststo ta4_1 : qui mfx	
-	qui probit life_tournament we_all life_expperf ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	qui probit life_tournament we_all life_expperf ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
 	eststo ta4_2 : qui mfx	
-	qui probit life_tournament we_all ind_age life_ballshit ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	qui probit life_tournament we_all ind_age? life_ballshit  ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
 	eststo ta4_3 : qui mfx	
-	qui probit life_tournament we_all life_risk life_expperf life_ballshit ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, r
+	qui probit life_tournament we_all life_risk life_expperf life_ballshit ind_age? ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, r
 	eststo ta4_4 : qui mfx		
 	
 	esttab ta4_* `ta4', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
@@ -291,10 +233,11 @@ TABLE A4: WILLINGNESS TO COMPETE (out-group), risk preferences and expected perf
 /*
 Figures
 */			
-	use "$DATADIR/Cleaned Data\foot_cleaned.dta", clear
+	version 12
+	use "$DATADIR/Cleaned Data\foot_anon.dta", clear
 
 /*Figure 1: SLL-LED events and displacement*/
-	preserve
+/* 	preserve
 	
 	*get data in shape to easily plot conflict events and years
 	run "$HELPERDIR/do files/event_years.do"
@@ -311,19 +254,19 @@ Figures
 	graph export "$OUTPUTDIR/Figures\f1_violent_events.png", as(png) replace
 	graph export "$OUTPUTDIR/Figures\f1_violent_events.eps", as(eps) replace
 	restore
-
+ */
 /*Figure 2: Age in sample and exposure to conflict*/	
 	graph drop _all	
 	
 	*Panel A
-	hist ind_age, fcolor(none) lcolor(black) freq d width(1) start(14) norm xlabel(14 (2) 31) ysize(2) xsize(3) scheme(s2mono) name(agefreq, replace) title("(A)")
+	hist ind_age, fcolor(none) lcolor(black) freq d ysize(2) xsize(3) scheme(s2mono) name(agefreq, replace) title("(A)")
 	
 	bysort ind_age: egen agewar=mean(we_all)
 	
-	*Panel B
+	*Panel B xlabel (1 (1) 4)
 	twoway 	(scatter agewar ind_age)  ///
 					(qfit agewar ind_age) ///
-					, ylabel(0 (0.1) 1) xlabel (14 (2) 31) ///
+					, ylabel(0 (0.1) 1)  ///
 					ytitle("Average Victimization Index") ///
 					ysize(2) xsize(3) legend(off) ///
 					scheme(s2mono) name(agewar, replace) title("(B)")
@@ -349,9 +292,10 @@ Figures
 
 /*Figure 4: Foul cards, competitiveness and exposure to violence*/		
 	preserve
+	versio 12
 	graph drop _all
 	
-	use "$DATADIR/Cleaned Data\foot_cleaned.dta", clear
+	use "$DATADIR/Cleaned Data\foot_anon.dta", clear
 
 	*Top row (panel A and B)
 	*create mean and CI for foul cards and competition
