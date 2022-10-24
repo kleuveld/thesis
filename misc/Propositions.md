@@ -11,3 +11,12 @@
 5. All development policy will be ineffective without swift action against climate change.
 
 6. The sunk-cost fallacy can have positive consequences, as the completion of this thesis shows.
+
+
+
+Propositions belonging to the thesis, entitled
+
+Risks and opportunities to development in Africa: A local perspective
+
+Koen Leuveld
+Wageningen, 30 November 2022 (Date defence ceremony)
