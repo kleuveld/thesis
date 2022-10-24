@@ -46,8 +46,43 @@ Lead farmers set up local demonstration plots, where co-villagers could observe 
 \subsection{Input subsidy program} 
 Half of the villages in our sample were randomly selected to receive an offer to buy a package of subsidized inputs for use in the following primary growing season A of 2013 (the primary growing season runs from the beginning of July till the end of November). Figure \ref{fig:n2a:timeline} depicts the timeline of the subsidy intervention and research activities. Note that all of the villages in our sample received the same N2Africa extension services that we described above, prior to the random assignment of the subsidy treatment. An obvious drawback of this design is that we cannot test the combined effect of extension services and subsidies versus subsidies alone, nor whether extension services become (more) effective once subsidies are also provided.\footnote{We are well aware of the trade-off we had to make here. Ideally we would have had four treatment arms – N2Africa extension only, N2Africa extension plus subsidy, subsidy only and a control group, The N2Africa program is however based on the premise of providing extension services combined with new inputs and improved technologies, hence providing subsidies alone would not naturally fit their approach. Also, South-Kivu provides an extremely challenging working environment due to high levels of insecurity. After long consultations with our local partners we therefore concluded that a more complicated intervention design that above all did not align with N2Africa’s standard programme was unwarranted.}
 
-\begin{figure}[htb]
-  \includegraphics[width=0.8\linewidth]{"chapters/n2a_impact/figures/schedule.png"}
+
+
+\begin{figure}[ht!]
+\centering
+\begin{adjustbox}{width=\textwidth}
+\begin{tikzpicture}[snake=zigzag, line before snake = 3mm, line after snake = 3mm]
+ % draw horizontal line
+ \draw (1,0) -- (2,0);
+ \draw (6,0) -- (8,0);
+ \draw (13,0) -- (14,0);
+ \draw[snake] (2,0) -- (6,0);
+ \draw[snake] (8,0) -- (13,0);
+ \draw[snake] (14,0) -- (18,0);
+
+ % draw vertical lines
+ \foreach \x in {2,6,8,13,14,18}
+   \draw (\x cm,10pt) -- (\x cm,-10pt);
+
+ \foreach \y in {1,17}
+   \draw (\y cm,20pt) -- (\y cm,-10pt);
+
+ % draw nodes
+\draw (4,0) node[below=10pt] {} node[above=3pt] {\emph{Season A}};
+\draw (10.5,0) node[below=10pt] {} node[above=3pt] {\emph{Season B}};
+\draw (16,0) node[below=10pt] {} node[above=3pt] {\emph{Season A}};
+
+\draw (1,0) node[below=10pt] {\small{Jun'13}} node[above=20pt] {\textsc{Baseline + Subsidy}};
+\draw (2,0) node[below=10pt] {\small{Jul'13}} node[above=20pt] {\textsc{}};
+\draw (6,0) node[below=10pt] {\small{Nov'13}} node[above=20pt] {\textsc{}};
+\draw (8,0) node[below=10pt] {\small{Jan'14}} node[above=20pt] {\textsc{}};
+\draw (13,0) node[below=10pt] {\small{Jun'14}} node[above=20pt] {\textsc{}};
+\draw (14,0) node[below=10pt] {\small{Jul'14}} node[above=20pt] {\textsc{}};
+\draw (17,0) node[below=10pt] {\small{Oct'14}} node[above=20pt] {\textsc{Endline}};
+
+
+\end{tikzpicture}
+\end{adjustbox}
   \caption{Study timeline}
   \label{fig:n2a:timeline}
 \end{figure}
