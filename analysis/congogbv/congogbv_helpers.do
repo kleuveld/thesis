@@ -163,18 +163,8 @@ program meandiffs
 	
 	*export
 	if length(`"`using'"') > 0{
-		n di `"`using'"'
-		if regexm(`"`using'"',"\.png$"){
-			graph export `"`using'"', as(png) replace	
-		}
-		if regexm(`"`using'"',"\.eps$"){
-			graph export `"`using'"', as(eps) replace	
-		}
-		if regexm(`"`using'"',"\.gph$"){
-			graph save `"`using'"', replace	
-		}
-		
-		
+		n di `"exporting as `using'"'
+		graph export `"`using'"', replace			
 	}
 	
 	if length(`"`coeffs'"') > 0 {

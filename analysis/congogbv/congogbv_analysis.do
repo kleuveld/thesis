@@ -94,7 +94,6 @@ tempfile diffs
 meandiffs numballs using "$figloc/meancompare_overall.eps", treatment(ball5) coeffs(`diffs') //!!!meandiffs fuction is defined in congogbv_helpers.do
 
 
-
 **********************************************
 **Figure 2: Mean Comparisons across Conflict**
 **********************************************
