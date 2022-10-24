@@ -77,7 +77,7 @@ Get data
 	la var we_displace "Displaced"
 
 	gen we_all = (we_hear + we_sawinj + we_wasinj) / 3
-	la var we_all "War Exposure"
+	la var we_all "Exposure to conflict"
 
 	gen we_alldisp = (we_hear + we_sawinj + we_wasinj + we_displace) / 4
 	la var we_alldisp "War Exp. incl. displacement"
@@ -93,7 +93,7 @@ Get data
 	la def we 2 "0.66", add
 	la def we 3 "1", add
 	la val we_level we
-	la var we_level "War Exposure"
+	la var we_level "Exposure to conflict"
 	
 	
 	*Rename ware epxosure names
@@ -170,10 +170,10 @@ Get data
 	la var ind_temne "Temne"
 	
  	*Always in Kenema
-	**This vasriable needs a lot of cleaning, and has been moved to separate do file
+	**This variable needs a lot of cleaning, and has been moved to separate do file
 	preserve
 	**run said do file, results are stored in foot_migrants.dta
-	run "$PUBLICDIR/Do Files/Migrants.do"
+	run "$HELPERDIR/Do Files/Migrants.do"
 	restore
 	**merge the data to preserved data file
 	merge 1:1 uid using  "$DATADIR/Cleaned Data/foot_migrants.dta", nogen
@@ -234,6 +234,7 @@ Get data
 	replace switch = 0 if switch == .
 
 	egen life_risk = std(switch)
+	la var life_risk "Risk Preferences"
 	
 	*dictator giving
 	ren dicoutgive dictgive0
@@ -272,6 +273,7 @@ Get data
 	
 	*ballshit
 	ren ballshit life_ballshit 
+	la var life_ballshit "Balls on target"
 	
 	*Save
 	order ui eveningid personid team we_* ind_* foot_* life_*

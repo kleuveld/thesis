@@ -143,7 +143,8 @@ Table 4: Aggressiveness and risk propensity
 	esttab t4_* `t4', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		mtitles("\specialcell{Foul\\Card}" "\specialcell{Foul\\Card}" ///
 			"\specialcell{Risk\\Propensity}" "\specialcell{Risk\\Propensity}") ///
-		stats(N r2_p r2,fmt(%9.0f %12.3f)  labels("N" "Pseudo R-Squared" "R2" )) se nonotes
+		stats(N r2_p r2,fmt(%9.0f %12.3f)  labels("N" "Pseudo R-Squared" "R2" )) se nonotes ///
+		eqlabels(" " " " " " " ")
 
 /*
 Table 5:  Dictator game donations
@@ -196,7 +197,8 @@ TABLE 6 WILLINGNESS TO COMPETE
 	esttab t6_* `t6', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		mtitles("Out-group" "Out-group" "In-group" "In-group" "Pooled") ///
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "Pseudo R-Squared")) se ///
-		order(we_all life_tourin int_we_tourin) nonotes
+		order(we_all life_tourin int_we_tourin) nonotes ///
+		eqlabels(" " " " " " " ")
 		
 		
 /*
@@ -225,7 +227,8 @@ TABLE A1: WILLINGNESS TO COMPETE (out-group), age group fixed effects
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
 		mtitles("\specialcell{1-year\\age-group f.e.}" "\specialcell{2-year\\age-group f.e.}" ///
 			"\specialcell{3-year\\age-group f.e.}" "\specialcell{4-year\\age-group f.e.}") ///
-		drop(*dummy*) nonotes
+		drop(*dummy* _cons) nonotes ///
+		eqlabels(" " " " " " " ")
 		
 		
 /*
@@ -233,6 +236,7 @@ TABLE A2: WILLINGNESS TO COMPETE (out-group), migration
 */		
 	*generate the interaction term
 	gen int_we_ken = we_all * ind_alwaysken
+	la var int_we_ken "Exposure to conflict x Always in Kenema"
 	
 	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1 & ind_alwaysken == 1, robust
 	eststo ta2_1 : qui mfx		
@@ -247,7 +251,8 @@ TABLE A2: WILLINGNESS TO COMPETE (out-group), migration
 		stats(N r2_p,fmt(%9.0f %12.2f)  labels("N" "R2")) se ///
 		mtitles("\specialcell{Outgroup:\\Always in\\Kenema}" "\specialcell{Outgroup:\\Migrated}" ///
 			"\specialcell{Outgroup:\\All}" "\specialcell{Pooled}") ///
-		order(we_all ind_alwaysken int_we_ken) nonotes
+		order(we_all ind_alwaysken int_we_ken life_tourin int_we_tourin) nonotes ///
+		eqlabels(" " " " " " " ")
 		
 /*
 TABLE A3: WILLINGNESS TO COMPETE (out-group), various FE
@@ -256,7 +261,13 @@ TABLE A3: WILLINGNESS TO COMPETE (out-group), various FE
 	qui tab teamid,gen(teamdummy)
 	qui tab eveningid,gen(eveningdummy)
 	
-	qui probit life_tournament we_alldisp ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	preserve
+	drop we_all 
+	ren we_alldisp we_all
+	la var we_all "Exposure to conflict"
+	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left if life_tourout == 1, robust
+	restore
+
 	eststo ta3_1 : qui mfx	
 	qui probit life_tournament we_all ind_age ind_age2 ind_edu ind_mealpd ind_muslim ind_mende foot_whole foot_selfskill foot_score foot_won foot_left eveningdummy* if life_tourout == 1, robust
 	eststo ta3_2 : qui mfx	
@@ -267,8 +278,11 @@ TABLE A3: WILLINGNESS TO COMPETE (out-group), various FE
 	
 	esttab  ta3_*`ta3', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "R2")) se ///
-		order(we_alldisp we_all) drop(*dummy*) ///
-		b(%12.3f)
+		mtitles("\specialcell{Exposure\\+ Displacement}" "\specialcell{Football Match\\Fixed Effects}" ///
+			"\specialcell{Team Fixed\\Effects}" "\specialcell{Team\\Clustered SE}") ///
+		order(we_all) drop(*dummy* _cons) ///
+		b(%12.3f) ///
+		eqlabels(" " " " " " " ")
 	
 	
 /*
@@ -285,7 +299,10 @@ TABLE A4: WILLINGNESS TO COMPETE (out-group), risk preferences and expected perf
 	
 	esttab ta4_* `ta4', `replace' star(* 0.10 ** 0.05 *** 0.01) label margin ///
 		stats(N r2_p,fmt(%9.0f %12.3f)  labels("N" "R2")) se  ///
-		order(we_all life_risk life_expperf life_ballshit) nonotes
+		mtitles("\specialcell{Risk\\Preferences}" "\specialcell{Expected Relative\\Performance}" ///
+			"\specialcell{Actual\\Performance}" "\specialcell{Risk, Expected, and\\Actual Performance}") ///
+		order(we_all life_risk life_expperf life_ballshit) nonotes ///
+		eqlabels(" " " " " " " ")
 
 	
 /*

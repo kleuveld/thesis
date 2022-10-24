@@ -3,56 +3,47 @@
 \begin{tabular}{l*{4}{c}}
 \hline\hline
                     &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-                    &\multicolumn{1}{c}{Self-select in tournament}&\multicolumn{1}{c}{Self-select in tournament}&\multicolumn{1}{c}{Self-select in tournament}&\multicolumn{1}{c}{Self-select in tournament}\\
+                    &\multicolumn{1}{c}{\specialcell{Exposure\\+ Displacement}}&\multicolumn{1}{c}{\specialcell{Football Match\\Fixed Effects}}&\multicolumn{1}{c}{\specialcell{Team Fixed\\Effects}}&\multicolumn{1}{c}{\specialcell{Team\\Clustered SE}}\\
 \hline
-Self-select in tournament&                     &                     &                     &                     \\
-War Exp. incl. displacement&       0.811\sym{***}&                     &                     &                     \\
-                    &     (0.301)         &                     &                     &                     \\
-[1em]
-War Exposure        &                     &       0.634\sym{**} &       0.637\sym{**} &       0.623\sym{***}\\
-                    &                     &     (0.265)         &     (0.279)         &     (0.233)         \\
-[1em]
-ind\_age==20-24 (d)  &      -0.075         &      -0.067         &       0.008         &      -0.049         \\
-                    &     (0.177)         &     (0.183)         &     (0.214)         &     (0.146)         \\
-[1em]
-ind\_age==25-29 (d)  &      -0.081         &      -0.124         &      -0.179         &      -0.037         \\
-                    &     (0.262)         &     (0.233)         &     (0.227)         &     (0.208)         \\
-[1em]
-ind\_age==30-34      &                     &                     &                     &                     \\
                     &                     &                     &                     &                     \\
+Exposure to conflict&       0.687\sym{**} &       0.574\sym{**} &       0.628\sym{**} &       0.510\sym{**} \\
+                    &     (0.269)         &     (0.255)         &     (0.281)         &     (0.239)         \\
 [1em]
-ind\_edu             &       0.256\sym{**} &       0.221\sym{*}  &       0.135         &       0.258\sym{**} \\
-                    &     (0.130)         &     (0.132)         &     (0.143)         &     (0.116)         \\
+Age                 &       0.092         &       0.156         &       0.060         &       0.104         \\
+                    &     (0.180)         &     (0.183)         &     (0.216)         &     (0.187)         \\
 [1em]
-Meals per day       &      -0.135         &      -0.057         &      -0.093         &      -0.104         \\
-                    &     (0.135)         &     (0.150)         &     (0.190)         &     (0.112)         \\
+Age squared         &      -0.001         &      -0.003         &      -0.001         &      -0.002         \\
+                    &     (0.004)         &     (0.004)         &     (0.005)         &     (0.004)         \\
 [1em]
-Muslim (d)          &       0.224         &       0.241         &       0.193         &       0.231         \\
-                    &     (0.148)         &     (0.171)         &     (0.242)         &     (0.176)         \\
+Education Level     &       0.156         &       0.139         &       0.159         &       0.171\sym{**} \\
+                    &     (0.098)         &     (0.098)         &     (0.101)         &     (0.077)         \\
 [1em]
-ind\_mende (d)       &      -0.116         &      -0.130         &      -0.219         &      -0.077         \\
-                    &     (0.151)         &     (0.192)         &     (0.210)         &     (0.143)         \\
+Meals per day       &      -0.038         &       0.046         &      -0.019         &      -0.018         \\
+                    &     (0.108)         &     (0.120)         &     (0.161)         &     (0.107)         \\
 [1em]
-Played whole game (d)&       0.259         &       0.238         &       0.297         &       0.278\sym{***}\\
-                    &     (0.160)         &     (0.186)         &     (0.220)         &     (0.073)         \\
+Muslim (d)          &       0.290\sym{***}&       0.359\sym{***}&       0.332\sym{**} &       0.305\sym{**} \\
+                    &     (0.111)         &     (0.131)         &     (0.156)         &     (0.148)         \\
 [1em]
-Self-declared skills&       0.129         &      -0.004         &      -0.118         &       0.103         \\
-                    &     (0.290)         &     (0.280)         &     (0.316)         &     (0.294)         \\
+Mende (d)           &      -0.122         &      -0.064         &      -0.185         &      -0.084         \\
+                    &     (0.149)         &     (0.176)         &     (0.201)         &     (0.150)         \\
 [1em]
-Scored (d)          &      -0.305\sym{**} &      -0.230         &      -0.171         &      -0.280\sym{**} \\
-                    &     (0.152)         &     (0.161)         &     (0.230)         &     (0.122)         \\
+Played whole game (d)&       0.383\sym{***}&       0.342\sym{**} &       0.447\sym{**} &       0.405\sym{***}\\
+                    &     (0.135)         &     (0.153)         &     (0.174)         &     (0.074)         \\
 [1em]
-Won the football game (d)&       0.138         &       0.105         &                     &       0.096         \\
-                    &     (0.143)         &     (0.157)         &                     &     (0.123)         \\
+Self-declared skills&       0.044         &      -0.012         &      -0.152         &       0.021         \\
+                    &     (0.252)         &     (0.259)         &     (0.292)         &     (0.259)         \\
 [1em]
-Left footed (d)     &      -0.269\sym{**} &      -0.276\sym{**} &      -0.314\sym{**} &      -0.243\sym{**} \\
-                    &     (0.135)         &     (0.132)         &     (0.141)         &     (0.113)         \\
+Scored (d)          &      -0.274\sym{**} &      -0.189         &      -0.112         &      -0.267\sym{**} \\
+                    &     (0.133)         &     (0.185)         &     (0.244)         &     (0.127)         \\
 [1em]
-Constant            &                     &                     &                     &                     \\
-                    &                     &                     &                     &                     \\
+Won the football game (d)&       0.157         &       0.062         &                     &       0.123         \\
+                    &     (0.139)         &     (0.152)         &                     &     (0.108)         \\
+[1em]
+Left footed (d)     &      -0.190         &      -0.186         &      -0.228\sym{*}  &      -0.178\sym{**} \\
+                    &     (0.126)         &     (0.149)         &     (0.136)         &     (0.078)         \\
 \hline
-N                   &          61         &          56         &          53         &          61         \\
-R2                  &       0.178         &       0.172         &       0.208         &       0.171         \\
+N                   &          70         &          70         &          63         &          70         \\
+R2                  &       0.218         &       0.258         &       0.253         &       0.207         \\
 \hline\hline
 \multicolumn{5}{l}{\footnotesize Marginal effects; Standard errors in parentheses}\\
 \multicolumn{5}{l}{\footnotesize  (d) for discrete change of dummy variable from 0 to 1}\\

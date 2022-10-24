@@ -115,4 +115,6 @@ Goal: create migration indicators from text data
 	*one guy did not say where he went, count if him as migrant
 	replace ind_alwaysken = 0 if ind_alwaysken == .
 	keep uid ind_alwaysken
+
+	la var ind_alwaysken "Always in Kenema"
 	save "$DATADIR\Cleaned Data\foot_migrants.dta", replace
