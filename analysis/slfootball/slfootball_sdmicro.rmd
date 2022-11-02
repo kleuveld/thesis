@@ -1,0 +1,360 @@
+---
+title: "Football players anonymous"
+subtitle: "Anomymization of the data for: Conflict Exposure and Competitiveness: Experimental Evidence from the Football Field in Sierra Leone"
+date: "`r Sys.Date()`"
+author: "Koen Leuveld"
+output: pdf_document
+header-includes:
+   - \usepackage{booktabs}
+---
+
+
+<!-- 
+Add comments here
+#https://sdcpractice.readthedocs.io/en/latest/sdcMicro.html
+-->
+
+
+# Introduction
+
+This file outlines the procedures to anonymize the data set used for the paper "Conflict Exposure and Competitiveness: Experimental Evidence from the Football Field in Sierra Leone". It lists the procedures, including R output, and finally summarizes the edits made to the data. The tool to do the anonymization is the R package sdcMicro. 
+
+# Background
+
+## Anonimization
+
+The goal of this excercise is to ensure that an "attacker" is unlikely to be able to infer information about our respondents from this data set by combining it with other existing information. The attacker in this case may simply be a participant of the football tournament who dowloaded the public data set and is interested in learning more about his teammates. The information with which the data set can be combined is limited to the knowledge of the participants of the other participants: neither the teams nor the tournament organizers kept records of who played in which team.
+
+While our data set contains no names of teams or players, an attacker may identify players by unique combinations of observable characteristics. For example, if one of his friends was in the sample, 21 years old at time of the tournament, and left-footed, and if there's only one such player in the sample, his friend's would be easy to recover. To ensure this is not possible, I ensure *k*-anonimity by ensuring there are at least *k* (or zero) observations for each combination of such easily observable characteristics (or key variables) in the data set.
+
+In choosing *k* I consider the following:
+
+- The data set is old: more than ten years. Given that the attacker must rely on memory to re-identify respondents, this makes overall disclosure risk very low.
+- The composition of the sample is unlikely to be exactly known: the sample consists of football players from teams in two tournaments that were based on streets. The composition of these teams is unlikely to be exactly remembered, especially ten years later. This makes re-identification difficult.
+
+I therefore argue that a low number of *k* suffices to prevent re-identification. To maximize data utility, I choose a value of 3.
+
+## Data utility 
+
+Achieving *k*-anonimity is not difficult. We can just group and/or suppress as many values as needed so no one can make inferences about the data. However, this involves data loss and so makes the data less useful. Anonymization thus always presents a trade-off between anonymity and utitlity. The standard I will use to judge utility is the ability to replicate the original paper with the anonymized data. An exact replication will be impossible, as anonymization will involve changing the data set, but replicating the paper approximately, where coefficients of our main findings don't change qualitatively should be possible. To this end, my procedure revolves around identifying ways to achieve k-anonyity with changes to the data that are as small as possible. It also means that I limit the variables from the raw data set to be published to those used in the paper.
+
+# Anonymization process
+
+The process I use for this is as follows:
+
+1. Select the key variables;
+2. Use sdcMicro to locally suppress key variables to satisfy k-anonimity, where k=3;
+3. Check which variable is suppressed the most, and aggregate that variable in larger bins; and then,
+4. Re-run steps 2 and 3 until 2-anomimity is satisfied with a limited number of local suppressions (preferably less than 10% of the sample size).
+5. Assess disclosure risk.
+6. Check whether the data is still useful by attempting to replicate the published paper.
+
+# Procedures
+
+Load the libraries and the data:
+
+```{r echo=T, , message=F}
+library(sdcMicro) #for the anonymization
+library(tidyverse) #for data manipulation
+library(haven) #for using stata files
+
+data <- read_dta("D:/PhD/Papers/Football/pAPER/Replication/Cleaned Data/foot_cleaned.dta")
+
+#set k
+k = 3
+#datadf <- as.data.frame(data)
+```
+
+The first step is to categorize each variable. To more easily do this, I included all the variables present in foot_cleaned.dta in a CSV file, with two more columns: "action", which contains the characterization, and "explanation", explaining the characterization. The column action contains the following: 
+
+- ignore: variable is excluded from the anonymization procedure.
+- key: variable is considered to useable in re-identifying participants.
+- sensitive: variable that should remain confidential.
+- drop: variables constructed from key variables should be dropped (and if needed later reconstructed).
+- PRAM: apply pram to this variable
+
+
+```{r echo=T, message=F}
+varselection <- 
+	read_csv("C:/Users/kld330/git/thesis/Analysis/slfootball/anonymization_varselection.csv")
+
+
+```
+
+The R output below gives a printout of the varselection CSV, which contains a brief explanation for the categorization of each variable.
+```{r}
+print(varselection,n=nrow(varselection)) 
+```
+
+Then I proceed to drop variables that should be dropped, and I initialize vectors that contain the variable categorization:
+
+```{r echo=T, message=F}
+#drop the vars that should be dropped
+dropvars <- varselection[varselection$action=="drop",'varname'][[1]]
+data <- select(data,-all_of(dropvars))
+
+#assign variables for sdcmicro using anonymization_varselection.csv
+KeyVars <- varselection[varselection$action=="key",'varname'][[1]]
+ExcludedVars <- varselection[varselection$action=="ignore",'varname'][[1]]
+SensitiveVars <- varselection[varselection$action=="sensitive",'varname'][[1]]
+pramVars <- varselection[varselection$action=="pram",'varname'][[1]]
+
+```
+
+Before starting the anonymization, I need to do a little data manipulation first: ethnicity is included as a set of dummies, but for anonymization we need to consider the fact that these dummies are linked. The most convenient way is to just combine the dummies in a single variable, and then just drop the dummies and reconstruct them later.
+
+```{r}
+#coalesce the ethnicity dummies into one var
+
+#create a vector to select the ethnicity columns
+ethn_cols <- c("ind_mende", "ind_fula", "ind_mandingo", "ind_temne")
+select_ethn <- names(data) %in% ethn_cols
+
+#count which dummy == 0 (if any)
+ind_ethn <- apply(data[,select_ethn],
+								  1, 
+                  function(x) ifelse(sum(x) == 0, 0,which.max(x)))
+
+data$ind_ethn <- as.factor(ind_ethn)
+
+#drop the original dummies
+data <- select(data,-all_of(ethn_cols))
+
+
+
+```
+
+Then run sdcMicro, and locally suppress values:
+
+```{r}
+#run sdcmicro
+sdcInitial <- createSdcObj(dat = data,
+	                       keyVars     = KeyVars,
+	                       excludeVars = ExcludedVars)
+
+
+sdcInitial <- localSuppression(sdcInitial, k = k)
+sdcInitial
+```
+
+By far the most local suppressions (`r sdcInitial@localSuppression$supps['ind_age'] `) took place in age, because that variable has the most unique values (17) of all variables, so we bin it by five-year increments and see again:
+
+```{r}
+
+#create five-year age bins.
+age_bins_lower <- floor(data$ind_age/5) * 5
+age_bins_upper <- age_bins_lower + 4
+
+
+#replace the age in the data with the bins
+age_bins <- paste(age_bins_lower,age_bins_upper,sep="-")
+
+data$ind_age <- as_factor(age_bins)
+
+sdcInitial <- createSdcObj(dat = data,
+	                       keyVars     = KeyVars,
+	                       excludeVars = ExcludedVars)
+
+sdcInitial <- localSuppression(sdcInitial, k = k)
+sdcInitial
+
+```
+
+
+Judging from the last bit of output of sdcMicro, there are still `r sdcInitial@localSuppression$supps['ind_age'] ` local suppressions for age. This is alreadly more than 10% of the data set which I used as an acceptable number of local suppressions. However, given that age is a very informative variable for many types of analysis, I don't want to bin it further, so I look further.
+
+There are `r sdcInitial@localSuppression$supps['ind_ethn'] ` suppressions (out of a total of `r sum(sdcInitial@localSuppression$supps)`) in the ethnicity variable. To know where I can get the most value out of binning, I calculate which values have been suppressed by comparing what's in the manipKeyVars slot of the sdcMicro object to the original data. Things that are NA in the sdcMicro object but not in the data, are suppressed. I compare this to the total number of observations for each ethnicity:
+
+```{r}
+#changed:
+changed_ethn <- !is.na(data$ind_ethn) & is.na(sdcInitial@manipKeyVars$ind_ethn)
+barplot(table(data$ind_ethn[changed_ethn]))
+
+#total:
+barplot(table(data$ind_ethn))
+
+``` 
+
+Most suppression take place in observation that have 0 (i.e. "other") as their ethnicity. Ethnicity 4 (Mandingo) has very few observations; ethnicity 3 (Temne) has more, but gets suppressed often. I therefore bin those together with the "other" category, and re-run sdcMicro.
+
+```{r}
+data$ind_ethn[data$ind_ethn==3] <- 0
+data$ind_ethn[data$ind_ethn==4] <- 0
+
+sdcInitial <- createSdcObj(dat = data,
+	                       keyVars     = KeyVars,
+	                       excludeVars = ExcludedVars)
+
+
+sdcInitial <- localSuppression(sdcInitial, k = k)
+sdcInitial
+
+``` 
+
+Better, but there's still `r sdcInitial@localSuppression$supps['ind_ethn'] ` local suppressions happening in the ethnicity variable. I thus try the same actions again, first checking the number of local suppressions per ethnicity:
+
+
+```{r}
+
+changed_ethn <- !is.na(data$ind_ethn) & is.na(sdcInitial@manipKeyVars$ind_ethn)
+barplot(table(data$ind_ethn[changed_ethn]))
+```
+
+There are still `r table(data$ind_ethn[changed_ethn])['0']` local suppressions in the "other category", and `r table(data$ind_ethn[changed_ethn])['1']` and `r table(data$ind_ethn[changed_ethn])['2']` each among Mende(1) and Fula(2) respectively. Since most of our sample are Mende, I will bin Fula with the other category. This effectively reduces the ethnicity variable to an indicator for being Mende or not.
+
+```{r}
+data$ind_ethn[data$ind_ethn==2] <- 0
+
+sdcInitial <- createSdcObj(dat = data,
+	                       keyVars     = KeyVars,
+	                       excludeVars = ExcludedVars)
+
+sdcInitial <- localSuppression(sdcInitial, k = k)
+sdcInitial
+
+``` 
+
+The number of suppressions in the ethnicity variable is now `r sdcInitial@localSuppression$supps['ind_ethn']`, out of a total of `r sum(sdcInitial@localSuppression$supps)` local suppressions. Further binning of the ethnicity variable is not possibly, as there are only two values left: "Mende" and "Other". 
+
+The last variable where binning may be of use is eduction. There's `r sdcInitial@localSuppression$supps['ind_edu']` local suppressions, so there is not much room foor improvement. We can perform the same analysis as above:
+
+
+```{r}
+
+#changed 
+changed_edu <- !is.na(data$ind_edu) & is.na(sdcInitial@manipKeyVars$ind_edu)
+barplot(table(data$ind_edu[changed_edu]))
+
+#total
+barplot(table(data$ind_edu))
+
+```
+
+Most suppressions happen in the fourth category ("Tertiary and higher"); I therefore merge that category with the third category ("Senior Secondary 3"):
+
+```{r}
+
+#I can't seem to edit haven labels, so remove them and reapply them later
+edu_bin <- zap_labels(data$ind_edu)
+
+edu_bin[edu_bin==4] <- 3
+
+#reapply labels
+edu_bin <- factor(edu_bin,
+									levels = c(1,2,3),
+									labels = c("Junior Secondary", 
+										         "Senior Secondary 1 and 2",
+										         "Senior Secondary 3 and higher")) 
+
+data$ind_edu <- edu_bin
+
+sdcInitial <- createSdcObj(dat = data,
+	                       keyVars     = KeyVars,
+	                       excludeVars = ExcludedVars)
+
+sdcInitial <- localSuppression(sdcInitial, k = k)
+sdcInitial
+
+```
+
+Now there's still  `r sum(sdcInitial@localSuppression$supps)` local suppressions left, about `r round(sum(sdcInitial@localSuppression$supps) / nrow(data) * 100,0)` % of the data. This is higher than the intended 10%. I could bin age further, but considering the importance of the variable, I choose not to bin any further and keep the data as it is.
+
+Now, I PRAM
+```{r}
+
+#pramming needs factor vars:
+for (var in pramVars) {
+	data[,var] <- as.factor(data[[var]])
+}
+
+sdcInitial <- createSdcObj(dat = data,
+	                       keyVars     = KeyVars,
+	                       excludeVars = ExcludedVars)
+
+sdcInitial <- pram(obj = sdcInitial, 
+									 variables = pramVars,
+									 alpha = 0.25)
+sdcInitial
+
+```
+
+
+I calculate the risk.
+
+```{r}
+
+## calculating suda2 riskmeasure
+sdcInitial <- suda2(obj=sdcInitial, DisFraction=0.1, missing=NA)
+sdcInitial@risk$suda2 
+
+# Plot a histogram of disScore
+hist(sdcInitial@risk$suda2$disScore, main = 'Histogram of DIS-SUDA scores')
+
+# Density plot
+density <- density(sdcInitial@risk$suda2$disScore)
+plot(density, main = 'Density plot of DIS-SUDA scores')
+
+## calculating l-diversity measure
+sdcInitial <- ldiversity(obj=sdcInitial, ldiv_index=c("we_displace","we_sawinj","we_wasinj","life_dictout","life_dictin"), l_recurs_c=2, missing=NA)
+sdcInitial@risk$ldiversity 
+sdcInitial@risk$global
+sdcInitial@risk$global$risk_ER
+
+```
+
+
+I update the data with the manipKeyVars from the sdcInitial object, and reconstruct the ethnicity dummy for Mende:
+
+```{r}
+#data_localsuppress <- data
+data[,KeyVars] <- sdcInitial@manipKeyVars 
+
+#reconstruct the ethnicity dummy
+data$ind_mende <- (data$ind_ethn == 1)*1
+data$ind_ethn <- NULL
+
+data$ind_age2 <- NULL
+
+```
+
+Finally, I export the data, ready to be used in Stata:
+```{r}
+
+write_dta(
+  data=data,
+  path = "D:/PhD/Papers/Football/pAPER/Replication/Cleaned Data/foot_anon.dta",
+  version = 14)
+
+write_csv(
+  data,
+  file = "D:/PhD/Papers/Football/pAPER/Replication/Cleaned Data/foot_anon.csv")
+
+
+#library(DDIwR)
+#convert(from=data,to="D:/PhD/Papers/Football/pAPER/Replication/Cleaned Data/foot_anon.xml",)
+
+```
+
+# Summary
+
+To summarize:
+
+- I have created the following age bins:
+
+   - 10 - 14
+   - 15 - 19 
+   - 20 - 24
+   - 25 - 29
+   - 30 - 34
+- I have removed all non-mende ethnicity categories
+- I have combined the education categories "Senior Secondary 3" and "Tertiary and higher" into one category
+- I suppressed 22 values
+
+The fact that I changed the structure of the age variable means that I can't run the analysis code for the paper on the anonymized data set. However, when I simply replace the ind_age and ind_age2 (age squared) variables by dummies for the age bins I can get a very similar analysis. THe results of these are reasonably close the results in the published paper, indicating that the anonymized data can be useful.
+
+# Limitations
+
+- I have not checked whether there is variation in the sensitive variables: for example, if there are two observations with a certain combination of key variables, but both of them reported seeing fighting I can still infer information about these two observations.
+- I am assuming that all senstive variables are unknown to a possible attacker. (In reality, this attacker may a data-savvy football player who knows the respondents well.) However, the attacker may know both the key varaibles and the war exposure status of one or more respondents, but still be interested in their dictator game payments.
+- Theoretically, team composition may be used to identify players. If there's three left-footed non-Mende's that's not a problem. But if one team had two such players, and another team had only one, you could identify the one. However, given the fluid nature of the teams, it is impossible that aggregate information about the teams is still know after this time.
+- I am not sure if the data can be considered fully anonymous, since a data set still exists that can be merged to it: our raw data. However, nothing new can be inferred from merging with the raw data, as there is no data in the anonymous data that is not already in the raw data. 

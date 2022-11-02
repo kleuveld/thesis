@@ -1,0 +1,38 @@
+varname,action,explanation
+uid,ignore,random and non-senstive
+eveningid,ignore,random and non-senstive
+personid,ignore,random and non-senstive
+team,ignore,random and non-senstive
+we_displace,sensitive,Related to war experiences
+we_hear,pram,Related to war experiences
+we_sawinj,pram,Related to war experiences
+we_year,pram,Related to war experiences
+we_wasinj,pram,Related to war experiences
+we_all,ignore,constructed
+we_alldisp,ignore,constructed
+we_level,ignore,constructed
+ind_age,key,Easy to remember
+ind_mealpd,sensitive,Potentially embarrassing
+ind_parfight,sensitive,Related to war experiences
+ind_age2,drop,constructed from age
+ind_edu,key,Easy to remember
+ind_muslim,key,Easy to remember
+ind_ethn,key,Easy to remember
+ind_alwaysken,sensitive,Related to war experiences
+foot_left,key,Football players may know this from friends
+foot_foul,ignore,"non sensitive, and unlikely to be remembered"
+foot_whole,ignore,"non sensitive, and unlikely to be remembered"
+foot_selfskills,sensitive,Potentially embarrassing
+foot_score,ignore,"non sensitive, and unlikely to be remembered"
+foot_won,ignore,"non sensitive, and unlikely to be remembered"
+life_dictout,sensitive,Potentially embarrassing
+life_dictin,sensitive,Potentially embarrassing
+life_ballshit,sensitive,Potentially embarrassing
+life_outtour,ignore,constructed
+life_intour,ignore,Experimentally assigned
+life_risk,sensitive,Potentially embarrassing
+life_tournament,sensitive,Potentially embarrassing
+life_tourout,ignore,constructed
+life_tourin,ignore,constructed
+life_expperf,sensitive,Potentially embarrassing
+teamid,ignore,random and non-senstive
