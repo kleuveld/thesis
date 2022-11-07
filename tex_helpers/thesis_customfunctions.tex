@@ -1,6 +1,7 @@
 
 
 
+
 %%%%%%%%%%%
 %%General%%
 %%%%%%%%%%%
@@ -8,48 +9,22 @@
 \newcommand{\specialcell}[2][c]{%
   \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
+
+%publication info at the beginning of each chapter
+\newcommand\pubinfo[1]{%
+    \bgroup
+    \renewcommand\thefootnote{\fnsymbol{footnote}}%
+    \renewcommand\thempfootnote{\fnsymbol{mpfootnote}}%
+    \footnotetext[0]{\textbf{This chapter is based on: }#1}%
+    \egroup
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %misc commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%https://stackoverflow.com/questions/1037905/bibliography-as-section-in-latex-bibtex
-\makeatletter
-\renewenvironment{thebibliography}[1]
-     {\section{\bibname}% <-- this line was changed from \chapter* to \section*
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
-\makeatother
 
-
-%prevent abstracts from resetting page number
-\makeatletter
-\renewenvironment{abstract}{%
-  \if@twocolumn
-    \section*{\abstractname}%
-  \else
-    \small
-    \begin{center}%
-      {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
-    \end{center}%
-    \quotation
-  \fi}
-  {\if@twocolumn\else\endquotation\fi}
-\makeatother
 
 %%%%%%%%%%%%%%
 %%Congo GBV&&

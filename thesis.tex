@@ -1,20 +1,18 @@
-\input{tex_helpers/thesis_preamble}
-\input{tex_helpers/thesis_paths}
-\input{tex_helpers/thesis_customfunctions}
+\input{tex_helpers/thesis_preamble} %load packages and define layout
+\input{tex_helpers/thesis_paths} %set paths to various resources
+\input{tex_helpers/thesis_customfunctions} %custom commands
 
 \begin{document}
-%\raggedbottom
 
 
 %front matter
 \pagenumbering{roman}
 
+
 \input{chapters/front_back_matter/title_page}
 \input{chapters/front_back_matter/dedication}
 
 \tableofcontents
-%\todototoc
-%\listoftodos
 
 
 %main matter
@@ -28,16 +26,11 @@
 
 
 %backmatter
-\fancyhf{}% Clear header/footer
-\fancyhead[RO,LE]{Risks and opportunities to development in Africa}
-\fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{}
-\fancyfoot[CO,RE]{Koen Leuveld}
-
-%\include{chapters/summary_dutch/summary_dutch}
 \include{chapters/summary_english/summary_english}
 \include{chapters/acknowledgements/acknowledgements}
 \include{chapters/data_statement/data_statement}
 \include{chapters/front_back_matter/acknowledgement_financial_support}
+\cleardoublepage
+\includepdf[pages=-]{chapters/front_back_matter/thesisfile_Leuveld.pdf}
 
 \end{document}

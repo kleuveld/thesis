@@ -1,4 +1,5 @@
 \chapter{Sexual violence, conflict, and female empowerment}
+\pubinfo{Koen Leuveld. \textit{Sexual violence, conflict, and female empowerment: Exploratory evidence from a list experiment in Eastern DR Congo} (Working Paper)}
 \label{chap:congogbv}
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 
@@ -61,21 +62,24 @@ The adverse consequences of conflict-related SGBV do not remain limited to the d
 
 The main source of data for this study is the gender module from a household survey that was undertaken in 2014 as the endline survey for the evaluation of Dutch development aid. This evaluation concerned projects ran by four NGOs in the territories of Kabare, Fizi and Uvira, and the commune of Bagira.\footnote{In the remainder of the paper, I will consider Kabare and Bagira to be one ``territory'', since the selected communities in Kabare and Bagira are located close together, in the peri-urban zone of Bukavu.} The baseline for this evaluation was done in 2012. Half of the respondents were selected from communities that benefited from the projects, the other half were selected from comparable households in non-intervention communities. These projects were about agriculture, women's rights and education. Overall, the beneficiaries of the projects were vulnerable, mostly rural, households. An indicator for being beneficiary to any of these projects is included in the full analysis below. In total data was collected in 73 communities. In each community, baseline data was collected on 15 households in 2012; however, due to attrition, 2014 data is available for an average of 12 households per community, for a total of 889 households. 
 
+\begin{table}
+\centering
 \begin{threeparttable}
 	\caption{Comparison of DHS and sample data}\label{tab:dhs_compare}
 	\centering
+	\singlespace
 	\input{"chapters/congogbv/tables/dhs_compare.tex"}
 	\begin{tablenotes}
 	\small
 	\item FR = Female respondent. DHS = Demographic Health Survey \citep{DHSCongoReport}. For the DHS data, means are provided for household members satisfying the same criteria as FRs from the sample: female heads of household, or female spouses of household heads. 
 	\item
 	\end{tablenotes}
-	
 \end{threeparttable}
+\end{table}
 
 The sampling procedure outlined here is thus unlikely to have produced a nationally (ore even provincially) representative sample. In Table \ref{tab:dhs_compare}, I present a comparison across selected demographics between the full study sample (column 3), and the representative sample from the DHS Program (columns 1-2). Women in the study sample are older, and less likely to have finished school, than the provincial average in South Kivu.
 
-\begin{table}[htb]
+\begin{table}[tb]
 \centering
 \caption{Gender module sample make up}
 \label{tab:bargsample}
@@ -141,7 +145,9 @@ Over the past decades, list experiments have grown in popularity as a way to obt
 
 %hoe ziet mijn implementatie er uit/
 For the list experiment in this study, the female respondents were randomly divided into two groups. This was done by the electronic survey software (ODK), based on the randomly assigned ID codes. I follow \cite{Imai2011} in calling these groups Treatment and Control. An interviewer told each respondent: ``I will read 4 \textit{(or 5)} problems that women can experience. These can be sensitive problems. When you've experienced a problem in the last year, please drop one of the balls to the ground. I will not look at when you drop these balls, and only want to know the total number of balls at the end. In the past 12 months, did you experience...
+
 \begin{itemize}
+	\singlespacing
 	\item Lack of food;
 	\item Lack of money;
 	\item Theft;
@@ -178,10 +184,13 @@ Where \(X_i\) is an explanatory variable and coefficient \(\beta_3\) gives the e
 \section{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \begin{figure}[htb]
+	\begin{center}
   \includegraphics[width=0.6\linewidth]{chapters/congogbv/figures/meancompare_overall.eps}
   \caption{Comparison of means of issues faced: treatment vs. control.}
   \label{fig:meancompare_overall}
+  \end{center}
 \end{figure}
 
 In this section, I will first compare the results of the list experiment in the whole sample, then in different sub-groups. I then present results from a full multivariate regression that aims to minimize potential bias caused by confounding variables. 
@@ -240,10 +249,12 @@ While these results may suggest that IPV is an important driver of SGBV, the fac
 
 
 \begin{table}[htb]
+\centering
 \caption{Differences in numbers of issued faced in the list experiment, across intra-household status}
 \label{tab:meadifftab_mar}
 \meandifftab{"chapters/congogbv/tables/meandifftab_mar.csv"}
 \end{table}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -260,19 +271,23 @@ The finding that conflict history is associated with an increase in SGBV, while 
 
 Caution should be taken with this interpretation, as results presented here are not necessarily causal: women with higher education may differ from other women in non-observable ways, and face lower victimization because of that, rather than education. Furthermore, no data exists on the perpetrators of the violence. The method of a list experiment does not allow for follow-up questions to victimized women, as the interviewer cannot know who to ask these follow up questions to.
 
+\begin{table}
+\centering
 \begin{threeparttable}
 	\caption{Multivariate regression Results}\label{tab:results_regression}
+	\singlespacing
 	\centering
-	\scriptsize
+	\small
 	\input{"chapters/congogbv/tables/results_regression.tex"}
 	
 	\begin{tablenotes}
-	\small
+	\footnotesize
 	 \item FR = Male Respondent; MR = Female Respondent
 	 \item Standard errors clustered at the village level; * p $<$ 0.1, **, p $<$ 0.05, *** p $<$ 0.01
 	\end{tablenotes}
 
 \end{threeparttable}
+\end{table}
 
 \section{Conclusion}
 %restate the topic and its importance.
@@ -287,39 +302,50 @@ Taken together, these finding imply that human rights violations do not end when
 %Unfortunately, often women are less empowered due to intervenstions aimed at protection them \citep{Bashwira2014}.
 There are three large caveats with these findings: (i) causal interpretation is difficult due to the cross-sectional nature of the data; (ii) little analysis could be done on the perpetrators of the violence, as indirect questioning precludes probing into this. More research is needed to  to address these important issues; and (iii) I did not  collect data on the victimization of men. More research is needed to address these.
 
+\clearpage
 \section{Appendix}
 \setcounter{table}{0}
 \renewcommand{\thetable}{\arabic{chapter}.A\arabic{table}}
-\begin{threeparttable}[htb]
-	\scriptsize
+
+\begin{table}[hp]
+\centering
+\begin{threeparttable}
+	\singlespacing
+	\small
 	\caption{Sample selection for the Gender Module}\label{tab:sample_selection}
 	\begin{center}
 	\input{"chapters/congogbv/tables/attrition.tex"}
 	\begin{tablenotes}
+	 \footnotesize
 	 \item Standard errors clustered at the village level
 	 \item * p $<$ 0.1, **, p $<$ 0.05, *** p $<$ 0.01
 	\end{tablenotes}
 	\end{center}
 \end{threeparttable}
+\end{table}
 
-\clearpage
 
 %\begin{landscape}
 
 %note: specialcell is defined in the customfunctions.tex file
+\begin{table}[hp]
+\centering
 \begin{threeparttable}
 	\caption{Determinants of Violence and Bargaining Power}\label{tab:determinants_regression}
-	\scriptsize 
-	\centering
+	\singlespacing
+	\small
 	\input{"chapters/congogbv/tables/determinants_regression.tex"}
 	
 	\begin{tablenotes}
-	\tiny
+	\footnotesize
 	 \item Standard errors clustered at the village level
 	 \item * p $<$ 0.1, **, p $<$ 0.05, *** p $<$ 0.01
 	\end{tablenotes}
 \end{threeparttable}
+\end{table}
 %\end{landscape}
+
+\clearpage
 
 %bibliography, this is needed for bibtex
 \bibliographystyle{chicago}

@@ -1,62 +1,96 @@
+%packages
+  %layout
+  \documentclass[10pt,a4paper,,openright, twoside]{report}
+  \usepackage[doublespacing]{setspace}
+  \usepackage[utf8]{inputenc}
+  \usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+  \usepackage{fancyhdr}
+  \usepackage{subcaption}
+  \usepackage{adjustbox}
+  \usepackage{tabularx}
+  %\usepackage{blindtext,titlefoot}
+
+  %graphics, equations and math 
+  \usepackage{amsmath}
+  \usepackage{graphicx}
+  \usepackage{tikz}
+    \usetikzlibrary{shapes}
+    \usetikzlibrary{snakes}
+  \usepackage{pdfpages}
+
+
+  %tables
+  \usepackage{tabularx}
+  \usepackage{threeparttable}
+  \usepackage{csvsimple}
+  \usepackage{booktabs}
+
+
+
+  %bibliography and references
+  \usepackage{natbib}
+  \usepackage{url}
+  \usepackage[pdftex, hidelinks]{hyperref} %creates warnings when used with float
+  \usepackage{chapterbib} %https://stmorse.github.io/journal/Thesis-writeup.html
+
+  %comment
+  \usepackage[colorinlistoftodos,textsize=tiny,disable]{todonotes} %add disable option to hide notes
+  \setlength{\marginparwidth}{4cm}
+
+  %dynamic content
+  \usepackage{lastpage}
+
+
 %layout
-\documentclass[10pt,a4paper,,openright, twoside]{report}
-\usepackage[doublespacing]{setspace}
-\usepackage[utf8]{inputenc}
-\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
-%\usepackage[left=2.5cm,right=5cm,top=3cm,bottom=3cm]{geometry}
-\usepackage{xcolor}
-\usepackage{enumitem}
-\usepackage[blocks]{authblk} %for affil
-\usepackage{lineno, blindtext} %for linenumbers
-\usepackage{fancyhdr}
-\usepackage{pdflscape}
-\usepackage[colorinlistoftodos,textsize=tiny,disable]{todonotes} %add disable option to hide notes
-\setlength{\marginparwidth}{4cm}
-\usepackage{pbox}
-\usepackage{subcaption}
-\usepackage{adjustbox}
 
-%graphics, equations and math 
-\usepackage{amsmath}
-\usepackage{graphicx}
-%\usepackage{amsfonts}
-%\usepackage{amssymb}
-\usepackage{tikz}
-  %\usetikzlibrary{timeline}
-  \usetikzlibrary{shapes}
-  \usetikzlibrary{snakes}
+  %fancy header% 
+  %https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
+  \fancyhead{}
+  \fancyhead[LE]{Risks and opportunities to development in Africa: a local perspective}
+  \fancyhead[RO]{\leftmark}
+  \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+  \fancyfoot{}
+  \fancyfoot[LE,RO]{\thepage}
+  %\fancyfoot[LO,CE]{Chapter \thechapter}
+  %\fancyfoot[CO,RE]{Koen Leuveld}
 
-
-%bibliography and references
-\usepackage{natbib}
-\usepackage{url}
-\usepackage[pdftex, hidelinks]{hyperref} %creates warnings when used with float
-%\defbibheading{bibliography}[\refname]{\section*{#1}}
-
-\usepackage{chapterbib} %https://stmorse.github.io/journal/Thesis-writeup.html
-
-%tables
-\usepackage{tabularx}
-\usepackage{float} %allows the H positioning specifier; conflicts with hyperref
-\usepackage{threeparttable}
-\usepackage{csvsimple}
-\usepackage[nomessages]{fp}
-\usepackage{booktabs}
-%\usepackage{longtable}
+  %make sure bibliography is a section
+  %https://stackoverflow.com/questions/1037905/bibliography-as-section-in-latex-bibtex
+  \makeatletter
+  \renewenvironment{thebibliography}[1]
+       {\section{\bibname}% <-- this line was changed from \chapter* to \section*
+        %\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+        \list{\@biblabel{\@arabic\c@enumiv}}%
+             {\settowidth\labelwidth{\@biblabel{#1}}%
+              \leftmargin\labelwidth
+              \advance\leftmargin\labelsep
+              \@openbib@code
+              \usecounter{enumiv}%
+              \let\p@enumiv\@empty
+              \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+        \sloppy
+        \clubpenalty4000
+        \@clubpenalty \clubpenalty
+        \widowpenalty4000%
+        \sfcode`\.\@m}
+       {\def\@noitemerr
+         {\@latex@warning{Empty `thebibliography' environment}}%
+        \endlist}
+  \makeatother
 
 
-%fancy header% 
-%https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout
+  %prevent abstracts from resetting page number
+  \makeatletter
+  \renewenvironment{abstract}{%
+    \if@twocolumn
+      \section*{\abstractname}%
+    \else
+      \small
+      \begin{center}%
+        {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+      \end{center}%
+      \quotation
+    \fi}
+    {\if@twocolumn\else\endquotation\fi}
+  \makeatother
 
-\usepackage{fancyhdr}
-%\usepackage{authoraftertitle}
-%\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
-
-
-\fancyhead{}
-\fancyhead[RO,LE]{Risks and opportunities to development in Africa}
-%\fancyhead[LO,RE]{\chaptermark}
-\fancyfoot{}
-\fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{Chapter \thechapter}
-\fancyfoot[CO,RE]{Koen Leuveld}

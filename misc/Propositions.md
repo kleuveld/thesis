@@ -1,8 +1,10 @@
 # Propositions
 
-1. Input subsidization increases input adoption. (This thesis)
+1. Input subsidization increases input adoption. 
+(This thesis)
 
-2. The high rates of Sexual and Gender Based Violence in Eastern DRC are due to the inferior position of women in Congolese society. (This thesis) 
+2. The high rates of Sexual and Gender Based Violence in Eastern DRC are due to the inferior position of women in Congolese society. 
+(This thesis) 
 
 3. Confidential treatment of respondent data is more important than research transparency. 
 
@@ -19,4 +21,5 @@ Propositions belonging to the thesis, entitled
 Risks and opportunities to development in Africa: A local perspective
 
 Koen Leuveld
+
 Wageningen, 30 November 2022 (Date defence ceremony)
