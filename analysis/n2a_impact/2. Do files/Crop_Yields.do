@@ -14,7 +14,12 @@ Changelog:
 
 */
 
-cd "C:/Users/Koen/Dropbox (Personal)/N2Africa DRC/DFID-ESRC Congo/Outputs ESRC/impact paper/EDCC/Replication"
+global gitloc  C:\Users\kld330\git
+global dataloc  D:\PhD\Papers\N2A Impact\1. Data //holds raw and clean data
+global tableloc ${gitloc}\thesis\chapters\n2a_impact\tables //where tables are put
+global figloc ${gitloc}\thesis\chapters\n2a_impact\figures //where figures are put
+global helperloc ${gitloc}\thesis\analysis\n2a_impact\2. Do files //holds do files
+
 
 *Since baseline and endline data have same structure, do a loop
 forvalues time = 0/1{
@@ -24,13 +29,13 @@ forvalues time = 0/1{
 	
 	*Load plot-level raw data, and make sure names and types correspond
 	if $t == 0{
-		use "1. Data\1. Raw\2. Baseline\HH_plots_all_data_included.dta", clear
+		use "${dataloc}\1. Raw\2. Baseline\HH_plots_all_data_included.dta", clear
 
 		ren key KEY
 		ren parent_key PARENT_KEY
 	}
 	else { 
-		use "1. Data\1. Raw\3. Endline\N2Africa Phase II Ménage-hh_-e_-plots.dta", clear
+		use "${dataloc}\1. Raw\3. Endline\N2Africa Phase II Ménage-hh_-e_-plots.dta", clear
 		tostring cropcrop_other_*, replace
 	}
 
@@ -60,7 +65,7 @@ forvalues time = 0/1{
 			*merge with the units file, the kg column will tell how many kgs a certain unit of a certain crop weighs
 			ren crop_`i' codeculture_n2 //make sure the crop code corresponds to the code found in the units file
 			ren `j'unit_`i' codemesure	//do the same for the units
-			merge m:1 codeculture_n2 codemesure using "1. Data\0. Reference\N2A Unit Conversion.dta", keep(master match) keepusing(kg) nogen
+			merge m:1 codeculture_n2 codemesure using "${dataloc}\0. Reference\N2A Unit Conversion.dta", keep(master match) keepusing(kg) nogen
 
 			*a kg is 1 kg
 			replace kg = 1 if codemesure == 2
@@ -192,7 +197,7 @@ forvalues time = 0/1{
 	la var hc_farm_own_$t "Ownership of plots (weighted average)"
 	la var hc_farm_soilqual_$t "Soil quality of plots (weighted average)"
 	
-	save "1. Data\2. Clean\N2A_Farm_$t.dta", replace
+	save "${dataloc}\2. Clean\N2A_Farm_$t.dta", replace
 
 
 	*finalize cropplot level
@@ -211,7 +216,7 @@ forvalues time = 0/1{
 	order KEY_$t plot_id_$t
 	
 	
-	save "1. Data\2. Clean\N2A_Crop_$t.dta", replace
+	save "${dataloc}\2. Clean\N2A_Crop_$t.dta", replace
 }
 
  

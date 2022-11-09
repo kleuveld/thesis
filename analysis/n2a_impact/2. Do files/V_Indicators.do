@@ -31,15 +31,12 @@ Prepare
 //global PaperDir D:\Dropbox\PhD\Papers\Chiefs and Aid
 //global texlocation "p"
 
-/* 
-capture cd "D:\Dropbox\N2Africa DRC\DFID-ESRC Congo"
-capture cd "c:\users\koen\dropbox\N2Africa DRC\DFID-ESRC Congo"
-capture cd "C:\Users\Elise Wang Sonne\Dropbox\DFID-ESRC Congo"
-capture cd "D:\Dropbox\drc\DFID-ESRC Congo" 
- */
 
-cd "C:/Users/Koen/Dropbox (Personal)/N2Africa DRC/DFID-ESRC Congo/Outputs ESRC/impact paper/EDCC/Replication"
-****
+global gitloc  C:\Users\kld330\git
+global dataloc  D:\PhD\Papers\N2A Impact\1. Data //holds raw and clean data
+global tableloc ${gitloc}\thesis\chapters\n2a_impact\tables //where tables are put
+global figloc ${gitloc}\thesis\chapters\n2a_impact\figures //where figures are put
+global helperloc ${gitloc}\thesis\analysis\n2a_impact\2. Do files //holds do files****
 
 
 
@@ -48,7 +45,7 @@ Treatment info etc. from reference data
 */
 
 *Merge with village list for treatment info etc
-use "1. Data\0. Reference\N2A Village List.dta", clear
+use "${dataloc}\0. Reference\N2A Village List.dta", clear
 keep vill_id village partenaire axe treatment
 
 *generate blokcs
@@ -85,7 +82,7 @@ Village Data
 ***/
 ****
 
-use "1. Data\1. Raw\1. Census\Etape A.dta", clear
+use "${dataloc}\1. Raw\1. Census\Etape A.dta", clear
 
 /*
 Category one: biophysical
@@ -226,7 +223,7 @@ save `census'
 PGG Contributions
 */
 
-use "1. Data\1. Raw\2. Baseline\PGG_Long.dta", clear
+use "${dataloc}\1. Raw\2. Baseline\PGG_Long.dta", clear
 
 
 
@@ -273,12 +270,12 @@ save `pgg'
 /*
 spillover distances
 */
-use "1. Data\0. Reference\N2A Village List.dta", clear
+use "${dataloc}\0. Reference\N2A Village List.dta", clear
 local check = _N
 
 *create pairwise combinations of all villages, and calculate distances between the pairs
 ren * *_test
-cross using  "1. Data\0. Reference\N2A Village List.dta"
+cross using  "${dataloc}\0. Reference\N2A Village List.dta"
 geodist bl_gpslatitude_test bl_gpslongitude_test bl_gpslatitude bl_gpslongitude, gen(dist)
 
 *calculate distance to closest control village
@@ -311,7 +308,7 @@ save `spillover'
 /*
 Community Survey
 */
-use "1. Data\1. Raw\2. Baseline\N2A_BL_Comm.dta", clear
+use "${dataloc}\1. Raw\2. Baseline\N2A_BL_Comm.dta", clear
 replace a_villid = 67 if a_villnm == "Itara"
 
 
@@ -349,5 +346,5 @@ merge 1:1 vill_id using `pgg', gen(pgg_merge)
 merge 1:1 vill_id using `spillover', gen(spill_merge)
 merge 1:1 vill_id using `ref', gen(ref_merge)
 
-save "1. Data\2. Clean\N2A_V_indicators", replace 
+save "${dataloc}\2. Clean\N2A_V_indicators", replace 
 

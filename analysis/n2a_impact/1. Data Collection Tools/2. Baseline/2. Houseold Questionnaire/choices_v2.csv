@@ -1,0 +1,534 @@
+list_name,name,label::English,label::Français,label::Swahili
+enq_list,1001,Juste AGANZE CIBEMBE ,Juste AGANZE CIBEMBE ,Juste AGANZE CIBEMBE 
+enq_list,1002,Freddy AMANI BURAYE ,Freddy AMANI BURAYE ,Freddy AMANI BURAYE 
+enq_list,1003,Ephrem BAHATI MUGISHO ,Ephrem BAHATI MUGISHO ,Ephrem BAHATI MUGISHO 
+enq_list,1004,Francis BAHIGA BANJI ,Francis BAHIGA BANJI ,Francis BAHIGA BANJI 
+enq_list,1005,Eveline BALIAHAMWABO MULAGANO,Eveline BALIAHAMWABO MULAGANO,Eveline BALIAHAMWABO MULAGANO
+enq_list,1006, Alain BAMBA KAZUNGUZIBWA, Alain BAMBA KAZUNGUZIBWA, Alain BAMBA KAZUNGUZIBWA
+enq_list,1007,Isidore  BARHANYWERHA BADERHAKUGUMA,Isidore  BARHANYWERHA BADERHAKUGUMA,Isidore  BARHANYWERHA BADERHAKUGUMA
+enq_list,1008,Jean BASIMAGE RUHIMBASA,Jean BASIMAGE RUHIMBASA,Jean BASIMAGE RUHIMBASA
+enq_list,1009,Godelive BATANO KUSIMWA ,Godelive BATANO KUSIMWA ,Godelive BATANO KUSIMWA 
+enq_list,1010,Lucette BIKUBANYA BASHIGE ,Lucette BIKUBANYA BASHIGE ,Lucette BIKUBANYA BASHIGE 
+enq_list,1011,Pascal BINI SHALUKOMA ,Pascal BINI SHALUKOMA ,Pascal BINI SHALUKOMA 
+enq_list,1012,Nicodeme BUGOMA BYEMBA ,Nicodeme BUGOMA BYEMBA ,Nicodeme BUGOMA BYEMBA 
+enq_list,1013,Barthelemy BUNANI BIRERE ,Barthelemy BUNANI BIRERE ,Barthelemy BUNANI BIRERE 
+enq_list,1014,André CISHUGI RUDAHABA,André CISHUGI RUDAHABA,André CISHUGI RUDAHABA
+enq_list,1016,Edison KABANGU MUTUZA,Edison KABANGU MUTUZA,Edison KABANGU MUTUZA
+enq_list,1017,Espérance  KABUMBA BAPOLISI ,Espérance  KABUMBA BAPOLISI ,Espérance  KABUMBA BAPOLISI 
+enq_list,1018,Nicaise KATINDI MISSINDO,Nicaise KATINDI MISSINDO,Nicaise KATINDI MISSINDO
+enq_list,1021,Adalbert LUMBO LUNGUMBO,Adalbert LUMBO LUNGUMBO,Adalbert LUMBO LUNGUMBO
+enq_list,1022,Raymond LUUNDO BIN MUBULWA ,Raymond LUUNDO BIN MUBULWA ,Raymond LUUNDO BIN MUBULWA 
+enq_list,1023,Espérance  MAPENDO BASHWIRA ,Espérance  MAPENDO BASHWIRA ,Espérance  MAPENDO BASHWIRA 
+enq_list,1024,Germain Bizimana Miderho ,Germain Bizimana Miderho ,Germain Bizimana Miderho 
+enq_list,1025,Augustin MUHINDO KIZITO ,Augustin MUHINDO KIZITO ,Augustin MUHINDO KIZITO 
+enq_list,1027,Pascal   MUSHENGEZI BIRINDWA ,Pascal   MUSHENGEZI BIRINDWA ,Pascal   MUSHENGEZI BIRINDWA 
+enq_list,1028,Sophie MUSIWA KASHIBONDO,Sophie MUSIWA KASHIBONDO,Sophie MUSIWA KASHIBONDO
+enq_list,1029,Charles Serge NYEMBO ,Charles Serge NYEMBO ,Charles Serge NYEMBO 
+enq_list,1030,Jules NYUNDA NKURU ,Jules NYUNDA NKURU ,Jules NYUNDA NKURU 
+enq_list,1031,Chance Jacques  NZIBONERA ,Chance Jacques  NZIBONERA ,Chance Jacques  NZIBONERA 
+enq_list,1033,Yeshi MULUME LEADER,Yeshi MULUME LEADER,Yeshi MULUME LEADER
+enq_list,1035,André MURHULA,André MURHULA,André MURHULA
+enq_list,1036,Jacques ISHARA MAROYI,Jacques ISHARA MAROYI,Jacques ISHARA MAROYI
+enq_list,1037,Luc OMBENI BASHWIRA,Luc OMBENI BASHWIRA,Luc OMBENI BASHWIRA
+enq_list,1038,Yvette NAFETE MERIMERI,Yvette NAFETE MERIMERI,Yvette NAFETE MERIMERI
+enq_list,1039,Luc BISIMWA CIZA,Luc BISIMWA CIZA,Luc BISIMWA CIZA
+enq_list,1050,Mireille MIHIGO AGANZE,Mireille MIHIGO AGANZE,Mireille MIHIGO AGANZE
+enq_list,1065,John KADJUNGA NGABOYEKA,John KADJUNGA NGABOYEKA,John KADJUNGA NGABOYEKA
+enq_list,1066,Fabrice SUDI BUSHIRI,Fabrice SUDI BUSHIRI,Fabrice SUDI BUSHIRI
+enq_list,1067,Frédéric-Célestin BIRINDWA MIHIGO,Frédéric-Célestin BIRINDWA MIHIGO,Frédéric-Célestin BIRINDWA MIHIGO
+,,,,
+left_list,1,Did not like the questions,Enquêté n'aimait pas le questions,Enquêté n'aimait pas le questions
+left_list,2,Something else came up,Urgence,Urgence
+left_list,3,End of day,Fin de la journée (limite de temps),Fin de la journée (limite de temps)
+yes_no,1,Yes,Oui,ndiyo
+yes_no,0,No,Non,hapana
+,,,,
+ngo_list,1,ngo1,ngo1,ngo1
+ngo_list,2,ngo2,ngo2,ngo2
+ngo_list,3,ngo3,ngo3,ngo3
+,,,,
+hh_list,1,Household Head,Chef de ménage,mkubwa wa nyumba
+hh_list,2,Spouse,Epouse de chef,mke
+hh_list,3,Other,Other,mwengine
+,,,,
+share5_list,0,None,Aucune,hakuna
+share5_list,1,Little,Presque rien,kidogo
+share5_list,2,Less than half,Moins que la motié,Chini ya nusu
+share5_list,3,Half,La motié,nusu
+share5_list,4,More than Half,Plus que la motié,zaidi ya nusu
+share5_list,5,All,Tout,vyote
+,,,,
+freq_list,1,Never,Jamais,kamwe
+freq_list,2,Several times a year,Quelques fois par année,Mara mingi kwa mwaka
+freq_list,3,Several times a month,Quelques fois par mois,Mara mingi kwa mwezi
+freq_list,4,Several times a week,Quelque fois par semaine,Mara mingi kwa juma
+freq_list,5,Daily,Chaque jour,kila siku
+,,,,
+household_list,1,${mem_nm_1},${mem_nm_1},${mem_nm_1}
+household_list,2,${mem_nm_2},${mem_nm_2},${mem_nm_2}
+household_list,3,${mem_nm_3},${mem_nm_3},${mem_nm_3}
+household_list,4,${mem_nm_4},${mem_nm_4},${mem_nm_4}
+household_list,5,${mem_nm_5},${mem_nm_5},${mem_nm_5}
+household_list,6,${mem_nm_6},${mem_nm_6},${mem_nm_6}
+household_list,7,${mem_nm_7},${mem_nm_7},${mem_nm_7}
+household_list,8,${mem_nm_8},${mem_nm_8},${mem_nm_8}
+household_list,9,${mem_nm_9},${mem_nm_9},${mem_nm_9}
+household_list,10,${mem_nm_10},${mem_nm_10},${mem_nm_10}
+household_list,11,${mem_nm_11},${mem_nm_11},${mem_nm_11}
+household_list,12,${mem_nm_12},${mem_nm_12},${mem_nm_12}
+household_list,13,${mem_nm_13},${mem_nm_13},${mem_nm_13}
+household_list,14,${mem_nm_14},${mem_nm_14},${mem_nm_14}
+household_list,15,${mem_nm_15},${mem_nm_15},${mem_nm_15}
+household_list,16,${mem_nm_16},${mem_nm_16},${mem_nm_16}
+household_list,17,${mem_nm_17},${mem_nm_17},${mem_nm_17}
+household_list,18,${mem_nm_18},${mem_nm_18},${mem_nm_18}
+household_list,19,${mem_nm_19},${mem_nm_19},${mem_nm_19}
+household_list,20,${mem_nm_20},${mem_nm_20},${mem_nm_20}
+,,,,
+crop_list,1,Cassava,Manioc,muhogo
+crop_list,2,Sweet Potato,Patate Douce,viazi
+crop_list,3,Rice,Riz,mupunga
+crop_list,4,Maize,Mais,mihindi
+crop_list,5,Sorghum,Sorgho,mtama
+crop_list,6,Potato,Pommes de terre,viazi ulaya (Pommes de terre)
+crop_list,7,Beans,Haricots,maharagi
+crop_list,8,Soy beans,Soja,soja
+crop_list,9,Groundnuts,Arachides,kalanga
+crop_list,10,Cow peas,Pois,Pois
+crop_list,11,Sugarcane,Canne à sucre,miwa
+crop_list,12,Amaranth,Lenga Lenga,Lenga Lenga
+crop_list,13,Yam,Colcaze,Colcaze
+crop_list,14,Banana,Bananière,ndizi
+crop_list,15,Coffee,Café,kawa
+crop_list,16,Oil Palm,Huile de palme,mawese/ mafuta ya ngazi
+crop_list,96,Other,Autre,vingine
+crop_list,99,None,Aucun,hakuna
+,,,,
+currency_list,1,USD,USD,USD
+currency_list,2,FC,FC,FC
+,,,,
+units_volume,1,Piece,Piece,vitu
+units_volume,2,Kilo,Kilo,kilo
+units_volume,3,Litre,Litre,litre
+units_volume,4,Coroboyi,Coroboyi,coroboyi
+units_volume,5,Guigoz,Guigoz,kigozi
+units_volume,6,Verre,Verre,kijani
+units_volume,7,Boîte,Boîte,Boite/ carton
+units_volume,8,Namaha,Namaha,Namaha
+units_volume,9,Kidwere / basin,Kidwere / basin,bassin
+units_volume,10,Regime (banane),Regime (banane),mugungu wa ndizi
+units_volume,11,Fagot,Fagot,kuni
+units_volume,12,Panier,Panier,Kitunga
+units_volume,13,Sac de 25 kg,Sac de 25 kg,mfuko/ saki ya 25kg
+units_volume,14,Sac de 50kg,Sac de 50kg,mfuko/ saki ya 50kg
+units_volume,15,Sac de 100 kg,Sac de 100 kg,mfuko/ saki ya 100kg
+units_volume,16,Bidon,Bidon,bidon
+units_volume,17,Stère,Stère,stere
+units_volume,18,Bumba,Bumba,Bumba
+units_volume,19,Caisse (bouteilles),Caisse (bouteilles),Casier/ caisse (chupa)
+units_volume,20,"Autre, specifiez","Autre, specifiez","vitu vingine, taja"
+units_volume,98,Ne sait pas,Ne sait pas,hajuwi
+,,,,
+,,,,
+,,,,
+gender_list,1,Male,Masculin,Masculin
+gender_list,2,Female,Feminin,Feminin
+,,,,
+exact_list,1,Exact,Exacte,Exacte
+exact_list,0,Approximate,Approximative,Approximative
+,,,,
+housingstatus_list,1,Permanent resident,Resident permanent,Mukahaji wa miako yote
+housingstatus_list,2,Visitor,Visiteur,Mugeni
+housingstatus_list,3,Absent,Absent,Hayupo
+housingstatus_list,96,Other,Autre,Mwengine
+housingstatus_list,98,Don't know,Sait pas,Sijuwe
+housingstatus_list,97,Refuse,Refut,Nakataa
+,,,,
+,,,,
+schooling_list,0,None,Aucune,Hakuna
+schooling_list,1,Some primary,Quelques années primaires,Nilisoma shule ya msimgi kidogo
+schooling_list,2,Primary Complete,Primaire complété,Nilimaliza shule ya msimgi
+schooling_list,3,Some secondary,Quelques années secondaires,Nilisoma shule ya sekondari kidogo
+schooling_list,4,Secondary complete,Secondaire complété,Nilimaliza shule ya sekondari
+schooling_list,5,Higher education,Etudes supérieures,Nilisoma chuo kikuu
+schooling_list,6,Professional education,Formation Professionnel,Masomo ya ufundi
+schooling_list,98,Don't know,Ne sait pas,Sijuwi
+schooling_list,97,No answer,Refut,Kukataa
+,,,,
+occupation_list,1,Student,Élève/Étudiant,Mwanafunzi
+occupation_list,2,Farmer (own field),Agriculteur (propre champs),Mkulima
+occupation_list,3,Wage laborer,Travail salaire,Mfanyakazi wa muda
+occupation_list,4,Petty trading,Petit commerce,Uchuuzi ndogo
+occupation_list,5,Mining,Exploitation minière,Utafutaji wa madini
+occupation_list,6,Unemployed,Chomeur,Mtu asiyekuwa na kazi
+occupation_list,96,Other,Autre,Aina ingine ya kazi
+occupation_list,98,Don't know,Ne sait pas,Sijuwi
+occupation_list,97,Refuse,Refut,Kukata
+,,,,
+religion_list,1,Catholic,Catholique,Katoliki
+religion_list,2,Protestant,Protestant,Muporo
+religion_list,3,Muslim,Musulman,Muislamu
+religion_list,4,Kimbanguist,Kimbanguist,Mukimbangu
+religion_list,5,No religion,Sans religion,Sans religion
+religion_list,96,Other,"Autre, specifiez :  ",Ingine dini
+religion_list,98,Don't know,Ne sait pas,Sijuwi
+religion_list,97,Refuse,Refut,Nakataa
+,,,,
+tribe_list,1,Shi,Shi,Shi
+tribe_list,2,Kenyamulenge,Kenyamulenge,Kenyamulenge
+tribe_list,3,Bembe,Bembe,Bembe
+tribe_list,4,Swahili,Swahili,Swahili
+tribe_list,5,Havu,Havu,Havu
+tribe_list,6,Kinande,Kinande,Kinande
+tribe_list,7,Fuleru,Fuleru,Fuleru
+tribe_list,8,Tembo,Tembo,Tembo
+tribe_list,9,Vira,Vira,Vira
+tribe_list,10,Kinyarwanda,Kinyarwanda,Kinyarwanda
+tribe_list,11,Kinyabwishi,Kinyabwishi,Kinyabwishi
+tribe_list,12,Lingala,Lingala,Lingala
+tribe_list,13,Nyindu,Nyindu,Nyindu
+tribe_list,14,Kikusu,Kikusu,Kikusu
+tribe_list,15,Kihunde,Kihunde,Kihunde
+tribe_list,96,Other,"Autre, specifiez",Kabila ingine
+tribe_list,98,Don't know,Ne sait pas,Sijuwi
+tribe_list,97,Refuse,Refut,Nakataa
+,,,,
+,,,,
+status_list,1,Village chief,Chef de village,Mkubwa wa kijiji
+status_list,2,Elder ,Notable,Mushamuka
+status_list,3,Youth leader,Leader de jeunes,Mkubwa wa vijana
+status_list,4,Women's leader,Leader des femmes,Mkubwa wa wamama
+status_list,5,Religious leader ,Leader religieux,Mkubwa wa dini
+status_list,6,Tribal leader,Leader tribal,Mkubwa wa kabila
+status_list,7,Not applicable,Pas applicable,Siko kati yao
+,,,,
+relation_cdm,1,Head,Chef du ménage,Mkubwa wa nyumba
+relation_cdm,2,Spouse,Epouse,Muke
+relation_cdm,3,Child,Enfant,Mtoto
+relation_cdm,4,Grandchild,Petit enfant,Mujukuu
+relation_cdm,5,Parent,Parent,Muzazi
+relation_cdm,6,Sibling,Soeur/frère,Dada/ kaka
+relation_cdm,7,Cousin,Nièce/neveu,Mwipwa
+relation_cdm,8,Other relative,Autre apparenté,Ndugu mwengine
+relation_cdm,9,Other non-relative,Autre non-apparenté,Asiye kuwa ndugu
+relation_cdm,98,Don't know,Sait pas,Sijuwi
+relation_cdm,97,Refuse,Refut,Nakataa
+,,,,
+parentstatus_list,1,Wife had more,Famille de la femme avait plus,Jamaa la muke lilikuwa na zaidi
+parentstatus_list,2,The same,Les deux familles avaient le même,Jamaa zote zilikuwa sawasawa
+parentstatus_list,3,Husband had more,Famille d'homme avait plus,Jamaa la mume lilikuwa na zaidi
+parentstatus_list,98,Don't know,Ne sait pas,Sijuwi
+parentstatus_list,97,Refuse,Refut,Nakataa
+,,,,
+marriage_list,1,Cohabiting,Union Libre,Mwanamke na mwanaume kuishi pamoja bila kuunga ndoa
+marriage_list,2,Civil Marriage,Union Civil,Ndoa ilio ungwa kiserkali
+marriage_list,3,Religious marriage,Union Religeuse,Ndoa ilio ungwa kidini
+marriage_list,4,Traditional marriage,Union Coutumier,Ndoa ya asili
+,,,,
+nothh_list,1,Died,Décedé,Alikufa
+nothh_list,2,Divorced,Ne plus marié,Aliachana na muke au mume
+nothh_list,3,Lives elsewhere,Absent,Hayuko
+,,,,
+,,,,
+,,,,
+marriageprov_list,1,Dowry,Dot,Mali
+marriageprov_list,2,Food and Gifts,Nourriture et autres dons,Chakula na zawadi (cadeaux)
+,,,,
+husbandwife_list,1,Husband,Homme,Mume
+husbandwife_list,2,Wife,Femme,Muke
+husbandwife_list,3,Both,Les deux,Wote wawili
+,,,,
+live_list,1,Less than 1 year,Moins qu'un année,Chini ya mwaka moja
+live_list,2,1-5 years,1-5 Années,Kutoka mwaka 1 - 5
+live_list,3,5-20 years,5-20 Années,Miaka 5 - 20
+live_list,4,More than 20 years,Plus que 20 années,Zaidi ya miaka 20
+live_list,98,Don't know,Sait pas,Sijuwi
+live_list,97,Refuse,Refut,Nakataa
+,,,,
+rent_list,1,Own,Possède,Yangu
+rent_list,2,Rent,Loue,Ninalipia
+,,,,
+wall_list,1,Sticks,Végétaux/ nattes,Miti
+wall_list,2,Mud,Terre battu,Udongo
+wall_list,3,Boards,Planches,Mbao
+wall_list,4,Cement blocks,Bloques cement,Bloques cement
+wall_list,5,Unburnt mud bricks,Briques en terre non-cuit,Matafali ya baridi
+wall_list,6,Burnt mud bricks,Briques en terre cuit,Matafali ya kuchomwa
+wall_list,7,Concrete,Béton,"Mchango wa ciment, changalawe na mchanga"
+wall_list,96,Other,Autre...,Vingine..
+wall_list,98,Don't know,Sait pas,Sijuwi
+wall_list,97,Refuse,Refut,Nakataa
+,,,,
+roof_list,1,CI Sheet,Tôle,Manjanja
+roof_list,2,Concrete,Dalle en béton,"Mchango wa ciment, changalawe na mchanga"
+roof_list,3,Tiles,Tuiles,Matigura (Tuiles)
+roof_list,4,Slate,Ardoise,Mbao
+roof_list,5,Thatch,Paille,Nyasi
+roof_list,96,Other,Autre...,Vingine..
+roof_list,98,Don't know,Sait pas,Sijuwi
+roof_list,97,Refuse,Refut,Nakataa
+,,,,
+floor_list,1,Compacted earth,Terre battu,Sebuleni ya udongo
+floor_list,2,Cement,Ciment,Ciment
+floor_list,96,Other,Autre...,Vingine..
+floor_list,98,Don't know,Sait pas,Sijuwi
+floor_list,97,Refuse,Refut,Nakataa
+,,,,
+,,,,
+water_list,1,Private tap,Robinet dans la parcelle,Robinet dans la parcelle
+water_list,2,Public tap,Robinet publique extérieur,Robinet publique extérieur
+water_list,3,Protected well,Puit protégé (construit),Puit protégé (construit)
+water_list,4,Unprotected well,Puit non protégé,Puit non protégé
+water_list,5,Water course,Cours d’eau  (rivière/lac),Cours d’eau  (rivière/lac)
+water_list,6,Rain water,Eau de pluie,Eau de pluie
+water_list,7,Vendor/tank truck,Vendeur/ camion citerne,Vendeur/ camion citerne
+water_list,96,Other,Autre : ___,Autre : ___
+water_list,98,Don't know,Sait pas,Sait pas
+water_list,97,Refuse,Refut,Refut
+,,,,
+toilet_list,1,"Indoors, private",Interieur privé,Interieur privé
+toilet_list,2,"Outdoors, private",Extérieur privé,Extérieur privé
+toilet_list,3,Shared with multiple houses,Commun a plusieurs ménages,Commun a plusieurs ménages
+toilet_list,4,Trench,Trou,Trou
+toilet_list,96,Other...,Autre...,Autre...
+toilet_list,98,Don't know,Sait pas,Sait pas
+toilet_list,97,Refuse,Refut,Refut
+,,,,
+asset_list,1,Machette,Machette,Machette
+asset_list,2,Hoe,Houe,Houe
+asset_list,3,Bicycle,Vélo,Vélo
+asset_list,4,Radio,Radio,Radio
+asset_list,5,Mobile Phone,Téléphone portable,Téléphone portable
+asset_list,6,Cooking pot,Casserole,Casserole
+asset_list,7,Bed,Lit,Lit
+asset_list,8,Mattres,Matelas,Matelas
+asset_list,9,Pirogue,Pirogue,Pirogue
+asset_list,10,Net,Filet,Filet
+asset_list,11,Television,Télévision,Télévision
+asset_list,12,Moto,Moto,Moto
+asset_list,98,Don't know,Sait pas,Sait pas
+asset_list,97,Refuse,Refut,Refut
+,,,,
+,,,,
+harvestyn_list,1,Not at all,Pas encore commencé (information sur récolte et vente seront estimations),Pas encore commencé (information sur récolte et vente seront estimations)
+harvestyn_list,2,"I have started, but have not finished","Commencé la récolte, mais pas fini (information sur récolte et vente seront estimations)","Commencé la récolte, mais pas fini (information sur récolte et vente seront estimations)"
+harvestyn_list,3,"Yes, finished harvesting",Fini la récolte,Fini la récolte
+,,,,
+,,,,
+,,,,
+surface_list,1,Meter x meter,Metre x metre (deux chiffres),Metre x metre (deux chiffres)
+surface_list,2,Surface,"Surface (1 chiffre, une unité)","Surface (1 chiffre, une unité)"
+,,,,
+surfaceunits_list,1,Square meter,Metre carré,Metre carré
+surfaceunits_list,2,Carré,Carré,Carré
+surfaceunits_list,3,Are,Are,Are
+surfaceunits_list,4,Hectare,Hectare,Hectare
+,,,,
+plottype_list,1,Swamp,Marais,Marais
+plottype_list,2,Upland,Plateau,Plateau
+plottype_list,3,Slope,Versant,Versant
+plottype_list,4,Plain,Plaine,Plaine
+,,,,
+,,,,
+,,,,
+,,,,
+landuse_list,1,Cultivated by household,Cultivé par ménage,Cultivé par ménage
+landuse_list,2,Culivated by other household,Cultivé par autre ménage,Cultivé par autre ménage
+landuse_list,3,Shared with other households,Partagé avec autres ménage(s),Partagé avec autres ménage(s)
+landuse_list,4,In use by an association,Utilisé par association,Utilisé par association
+landuse_list,5,Barren,Pas de production,Pas de production
+landuse_list,6,Leased out,Loué a des autres,Loué a des autres
+,,,,
+soilqual_list,1,Very fertile,Très fertile,Très fertile
+soilqual_list,2,Fertile,Fertile,Fertile
+soilqual_list,3,Normal,Normal,Normal
+soilqual_list,4,Infertile,Pas fertile,Pas fertile
+soilqual_list,5,Very infertile,Pas du tout fertile,Pas du tout fertile
+soilqual_list,97,Refuse,Refut,Refut
+soilqual_list,98,Don't Know,Sait pas,Sait pas
+,,,,
+landaccess_list,1,Property of household,Proprieté du ménage,Proprieté du ménage
+landaccess_list,2,Communal,Communutaire,Communutaire
+landaccess_list,3,"Rented, long-term",Loué longue durée,Loué longue durée
+landaccess_list,4,"Rented, short-term","Loué, brève durée","Loué, brève durée"
+landaccess_list,96,Other,Autre,Autre
+,,,,
+acquired_list,1,Bought,Acheté,Acheté
+acquired_list,2,Inherited,Herité,Herité
+acquired_list,3,Family land,Terre du famille,Terre du famille
+acquired_list,4,Gifted,Donne,Donne
+acquired_list,96,Other,Autre,Autre
+,,,,
+ownership_list,1,Mwami,Mwami,Mwami
+ownership_list,2,Village Chief,Chef de vullage,Chef de vullage
+ownership_list,3,Someone else in the village,Quelqu'un d'autre de la village,Quelqu'un d'autre de la village
+ownership_list,96,Other,Autre,Autre
+,,,,
+plotpayment_list,1,Payment in cash ($),Paiement en argent ($),Paiement en argent ($)
+plotpayment_list,2,Payment in cash (FC),Paiement en argent (FC),Paiement en argent (FC)
+plotpayment_list,3,Part of the harvest,Partie de la recolte,Partie de la recolte
+plotpayment_list,4,Other,Autre,Autre
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+units_payment_land,1,USD,USD ,USD 
+units_payment_land,2,FC,FC,FC
+units_payment_land,3,Goat,Chèvre,Chèvre
+,,,,
+seedsupply_list,1,Own production,Propre production,Propre production
+seedsupply_list,2,Bought from trader,Acheté d'un commerçant,Acheté d'un commerçant
+seedsupply_list,3,Bought from another farmer,Acheté d'un autre agriculteur,Acheté d'un autre agriculteur
+seedsupply_list,4,Exchanged with another farmer,Exchangé avec un autre agriculteur,Exchangé avec un autre agriculteur
+seedsupply_list,5,Gift from another farmer,Donne d'un autre agriculteur,Donne d'un autre agriculteur
+seedsupply_list,6,Gift of NGO,Donne d'un ONG,Donne d'un ONG
+,,,,
+,,,,
+markettiming_list,1,Before harvest,Avant la récolte,Avant la récolte
+markettiming_list,2,Less than two weeks after harvest,Moins que 2 semains après la récolte,Moins que 2 semains après la récolte
+markettiming_list,3,More than two weeks after harvest,Plus que 2 semains après la récolte,Plus que 2 semains après la récolte
+markettiming_list,98,Don't know,Sait pas,Sait pas
+,,,,
+marketing_list,1,Side of the road,À coté de la route,À coté de la route
+marketing_list,2,Market,Au marché,Au marché
+marketing_list,3,Trader,Commerçant,Commerçant
+marketing_list,4,Cooperative,Cooperative,Cooperative
+marketing_list,5,Other,Autre,Autre
+marketing_list,99,Don't know,Sait pas,Sait pas
+,,,,
+tech_access,1,Bought from savings,Acheté avec épargnes,Acheté avec épargnes
+tech_access,2,Bought on credit,Acheté de crédit,Acheté de crédit
+tech_access,3,Gift from NGO,Donne d'ONG,Donne d'ONG
+,,,,
+tech_access,96,Other,Autre,Autre
+,,,,
+fert_list,2,Sympal (poudre gris),Sympal (poudre gris),Sympal (poudre gris)
+fert_list,3,TSP (granules gris),TSP (granules gris),TSP (granules gris)
+fert_list,4,NPK (granules gris),NPK (granules gris),NPK (granules gris)
+fert_list,5,Urea (granues blanches),Urea (granues blanches),Urea (granues blanches)
+fert_list,6,KCl (granules orange),KCl (granules orange),KCl (granules orange)
+fert_list,7,DAP (granules noir),DAP (granules noir),DAP (granules noir)
+fert_list,97,Refut,Refut,Refut
+fert_list,98,Don't know,Sait pas,Sait pas
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+credit_restr_list,1,Interest rate too high,Interêt trop haut,Interêt trop haut
+credit_restr_list,2,No collateral,Pas de garantie,Pas de garantie
+credit_restr_list,3,Too risky,Trop de risque,Trop de risque
+credit_restr_list,4,No credit institutions,Pas d'institutions de crédit,Pas d'institutions de crédit
+credit_restr_list,5,Don't need it,Pas de besoin,Pas de besoin
+credit_restr_list,96,Other,Autre,Autre
+,,,,
+credit_who_list,1,Family,Famille,Famille
+credit_who_list,2,Friend,Amis,Amis
+credit_who_list,3,Bank,Banque,Banque
+credit_who_list,4,Money lender,Preteur d'argent,Preteur d'argent
+credit_who_list,5,Savings and loands cooperative,COOPEC,COOPEC
+credit_who_list,6,Rotational savings,Epargne de rotation,Likirimba
+credit_who_list,7,MUSO,MUSO,MUSO
+credit_who_list,96,Other,Autre,Autre
+,,,,
+,,,,
+credit_why_list,1,Food,Nourriture,Nourriture
+credit_why_list,2,Marriage,Mariage,Mariage
+credit_why_list,3,Other social case,Autre cas sociaux,Autre cas sociaux
+credit_why_list,4,Education,Minerval/prime/fournitures scolaires,Minerval/prime/fournitures scolaires
+credit_why_list,5,Agricultural inputs,Entrants agricol,Entrants agricol
+credit_why_list,6,Tools,Outils/équipement,Outils/équipement
+credit_why_list,7,Construction,Construction de batiments,Construction de batiments
+credit_why_list,8,Purchase of livestock,Achat de bétail,Achat de bétail
+credit_why_list,9,Purchase of land,Achat de champs,Achat de champs
+credit_why_list,10,(Small) business,(Petit) commerce,(Petit) commerce
+credit_why_list,96,Autre,Other,Other
+,,,,
+borrow_who_list,1,Family,Famille,Famille
+borrow_who_list,2,Friends,Amis,Amis
+borrow_who_list,3,Business partner,Partenaire de commerce,Partenaire de commerce
+borrow_who_list,96,Other,Autre,Autre
+,,,,
+,,,,
+saving_type_list,1,Bank,Banque,Banque
+saving_type_list,2,COOPEC,COOPEC,COOPEC
+saving_type_list,3,Cash in the house,Argent dans la maison,Argent dans la masion
+saving_type_list,4,Rotational savings,Epargne de rotation,Likirimba
+saving_type_list,5,MUSO,MUSO,MUSO
+saving_type_list,96,Other,Autre,Autre
+,,,,
+,,,,
+occur_list,1,Rarely (once or twice in the past four weeks,Presque jamais (un ou deux fois),Presque jamais (un ou deux fois)
+occur_list,2,Sometimes (three to ten times in the past four weeks),Quelques fois (3 - 10 fois),Quelques fois (3 - 10 fois)
+occur_list,3,Often (more than ten times in the past four weeks),Souvent (plus que dix fois),Souvent (plus que dix fois)
+,,,,
+,,,,
+,,,,
+harmful_list,1,Harmful ,Désavantageux ,Désavantageux 
+harmful_list,2,No influence/impact ,Pas d'effect,Pas d'effect
+harmful_list,3,Beneficial ,favorable,favorable
+harmful_list,98,No opinion / don’t know ,Ne sait pas,Ne sait pas
+,,,,
+fertili_list,1,Organique,Organique,Organique
+fertili_list,2,Sympal (poudre gris),Sympal (poudre gris),Sympal (poudre gris)
+fertili_list,3,TSP (granules gris),TSP (granules gris),TSP (granules gris)
+fertili_list,4,NPK (granules gris),NPK (granules gris),NPK (granules gris)
+fertili_list,5,Urea (granues blanches),Urea (granues blanches),Urea (granues blanches)
+fertili_list,6,KCl (granules orange),KCl (granules orange),KCl (granules orange)
+fertili_list,7,DAP (granules noir),DAP (granules noir),DAP (granules noir)
+fertili_list,97,Refut,Refut,Refut
+fertili_list,98,Don't know,Sait pas,Sait pas
+,,,,
+inoculation_list,1, Inoculation,Incoculum,Incoculum
+inoculation_list,2,Use of mineral fertiliser,Engrais inorganique,Engrais inorganique
+inoculation_list,3,Use of organic fertiliser,Engrais organique,Engrais organique
+inoculation_list,4, Plant spacing,Ecartement,Ecartement
+inoculation_list,5,Storage,Stockage,Stockage
+inoculation_list,6,Processing,Tranformation,Tranformation
+inoculation_list,7,Other agronomic practices,Autres practiques,Autres practiques
+,,,,
+,,,,
+,,,,
+family_list,1,Family,Famille,Famille
+family_list,2,Close Friend,Ami proche,Ami proche
+family_list,3,Acquaintance,Connaissance,Connaissance
+family_list,4,Distant relative,Membre de famille distant,Membre de famille distant
+family_list,5,Business partner,Partenaire de commerce,Partenaire de commerce
+family_list,6,Official,Relation officielle,Relation officielle
+,,,,
+exchange_list,0,No,Non,Non
+exchange_list,1,"Yes, we have mutually exchanged labour, or belong to a labour-sharing group","Oui, nous avons partagé travail","Oui, nous avons partagé travail"
+exchange_list,2,"Yes, I have hired this person for wage labour","Oui, j'ai prix en service ce personne comme par jour","Oui, j'ai prix en service ce personne comme par jour"
+exchange_list,3,"Yes, I have worked for this person as a wage labour","Oui, j'ai travaillé pour ce personne comme par jour","Oui, j'ai travaillé pour ce personne comme par jour"
+,,,,
+credit1_list,0,No,Non,Non
+credit1_list,1,I have lent him/her money,J'ai lui preté d'argent,J'ai lui preté d'argent
+credit1_list,2,I borrowed money from him/her,J'ai emprunté d'argent de lui.,J'ai emprunté d'argent de lui.
+,,,,
+official_list,1,Village chief,Chef de village,Chef de village
+official_list,2,Elder,Notable,Notable
+official_list,3,Member of development committee,Membre de commité de developpement,Membre de commité de developpement
+official_list,4,Association official,Agent d'une association,Agent d'une association
+official_list,5,None,Aucune,Aucune
+,,,,
+yes_no_dk,1,Yes,Oui,Oui
+yes_no_dk,0,No,Non,Non
+yes_no_dk,98,Don't know,Sait pas,Sait pas
+,,,,
+,,,,
+decision_list,1,More than other,Plus que les autres,Plus que les autres
+decision_list,2,Same as others,Le même comme les autres,Le même comme les autres
+decision_list,3,less than others,Moins  que les autres,Moins  que les autres
+decision_list,4,Not at all,Pas du tout,Pas du tout
+decision_list,97,Refuse,Refut,Refut
+decision_list,98,Don't know,Ne sait pas,Ne sait pas
+,,,,
+agree_list,0,Strongly agree,Tout à fait d'accord,Tout à fait d'accord
+agree_list,1,Agree,D'accord,D'accord
+agree_list,2,Neutral,Neutre,Neutre
+agree_list,3,Disagree,Pas d'accord,Pas d'accord
+agree_list,4,Strongly disagree,Tout à fait pas d'accord ,Tout à fait pas d'accord 
+agree_list,97,Refuse,Refut,Refut
+agree_list,98,Don't know,Ne sait pas,Ne sait pas

@@ -41,14 +41,18 @@ Info: 		The theory of change consists of the following steps:
 
 /*
 Prepare:
-Set working directory to "DFID-ESRC Congo"
 */
 
-cd "C:/Users/Koen/Dropbox (Personal)/N2Africa DRC/DFID-ESRC Congo/Outputs ESRC/impact paper/EDCC/Replication"
+global gitloc  C:\Users\kld330\git
+global dataloc  D:\PhD\Papers\N2A Impact\1. Data //holds raw and clean data
+global tableloc ${gitloc}\thesis\chapters\n2a_impact\tables //where tables are put
+global figloc ${gitloc}\thesis\chapters\n2a_impact\figures //where figures are put
+global helperloc ${gitloc}\thesis\analysis\n2a_impact\2. Do files //holds do files
 set  more off
 
 *set tempfiles
 tempfile hh hh_indicators_0 hh_indicators_1 yield
+
 
 *Run the t loop (baseline and endline)
 forvalues time = 0/1{
@@ -57,7 +61,7 @@ forvalues time = 0/1{
 
 	*Load file and clean IDs		
 	if $t == 0{
-		use "1. Data\1. Raw\2. Baseline\HH_all_data_included.dta", clear
+		use "${dataloc}\1. Raw\2. Baseline\HH_all_data_included.dta", clear
 		drop if x_replaceyn == 1
 
 		*Fix issues with individual households
@@ -116,7 +120,7 @@ forvalues time = 0/1{
 
 	}
 	else { 
-		use "1. Data\1. Raw\3. Endline\N2Africa Phase II Ménage.dta", clear
+		use "${dataloc}\1. Raw\3. Endline\N2Africa Phase II Ménage.dta", clear
 		
 		rename hh_id x_hhid1
 		drop if x_hhid1 == . | x_hhid1 == 999 | x_hhid1 == 99
@@ -137,7 +141,7 @@ forvalues time = 0/1{
 		replace x_hhid1=16 if vill_id== 10 & x_hhid1 == 2 & hhname_ent == "Furaha agnes"
 		replace x_hhid1=10	if vill_id == 10 & x_hhid1 == 3 & hhname_ent == "Anastasia furaha" 
 		replace x_hhid1=6 if vill_id == 12 & x_hhid1 == 7 & hhname_ent == "Mauwa Francine" 
-		replace x_hhid1=19 if vill_id == 16 & x_hhid1==15 & hhname_ent == "DieudonnÃ© nakabembe" 
+		replace x_hhid1=19 if vill_id == 16 & x_hhid1==15 & hhname_ent == "Dieudonné nakabembe" 
 		replace x_hhid1=11 if vill_id == 33 & x_hhid1 == 6 & hhname_ent == "Faida" 
 		drop if x_hhid1==17 & vill_id == 34 & dup==2
 		replace x_hhid1 = 6 if vill_id==39 & x_hhid1 ==2 & hhname_ent =="Bahati mwagano"
@@ -323,7 +327,7 @@ forvalues time = 0/1{
 	*/
 
 	*load plotcrop-level data
-	use "1. Data\2. Clean\N2A_Crop_$t.dta", clear
+	use "${dataloc}\2. Clean\N2A_Crop_$t.dta", clear
 
 	ren *_$t *
 	
@@ -429,6 +433,7 @@ forvalues time = 0/1{
 
 	*add time to var
 	ren * *_$t
+
 
 	*Merge with household data
 	save `yield', replace
@@ -622,11 +627,11 @@ forvalues time = 0/1{
 	la var hc_know_coop_$t "Member of agr. coop."
 	la val hc_know_coop_$t yes_no	
 	
+	
 
 	
 	*Plot ownership and Plot fertility
-	merge 1:1 KEY_$t using "1. Data\2. Clean\N2A_Farm_$t.dta",gen(farm_merge) keep(master match)
-		
+	merge 1:1 KEY_$t using "${dataloc}\2. Clean\N2A_Farm_$t.dta",gen(farm_merge) keep(master match)
 	*Keep only ID, outcome and control variables
 	keep KEY_$t vill_id hh_id survey_* out_* hc_* *_merge
 	
@@ -652,7 +657,7 @@ la def attrit 1 "Baseline Only" 2 "Endline Only" 3 "Baseline and Endline"
 la val t_merge attrit
 order vill_id hh_id KEY_? t out_* hc_*
 
-save "1. Data\2. Clean\HH_indicators_allt_wide.dta", replace
+save "${dataloc}\2. Clean\HH_indicators_allt_wide.dta", replace
 
 
 keep vill_id hh_id t_merge
@@ -675,6 +680,6 @@ merge m:1 vill_id hh_id using `tmerge'
 order vill_id hh_id KEY t out_* hc_*
 
 *Save data
-save "1. Data\2. Clean\HH_indicators_allt_long.dta", replace
+save "${dataloc}\2. Clean\HH_indicators_allt_long.dta", replace
 
 

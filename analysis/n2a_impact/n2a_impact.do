@@ -27,36 +27,39 @@ Update 19/9/1019 (KL)
 - Update to attrition and spillover
 
 
-
-General: the prep dofiles and folder structure is a complete mess. This has to be fixed.
 Public outputs have to be produced comprising each survey and corresponding data set
 
 Data prep files:
-DFID-ESRC Congo\4. Data\6. Analysis\Do Files\V_Indicators.do
-DFID-ESRC Congo\4. Data\6. Analysis\Do Files\HH_Indicators.do
-DFID-ESRC Congo\4. Data\6. Analysis\Do Files\Crop_Yields.do
-DFID-ESRC Congo\4. Data\6. Analysis\Do Files\Price Data Prep.do
+2. Do Files\V_Indicators.do
+2. Do Files\HH_Indicators.do
+2. Do Files\Crop_Yields.do
 
 Note: Use forward slashes for mac
 
 */
 
 ****** prelim *******
-set more off
-qui run "C:\Users\Koen\Documents\GitHub\edcc\edcc_helpers.do"
 
-cd "C:/Users/Koen/Dropbox (Personal)/N2Africa DRC/DFID-ESRC Congo/Outputs ESRC/impact paper/EDCC/Replication"
+global gitloc  C:\Users\kld330\git
+global dataloc  D:\PhD\Papers\N2A Impact\1. Data //holds raw and clean data
+global tableloc ${gitloc}\thesis\chapters\n2a_impact\tables //where tables are put
+global figloc ${gitloc}\thesis\chapters\n2a_impact\figures //where figures are put
+global helperloc ${gitloc}\thesis\analysis\n2a_impact\2. Do files //holds do files
+
+
+set more off
+qui run "${helperloc}\n2a_impact_helpers.do"
 
 *cd "D:/Dropbox/DFID-ESRC Congo"
-global TABLELOC "3. Tables"
-global FIGURELOC "4. Figures"
+global TABLELOC "C:\Users\Koen\Documents\GitHub\thesis\tables\n2a_impact"
+global FIGURELOC "C:\Users\Koen\Documents\GitHub\thesis\figures\n2a_impact"
 
 
 ***Load HH Data
-use "1. Data/2. Clean/HH_indicators_allt_long.dta", clear
+use "${dataloc}/2. Clean/HH_indicators_allt_long.dta", clear
 
 *merge with pre-baseline village survey
-merge m:1 vill_id using "1. Data/2. Clean/N2A_V_indicators.dta",keep(match master) gen(merge_census) //Missing: 63 71 72 97 98 99 100 101 102 103 104 (W4W) 69 is back again
+merge m:1 vill_id using "${dataloc}/2. Clean/N2A_V_indicators.dta",keep(match master) gen(merge_census) //Missing: 63 71 72 97 98 99 100 101 102 103 104 (W4W) 69 is back again
 
 * gen unique IDs	
 sort vill_id hh_id t
@@ -73,17 +76,24 @@ global balance_pb hc_head_female hc_head_age hc_head_edu hc_head_born hc_head_fa
 global imbalance  L.out_fsec_hfias
 global outcomes out_know_inoc out_know_fert out_input_inoc out_input_fert out_yield_yldtrbean  out_yield_yldtrcass out_fsec_hfias
 global newyields out_yield_cass_jp out_yield_bean_jp
-global notes "* p<0.10, ** p<0.05, *** p<0.01; Standard errors clustered at the village level in parentheses; controls include stratum fixed effect and baseline levels of food insecurity."
+global notes "* p$<$0.10, ** p$<$0.05, *** p$<$0.01; Standard errors clustered at the village level in parentheses; controls include stratum fixed effect and baseline levels of food insecurity."
 
 
 ************************************************************************************************************************************  
 **Table 1: Baseline Statistics and Balance
 ************************************************************************************************************************************  
 * drop control
+la var out_prodvalue "Tot. Val. Ag. Prod. (USD)"
+
+
+la var hc_farm_soilqual "Plot soil quality (wgtd average) "
+la var  hc_farm_own "Plot ownership (wgtd average)"
+
 keep if treat_control==0
-local using using "$TABLELOC/table1.xlsx"
+local using using "${tableloc}/table1.tex"
 balance_table $outcomes $balance_pb  `using' ///
-	if t==0 & t_merge == 3, t(treat_subs) cluster(vill_id) sheet(balance)
+	if t==0 & t_merge == 3, t(treat_subs) cluster(vill_id) sheet(balance) ///
+	title(Baseline descriptive statistics and balance) marker(tab:n2a_impact:balance) headerlines("\tiny")
 
 ************************************************************************************************************************************  
 ***Table 2: Impact of adding subsidy program
@@ -113,9 +123,16 @@ foreach var in $outcomes  {
 	//estadd ysumm
 }
 
-esttab impact_* using "$TABLELOC/table2.rtf", star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
+
+local using using "${tableloc}/table2.tex"
+esttab impact_* `using', star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
 	keep(treat_subs lag) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
-	sfmt(%6.0f %6.2f %6.2f %6.0f ) label replace nonotes addn($notes)
+	title(Knowledge, input use, yield, and food security \label{tab:n2aimpact:main}) ///
+	mtitles("\specialcell{Inoculant\\knowledge}" "\specialcell{Fertilizer\\knowledge}" ///
+			"\specialcell{Inoculant\\use}" "\specialcell{Fertilizer\\Use}" ///
+			"\specialcell{Beans\\Yield}" "\specialcell{Casava\\Yield}" ///
+			"\specialcell{HFIAS\\Score}"}) ///
+	sfmt(%6.0f %6.2f %6.2f %6.0f ) label replace nonotes addn($notes) booktabs
 
 eststo clear
 
@@ -129,13 +146,13 @@ g hc_head_edu_d = hc_head_edu
 recode hc_head_edu_d (1=0) (2/7=1)
 la def edub 0 "Edu below primary" 1 "Edu primary or above"
 la val hc_head_edu_d edub
-la var hc_head_edu_d "At least primary education"
+la var hc_head_edu_d "Primary education"
 
 ***market access
 summ vc_se_distinp, d
 g vc_se_distinp_d = vc_se_distinp>r(p50)
 replace vc_se_distinp_d=. if vc_se_distinp==.
-lab var vc_se_distinp_d "Market dist. >5km"
+lab var vc_se_distinp_d "Market dist. $>$ 5km"
 
 ***property rights
 gen hc_farm_own_d = .
@@ -148,17 +165,24 @@ la val hc_farm_own_d yesno
 summ vc_se_size, d 
 di r(p50)
 g vc_se_size_d = vc_se_size>r(p50) & !missing(vc_se_size)
-la var vc_se_size_d "Village size > `r(p50)'"
+la var vc_se_size_d "Village size $>$ `r(p50)'"
+
 
 * define globals and generate interaction terms
-global hte hc_head_edu_d vc_se_distinp_d hc_farm_own_d hc_head_female vc_se_size_d vc_conf_land vc_conf_attyn
+global hte hc_head_edu_d vc_se_distinp_d hc_farm_own_d hc_head_female vc_se_size_d
 global inter
  
 foreach var in $hte{
+	di "var=`var'"
 	g `var'_t = `var'*treat_subs
-	la var `var'_t "`: var label `var'' * subs"
+	la var `var'_t "`: var label `var'' * subsidy"
+
+	
 	global inter $inter `var'_t
 }
+
+la var hc_head_female_t "Female head * subsidy"
+
 
 *run the analysis for each outcome
 foreach var in $outcomes  {
@@ -172,9 +196,14 @@ foreach var in $outcomes  {
 	estadd scalar ysd : hte_`var'
 }
 
-local using using "$TABLELOC/table3.rtf"
+local using using "${tableloc}/table3.tex"
 esttab hte_* `using', star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
-	keep(treat_subs $hte $inter lag) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
+	title(Heterogeneous Effects \label{tab:n2aimpact:hte}) ///
+	mtitles("\specialcell{Inoculant\\knowledge}" "\specialcell{Fertilizer\\knowledge}" ///
+			"\specialcell{Inoculant\\use}" "\specialcell{Fertilizer\\Use}" ///
+			"\specialcell{Beans\\Yield}" "\specialcell{Casava\\Yield}" ///
+			"\specialcell{HFIAS\\Score}"}) ///
+	keep(treat_subs $inter lag) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
 	sfmt(%6.0f %6.2f %6.2f %6.0f ) label replace nonotes addn($notes)
 
 eststo clear
@@ -208,14 +237,14 @@ foreach var of varlist $balance_pb blockdummy?{
 eststo b: reg attrit treat_subs attr_* $balance_pb blockdummy2 blockdummy3 if treatment != 0 & t == 0, vce(cluster vill_id)
 
 *output the table
-local using using "$TABLELOC\tableA2.rtf"
+local using using "${tableloc}\tableA2.tex"
 
 esttab a b `using',  replace label cells(b(star fmt(%9.3f)) se(par fmt(%9.3f))) ///
-	title ("Table A2: Correlates of Attrition") collabels(none) mlabels("Attrition" "Attrition" "Attrition") ///
+	title ("Correlates of Attrition" \label{tab:n2aimpact:attr}) collabels(none) mlabels("Attrition" "Attrition" "Attrition") ///
 	drop($balance_pb blockdummy2 blockdummy3) ///
 	nobaselevels starlevels(* .1 ** .05 *** .01) ///
 	scalars( N "N_clust No. clusters") sfmt(%6.0f %6.0f) ///
-	addn("Notes: * p<0.10, ** p<0.05, *** p<0.01; Standard errors clustered at the village level in parentheses.")
+	addn("Notes: * p$<$0.10, ** p$<$0.05, *** p$<$0.01; Standard errors clustered at the village level in parentheses.")
 
 eststo clear
 
@@ -268,9 +297,11 @@ foreach var in out_fsec_insecure {
 }
 
 
-local using using "$TABLELOC/tableA3.rtf"
+local using using "${tableloc}/tableA3.tex"
 esttab a3_* `using' , star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
-	mtitles( "`: var label out_prodvalue'"  "`: var label out_fsec_insecure'") ///
+	title ("Robustness Checks on Yields and Food Security" \label{tab:n2aimpact:robust}) ///
+	mtitles("\specialcell{Log Total Value Agr.\\Production (USD)}" ///
+			"\specialcell{HFIAS: Severely Food\\Insecure}") ///
 	keep(treat_subs lag) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
 	sfmt(%6.0f %6.2f %6.2f %6.0f ) label replace nonotes addn($notes Marginal effects (at means) for a logit regression are reported column 2)
 
@@ -283,7 +314,7 @@ eststo clear
 
 *generate spill-over indicators (interaction between proximity dummy and control)
 gen spillover = (vc_spill_subs < 1) * (treat_subs == 0)
-la var spillover "Subsidy <1km"
+la var spillover "Subsidy $<$1km"
 
 *Estimations
 foreach var in $outcomes  {
@@ -297,149 +328,14 @@ foreach var in $outcomes  {
 	estadd scalar ysd: spill1_`var' 
 }
 
-local using using "$TABLELOC/tableA4.rtf"
+local using using "${tableloc}/tableA4.tex"
 esttab spill1_* `using', star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
-	keep(treat_subs spillover lag) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
+	keep(treat_subs spillover lag) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") ///
+	title(Spillover analysis \label{tab:n2aimpact:spill}) ///
+	mtitles("\specialcell{Inoculant\\knowledge}" "\specialcell{Fertilizer\\knowledge}" ///
+			"\specialcell{Inoculant\\use}" "\specialcell{Fertilizer\\Use}" ///
+			"\specialcell{Beans\\Yield}" "\specialcell{Casava\\Yield}" ///
+			"\specialcell{HFIAS\\Score}"}) /// 
 	sfmt(%6.0f %6.2f %6.2f %6.0f ) label replace nonotes addn($notes)
-
-eststo clear
-
-************************************************************************************************************************************  
-* Table X: No lagged depvar (letter only)
-************************************************************************************************************************************ 
-
-* estimations
-local using using "$TABLELOC/tableX_nodepvar.rtf"
-
-foreach var in $outcomes  {
-	eststo nolag_`var': reg `var' treat_subs $controls $imbalance i.block if t==1, vce(cluster vill_id)
-	replace sample = e(sample)
-	su `var' if sample & !treat_subs
-	scalar ymean = r(mean)
-	scalar ysd = r(sd)
-	estadd scalar ymean: nolag_`var'
-	estadd scalar ysd: nolag_`var' 
-}
-
-esttab nolag_* `using',  star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
-	keep(treat_subs ) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
-	sfmt(%6.0f %6.2f %6.2f %6.0f ) label replace nonotes addn($notes)
-
-
-eststo clear
-
-
-************************************************************************************************************************************  
-* Table X: Robustness Knowledge
-************************************************************************************************************************************  
-*knowledge
-
-*one extra varaible we have is knowledge of root nodules
-eststo robknow_1: reg out_know_root  treat_subs L.out_know_root $controls $imbalance i.block if t==1, vce(cluster vill_id)
-replace sample = e(sample)
-su `var' if sample & !treat_subs
-scalar ymean = r(mean)
-scalar ysd = r(sd)
-estadd scalar ymean: robknow_1
-estadd scalar ysd : robknow_1
-
-*for endline, we have a question whether they know a fertilizer vendor
-eststo robknow_2: reg out_know_fertvendor treat_subs $controls i.block if t==1, vce(cluster vill_id)
-replace sample = e(sample)
-su `var' if sample & !treat_subs
-scalar ymean = r(mean)
-scalar ysd = r(sd)
-estadd scalar ymean: robknow_2
-estadd scalar ysd : robknow_2
-
-local using using "$TABLELOC/tableX_robustknow.rtf"
-esttab robknow_* `using', star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
-	keep(treat_subs L.out_know_root ) coef(L.out_know_root "Lagged dependent varaible") ///
-	se noobs scalars("ymean Mean dep. var." N "N_clust No. clusters") /// 
-	sfmt(%6.2f %6.0f) label replace nonotes addn("$notes Knwowledge of fertizlier vendors were only asked at baseline, so no lagged variables are included in column 2")
-
-eststo clear
-
-
-************************************************************************************************************************************  
-* Table X: HTE village only
-************************************************************************************************************************************  
-
-* run the analysis for each outcome
-foreach var in $outcomes  {
-	replace lag = L.`var'
-	eststo htevill_`var': reg `var' treat_subs vc_se_size_d vc_se_size_d_t lag $controls $imbalance i.block if t==1, vce(cluster vill_id)
-	replace sample = e(sample)
-	su `var' if sample & !treat_subs
-	scalar ymean = r(mean)
-	scalar ysd = r(sd)
-	estadd scalar ymean: htevill_`var'
-	estadd scalar ysd : htevill_`var'
-}
-
-
-local using using "$TABLELOC/tableX_villsize.rtf"
-esttab htevill_* `using', star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
-	keep(treat_subs vc_se_size_d vc_se_size_d_t lag) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
-	sfmt(%6.0f %6.2f %6.2f %6.0f ) label replace nonotes addn($notes)
-
-
-
-*****distance to input market for reviewer******
-***market access
-
-preserve
-global inp_dist ""
-foreach dist in 3 4 5 6 7{
-	gen vc_se_distinp_`dist' = vc_se_distinp>`dist'
-	replace vc_se_distinp_`dist'=. if vc_se_distinp==.
-	lab var vc_se_distinp_`dist' "Market dist. >`dist'km"
-
-	global inp_dist $inp_dist vc_se_distinp_`dist'
-}
-
-* define globals and generate interaction terms
-global inp_dist vc_se_distinp $inp_dist
-global inp_dist_t ""
- 
-foreach var in $inp_dist{
-	g `var'_t = `var'*treat_subs
-	la var `var'_t "`: var label `var'' * subs"
-	global inp_dist_t $inp_dist_t `var'_t
-}
-
-*drop input distance from the HTE globals
-global hte: subinstr global hte "vc_se_distinp_d"  "", all
-global inter: subinstr global inter "vc_se_distinp_d_t"  "", all
-
-*generate level effects
-gen level = .
-la var level "Level effect"
-
-gen interaction = .
-la var interaction "Interaction effect"
-
-replace lag = L.out_input_inoc
-
-*run the analysis for each outcome
-foreach var in $inp_dist  {
-	
-	replace level = `var'
-	replace interaction = `var'_t
-
-	eststo inpdist_`var': reg out_input_inoc treat_subs lag level interaction $hte $inter  $controls $imbalance i.block if t==1, vce(cluster vill_id)
-	replace sample = e(sample)
-	su out_input_inoc if sample & !treat_subs
-	scalar ymean = r(mean)
-	scalar ysd = r(sd)
-	estadd scalar ymean: inpdist_`var'
-	estadd scalar ysd : inpdist_`var'
-}
-
-
-local using using "$TABLELOC/tableX_distinp.rtf"
-esttab inpdist_* `using', star(* 0.10 ** 0.05 *** 0.01) b(a3) ///
-	keep(treat_subs level interaction lag $hte $inter) se noobs scalars(N "ymean Mean Control Group" "ysd SD Control Group"  "N_clust No. clusters") /// 
-	sfmt(%6.0f %6.2f %6.2f %6.0f ) label mtitles("cont" "3km" "4km" "5km" "6km" "7km") replace nonotes addn($notes)
 
 eststo clear
