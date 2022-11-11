@@ -1,0 +1,56 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+                    &\multicolumn{1}{c}{\specialcell{Foul\\Card}}&\multicolumn{1}{c}{\specialcell{Foul\\Card}}&\multicolumn{1}{c}{\specialcell{Risk\\Propensity}}&\multicolumn{1}{c}{\specialcell{Risk\\Propensity}}\\
+\hline
+main                &                     &                     &                     &                     \\
+Exposure to conflict&       0.266\sym{**} &       0.292\sym{**} &       0.579\sym{**} &       0.574\sym{*}  \\
+                    &     (0.125)         &     (0.129)         &     (0.281)         &     (0.325)         \\
+[1em]
+ind\_age==20-24 (d)  &                     &     -0.0935         &                     &       0.467\sym{**} \\
+                    &                     &    (0.0645)         &                     &     (0.194)         \\
+[1em]
+ind\_age==10-14      &                     &                     &                     &       0.355         \\
+                    &                     &                     &                     &     (0.331)         \\
+[1em]
+ind\_age==25-29 (d)  &                     &     -0.0427         &                     &      0.0644         \\
+                    &                     &    (0.0952)         &                     &     (0.306)         \\
+[1em]
+ind\_age==30-34      &                     &                     &                     &      0.0484         \\
+                    &                     &                     &                     &     (0.320)         \\
+[1em]
+ind\_edu             &                     &      0.0304         &                     &      -0.141         \\
+                    &                     &    (0.0564)         &                     &     (0.147)         \\
+[1em]
+Meals per day       &                     &      0.0447         &                     &      0.0897         \\
+                    &                     &    (0.0522)         &                     &     (0.129)         \\
+[1em]
+Muslim (d)          &                     &     -0.0919         &                     &       0.105         \\
+                    &                     &    (0.0944)         &                     &     (0.205)         \\
+[1em]
+Mende (d)           &                     &      0.0810         &                     &     -0.0358         \\
+                    &                     &    (0.0649)         &                     &     (0.176)         \\
+[1em]
+Played whole game (d)&                     &      0.0850         &                     &      0.0928         \\
+                    &                     &    (0.0678)         &                     &     (0.164)         \\
+[1em]
+Self-declared skills&                     &      -0.211         &                     &     -0.0583         \\
+                    &                     &     (0.129)         &                     &     (0.328)         \\
+[1em]
+Scored (d)          &                     &       0.130         &                     &     -0.0266         \\
+                    &                     &    (0.0940)         &                     &     (0.228)         \\
+[1em]
+Won the football game (d)&                     &       0.185\sym{***}&                     &      -0.208         \\
+                    &                     &    (0.0713)         &                     &     (0.163)         \\
+[1em]
+Left footed (d)     &                     &      -0.116\sym{**} &                     &       0.109         \\
+                    &                     &    (0.0546)         &                     &     (0.201)         \\
+\hline
+N                   &         162         &         155         &         162         &         162         \\
+Pseudo R-Squared    &       0.025         &       0.157         &                     &                     \\
+R2                  &                     &                     &       0.022         &       0.094         \\
+\hline\hline
+\end{tabular}
+}

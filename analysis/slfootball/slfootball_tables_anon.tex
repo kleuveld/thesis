@@ -1,0 +1,289 @@
+%packages
+  %layout
+
+\documentclass[10pt,a4paper]{scrartcl} %scrartcl from KOMA-script uses sans headers and looks less latexy than article  \usepackage[doublespacing]{setspace}
+  \usepackage[utf8]{inputenc}
+  \usepackage[doublespacing]{setspace}
+  \usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+  \usepackage{subcaption}
+  \usepackage{adjustbox}
+  \usepackage{tabularx}
+  %\usepackage{blindtext,titlefoot}
+
+  %graphics, equations and math 
+  \usepackage{amsmath}
+  \usepackage{graphicx}
+  \usepackage{pdfpages}
+
+
+  %tables
+  \usepackage{tabularx}
+  \usepackage{threeparttable}
+  \usepackage{csvsimple}
+  \usepackage{booktabs}
+
+  %bibliography and references
+  \usepackage{natbib}
+  \usepackage{url}
+  \usepackage[pdftex, hidelinks]{hyperref} %creates warnings when used with float
+
+%special cell that allows line breaks
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\begin{document}
+\author{Koen Leuveld}
+
+
+
+
+\title{Comparison Tables }
+%\subtitle{Exploratory evidence from a list experiment in Eastern DR Congo} %needs scrartcl
+
+\maketitle
+
+\begin{figure}
+  \begin{center}
+    \caption{Figure 1 Cannot be replicated using anonymized data} \label{fig:slf:conflictexposure}
+  \end{center}
+\end{figure}
+
+%tables
+%\begin{adjustbox}{totalheight=\textheight-2\baselineskip}
+\begin{table}
+  \begin{threeparttable}
+    \caption{Descriptive Statistics}
+    \label{tab:slf:summstats}
+    \renewcommand{\arraystretch}{0.6}
+    % \tiny 
+    % \scriptsize
+    %\footnotesize
+    % \small
+    % \normalsize
+    \input{"Outputs_anon/tables/t1.tex"}
+    \begin{tablenotes}
+      \footnotesize
+      \item \textit{Notes:} See Appendix I for variable definitions.
+    \end{tablenotes}
+   \end{threeparttable}
+\end{table}
+%\end{adjustbox}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=\linewidth]{"Outputs_anon/figures/f2_agefreq_agewe.eps"}
+    \caption{Age in sample and exposure to conflict}
+    \label{fig:slf:ageconflict}
+    \subcaption*{\textit{Notes:} panel A shows the distribution of age in our sample. Panel B shows the relationship between age and victimization index.}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{centering}
+    \includegraphics[width=0.6\linewidth]{"Outputs_anon/figures/f3_ballshit.eps"}
+    \caption{Balls hit in the effort game}
+    \label{fig:slf:ballshit}
+    \subcaption*{\textit{Notes:} distribution of number of balls hit for four subsamples: Panel A: Out-group, opted for tournament; Panel B: In-group opted for tournament; C: Out-group, did not opt for tournament; D: In-group, did not opt for tournament }
+  \end{centering}
+\end{figure}
+
+\begin{table}
+  \centering
+  \begin{threeparttable}
+  \singlespacing
+  \caption{Risk Propensity Game Choice Sets}
+  \begin{tabular}{cccc}
+    \toprule
+          & \multicolumn{2}{c}{Coin Toss} &  \\
+    Choice set & If heads & If tails & For certain \\
+    \midrule
+    1    & 3000  & 0     & 100 \\
+    2    & 3000  & 0     & 500 \\
+    3    & 3000  & 0     & 1000 \\
+    4    & 3000  & 0     & 1500 \\
+    5    & 3000  & 0     & 2000 \\
+    6    & 3000  & 0     & 2500 \\
+    \bottomrule
+  \end{tabular}%
+  \begin{tablenotes}
+    \item \textit{Notes:} monetary amounts are reported in Leones. The exchange rate at the time of data collection was about 4400 Leones to 1 USD.
+    \item
+  \end{tablenotes}
+  \label{tab:sl:riskchoice}%
+  \end{threeparttable}%
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{threeparttable}[p!]
+    \caption{Exposure to Conflict}
+    \singlespacing
+    %\setlength\extrarowheight{-10pt}
+    %\renewcommand{\arraystretch}{0.6}
+    % \tiny 
+    % \scriptsize
+    %\footnotesize
+    \small
+    % \normalsize
+    \label{tab:slf:conflictexposure}
+    \input{"Outputs_anon/tables/t3.tex"}
+    \begin{tablenotes}
+      \footnotesize
+      \item \textit{Notes:} Ordinary Least Squares regressions. Robust standard errors in parentheses. Column 1 reports the marginal effect of age and age squared on exposure to conflict related violence (as measured by the individual victimization index, see Appendix I for variable definitions). Column 2 adds individual controls. Column 3 tests for the effect of active parental belligerence at any moment and for any faction during the civil war. Column 4 includes education, number of meals per day, and a series of football related variables as additional controls.  * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+      \item
+    \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}
+\centering
+\begin{threeparttable}
+  \caption{Aggressiveness and Risk Propensity}
+  \label{tab:slf:aggrisk}
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  % \small
+  % \normalsize
+  \input{"Outputs_anon/tables/t4.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects in (1) and (2), Ordinary Least Squares estimates in (3) and (4). Column 1 reports the univariate marginal effect of exposure to conflict on the likelihood of having received at least one foul card. Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on an experimental measure of risk propensity (see Appendix I for variable definitions). Column 4 adds individual and football game related controls. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[p!]
+\centering
+\begin{threeparttable}
+  \caption{Dictator Game Donations}
+  \label{tab:slf:dictator}
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  \small
+  % \normalsize
+  \input{"Outputs_anon/tables/t5.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Ordinary Least Squares regressions. Column 1 reports the univariate marginal effect of exposure to conflict on dictator game donations towards the out-group (see Appendix I for variable definitions). Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on dictator game donations towards the in-group. Column 4 adds individual and football game related controls. Column 5 reports the pooled marginal effect of exposure to conflict on dictator game, including individual and football game related controls, a group dummy, and an interaction term. Robust standard errors in parentheses. 162 individual-level clusters in (5). * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=0.8\linewidth]{"Outputs_anon/figures/f4_we_competition.eps"}
+  \caption{Foul cards, competitiveness and exposure to violence}
+  \label{fig:slf:we_competition}
+  \subcaption*{\textit{Notes:} Competition and war expose: Panel A: Foul Card and war exposure for the entire sample; Panel B: willingness to compete and war exposure, entire sample; Panel C: willingness to compete and war exposure,  out-group only; Panel D: willingness to compete and war exposure, in-group only. All panels show binomial confidence intervals at the 95\% level.}
+  \end{center}
+\end{figure}
+
+\begin{table}[p!]
+\centering
+\caption{Willingness to Compete}
+\label{tab:slf:compete}
+\begin{threeparttable}
+  \singlespacing
+  \small
+  \input{"Outputs_anon/tables/t6.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} robit marginal effects. Column 1 reports the univariate marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions). Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the in-group. Column 4 adds individual and football game related controls. Column 5 reports the pooled marginal effect of exposure to conflict our experimental measure of willingness to compete, including individual and football game related controls, a group dummy, and an interaction term. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_fe}
+  Table A.1 Cannot be replicated using anonymized data.
+\end{table}
+
+\pagebreak
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_migrate}
+\begin{threeparttable}[p!]
+
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  \footnotesize
+  %\small
+  % \normalsize
+  \input{"Outputs_anon/tables/ta2.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, for the subsample of respondents who were born and had never moved out of Kenema district. Column 2 presents the outcomes for the remaining subsample, born elsewhere or temporarily out-migrated from Kenema district during the conflict. Column 3 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group, including individual and football game related controls, and a variable capturing the absence of temporary out-migration. Column 4 presents the outcome for the pooled sample (in-group and out-group). Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\pagebreak
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_disp}
+\begin{threeparttable}[p!]
+
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  \small
+  % \normalsize
+  \input{"Outputs_anon/tables/ta3.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, were the exposure to conflict includes a dummy for forced displacement as additional measure of victimization. Column 2 includes football match fixed effects. Column 3 includes team fixed effects. Column 4 clusters standard errors at the team level. 7 Observations dropped in (3) due to quasi-separation issues related to small group fixed effects. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\pagebreak
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_abl}
+\begin{threeparttable}[p!]
+
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  \small
+  % \normalsize
+  \input{"Outputs_anon/tables/ta4.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, and our experimental measure of risk preferences. Column 2 includes expected relative performance, standardized between 0 (the worst) and 1 (the best). Column 3 includes actual performance in terms of the number of balls on target (standardized). Column 4 includes all three measures risk preferences, performance expectation, and skills. Robust standard errors in parentheses.  * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\clearpage
+\bibliographystyle{chicago}
+%path to .bib file (e.g. automatically exported by mendeley) DO NOT include the file extension!
+\bibliography{Thesis-Football}
+
+\end{document}

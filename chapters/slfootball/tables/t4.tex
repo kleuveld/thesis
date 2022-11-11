@@ -1,50 +1,50 @@
 {
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\begin{tabularx}{0.8\textwidth}{Xl*{4}{c}}
+\begin{tabular}{l*{4}{c}}
 \hline\hline
                     &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
                     &\multicolumn{1}{c}{\specialcell{Foul\\Card}}&\multicolumn{1}{c}{\specialcell{Foul\\Card}}&\multicolumn{1}{c}{\specialcell{Risk\\Propensity}}&\multicolumn{1}{c}{\specialcell{Risk\\Propensity}}\\
 \hline
-                    &                     &                     &                     &                     \\
-Exposure to conflict&       0.266\sym{**} &       0.284\sym{**} &       0.579\sym{**} &       0.635\sym{*}  \\
-                    &     (0.125)         &     (0.133)         &     (0.281)         &     (0.340)         \\
-[0.5em]
-Age                 &                     &     -0.0305         &                     &      0.0977         \\
-                    &                     &    (0.0824)         &                     &     (0.202)         \\
-[0.5em]
-Age squared         &                     &    0.000469         &                     &    -0.00203         \\
-                    &                     &   (0.00185)         &                     &   (0.00445)         \\
-[0.5em]
-Education Level     &                     &      0.0419         &                     &     -0.0895         \\
-                    &                     &    (0.0493)         &                     &     (0.128)         \\
-[0.5em]
-Meals per day       &                     &      0.0456         &                     &      0.0831         \\
-                    &                     &    (0.0490)         &                     &     (0.136)         \\
-[0.5em]
-Muslim (d)          &                     &     -0.0822         &                     &       0.127         \\
-                    &                     &    (0.0912)         &                     &     (0.210)         \\
-[0.5em]
-Mende (d)           &                     &      0.0814         &                     &     -0.0415         \\
-                    &                     &    (0.0611)         &                     &     (0.179)         \\
-[0.5em]
-Played whole game (d)&                     &      0.0835         &                     &       0.104         \\
-                    &                     &    (0.0643)         &                     &     (0.170)         \\
-[0.5em]
-Self-declared skills&                     &      -0.231\sym{*}  &                     &      0.0158         \\
-                    &                     &     (0.123)         &                     &     (0.345)         \\
-[0.5em]
-Scored (d)          &                     &       0.166\sym{*}  &                     &      -0.120         \\
-                    &                     &    (0.0990)         &                     &     (0.222)         \\
-[0.5em]
-Won the football game (d)&                     &       0.175\sym{**} &                     &      -0.216         \\
-                    &                     &    (0.0684)         &                     &     (0.162)         \\
-[0.5em]
-Left footed (d)     &                     &      -0.108\sym{**} &                     &      0.0975         \\
-                    &                     &    (0.0518)         &                     &     (0.205)         \\
+main                &                     &                     &                     &                     \\
+Exposure to conflict&       0.266\sym{**} &       0.394\sym{**} &       0.579\sym{**} &       0.564         \\
+                    &     (0.125)         &     (0.162)         &     (0.281)         &     (0.346)         \\
+[1em]
+ind\_age==20-24 (d)  &                     &      -0.104         &                     &       0.353         \\
+                    &                     &    (0.0893)         &                     &     (0.227)         \\
+[1em]
+ind\_age==25-29 (d)  &                     &     -0.0289         &                     &      -0.101         \\
+                    &                     &     (0.231)         &                     &     (0.621)         \\
+[1em]
+ind\_edu             &                     &     0.00508         &                     &      0.0223         \\
+                    &                     &    (0.0811)         &                     &     (0.187)         \\
+[1em]
+Meals per day       &                     &      0.0839         &                     &      0.0830         \\
+                    &                     &    (0.0670)         &                     &     (0.149)         \\
+[1em]
+Muslim (d)          &                     &     -0.0290         &                     &       0.309         \\
+                    &                     &     (0.126)         &                     &     (0.288)         \\
+[1em]
+ind\_mende (d)       &                     &      0.0995         &                     &     -0.0453         \\
+                    &                     &    (0.0835)         &                     &     (0.203)         \\
+[1em]
+Played whole game (d)&                     &     -0.0112         &                     &       0.123         \\
+                    &                     &    (0.0864)         &                     &     (0.188)         \\
+[1em]
+Self-declared skills&                     &      -0.132         &                     &      0.0681         \\
+                    &                     &     (0.165)         &                     &     (0.378)         \\
+[1em]
+Scored (d)          &                     &       0.111         &                     &      -0.206         \\
+                    &                     &     (0.122)         &                     &     (0.267)         \\
+[1em]
+Won the football game (d)&                     &       0.160\sym{*}  &                     &      -0.240         \\
+                    &                     &    (0.0914)         &                     &     (0.189)         \\
+[1em]
+Left footed         &                     &                     &                     &       0.299         \\
+                    &                     &                     &                     &     (0.269)         \\
 \hline
-N                   &         162         &         162         &         162         &         162         \\
-Pseudo R-Squared    &       0.025         &       0.157         &                     &                     \\
-R2                  &                     &                     &       0.022         &       0.054         \\
+N                   &         162         &         112         &         162         &         125         \\
+Pseudo R-Squared    &       0.025         &       0.121         &                     &                     \\
+R2                  &                     &                     &       0.022         &       0.119         \\
 \hline\hline
-\end{tabularx}
+\end{tabular}
 }

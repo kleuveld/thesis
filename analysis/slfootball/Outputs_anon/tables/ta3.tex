@@ -1,0 +1,61 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+                    &\multicolumn{1}{c}{\specialcell{Exposure\\+ Displacement}}&\multicolumn{1}{c}{\specialcell{Football Match\\Fixed Effects}}&\multicolumn{1}{c}{\specialcell{Team Fixed\\Effects}}&\multicolumn{1}{c}{\specialcell{Team\\Clustered SE}}\\
+\hline
+                    &                     &                     &                     &                     \\
+Exposure to conflict&                     &       0.624\sym{***}&       0.713\sym{**} &       0.594\sym{***}\\
+                    &                     &     (0.237)         &     (0.287)         &     (0.222)         \\
+[1em]
+Exposure to conflict&       0.845\sym{***}&                     &                     &                     \\
+                    &     (0.277)         &                     &                     &                     \\
+[1em]
+ind\_age==20-24 (d)  &       0.016         &       0.044         &       0.106         &       0.028         \\
+                    &     (0.156)         &     (0.162)         &     (0.200)         &     (0.140)         \\
+[1em]
+ind\_age==10-14 (d)  &       0.277         &       0.144         &       0.541\sym{***}&       0.184         \\
+                    &     (0.285)         &     (0.312)         &     (0.157)         &     (0.297)         \\
+[1em]
+ind\_age==25-29 (d)  &       0.067         &       0.090         &      -0.123         &       0.113         \\
+                    &     (0.258)         &     (0.266)         &     (0.261)         &     (0.130)         \\
+[1em]
+ind\_age==30-34      &                     &                     &                     &                     \\
+                    &                     &                     &                     &                     \\
+[1em]
+ind\_edu             &       0.161         &       0.117         &       0.090         &       0.173\sym{*}  \\
+                    &     (0.116)         &     (0.111)         &     (0.116)         &     (0.093)         \\
+[1em]
+Meals per day       &      -0.071         &       0.011         &      -0.063         &      -0.046         \\
+                    &     (0.117)         &     (0.125)         &     (0.166)         &     (0.101)         \\
+[1em]
+Muslim (d)          &       0.209         &       0.275\sym{*}  &       0.202         &       0.203         \\
+                    &     (0.140)         &     (0.161)         &     (0.206)         &     (0.160)         \\
+[1em]
+Mende (d)           &      -0.112         &      -0.074         &      -0.255         &      -0.058         \\
+                    &     (0.151)         &     (0.177)         &     (0.196)         &     (0.137)         \\
+[1em]
+Played whole game (d)&       0.272\sym{*}  &       0.236         &       0.302         &       0.281\sym{***}\\
+                    &     (0.141)         &     (0.151)         &     (0.187)         &     (0.079)         \\
+[1em]
+Self-declared skills&       0.129         &       0.055         &      -0.158         &       0.102         \\
+                    &     (0.268)         &     (0.266)         &     (0.307)         &     (0.277)         \\
+[1em]
+Scored (d)          &      -0.287\sym{**} &      -0.173         &      -0.081         &      -0.257\sym{**} \\
+                    &     (0.145)         &     (0.187)         &     (0.267)         &     (0.117)         \\
+[1em]
+Won the football game (d)&       0.192         &       0.094         &                     &       0.143         \\
+                    &     (0.136)         &     (0.143)         &                     &     (0.126)         \\
+[1em]
+Left footed (d)     &      -0.237\sym{*}  &      -0.238\sym{*}  &      -0.346\sym{**} &      -0.205\sym{**} \\
+                    &     (0.125)         &     (0.141)         &     (0.137)         &     (0.088)         \\
+\hline
+N                   &          69         &          69         &          62         &          69         \\
+R2                  &       0.179         &       0.213         &       0.257         &       0.159         \\
+\hline\hline
+\multicolumn{5}{l}{\footnotesize Marginal effects; Standard errors in parentheses}\\
+\multicolumn{5}{l}{\footnotesize  (d) for discrete change of dummy variable from 0 to 1}\\
+\multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+}

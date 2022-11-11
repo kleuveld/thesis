@@ -1,11 +1,14 @@
 ---
 title: "Football players anonymous"
-subtitle: "Anomymization of the data for: Conflict Exposure and Competitiveness: Experimental Evidence from the Football Field in Sierra Leone"
+subtitle: "Anomymization the data for: Conflict Exposure and Competitiveness: Experimental Evidence from the Football Field in Sierra Leone"
 date: "`r Sys.Date()`"
 author: "Koen Leuveld"
 output: pdf_document
 header-includes:
    - \usepackage{booktabs}
+   - \usepackage{threeparttable}
+   - \usepackage{subcaption}
+   - \usepackage{setspace}
 ---
 
 
@@ -17,7 +20,7 @@ Add comments here
 
 # Introduction
 
-This file outlines the procedures to anonymize the data set used for the paper "Conflict Exposure and Competitiveness: Experimental Evidence from the Football Field in Sierra Leone". It lists the procedures, including R output, and finally summarizes the edits made to the data. The tool to do the anonymization is the R package sdcMicro. 
+This file outlines the procedures to anonymize the data set used for the paper "Conflict Exposure and Competitiveness: Experimental Evidence from the Football Field in Sierra Leone". I first provide some background to the anonymization problem, and motivate the choices made. Then I list the procedures taken to do the anonymization using the sdcMicro package, including detailed R output. I then assess the utility of the resulting data set by qualitatively replicating the original paper with the anyonmized data. Finally, I summarize the edits made to the data. 
 
 # Background
 
@@ -25,18 +28,19 @@ This file outlines the procedures to anonymize the data set used for the paper "
 
 The goal of this excercise is to ensure that an "attacker" is unlikely to be able to infer information about our respondents from this data set by combining it with other existing information. The attacker in this case may simply be a participant of the football tournament who dowloaded the public data set and is interested in learning more about his teammates. The information with which the data set can be combined is limited to the knowledge of the participants of the other participants: neither the teams nor the tournament organizers kept records of who played in which team.
 
-While our data set contains no names of teams or players, an attacker may identify players by unique combinations of observable characteristics. For example, if one of his friends was in the sample, 21 years old at time of the tournament, and left-footed, and if there's only one such player in the sample, his friend's would be easy to recover. To ensure this is not possible, I ensure *k*-anonimity by ensuring there are at least *k* (or zero) observations for each combination of such easily observable characteristics (or key variables) in the data set.
+While our data set contains no names of teams or players, an attacker may identify players by unique combinations of observable characteristics. For example, if one of his friends was in the sample, 21 years old at time of the tournament, and left-footed, and if there's only one such player in the sample, this friend's answers would be easy to recover from the data set. To ensure this is not possible, I ensure *k*-anonimity by ensuring there are at least *k* (or zero) observations for each combination of such easily observable characteristics (or key variables) in the data set.
 
-In choosing *k* I consider the following:
+In choosing *k* it is important to consider that the data set is old: more than ten years. The age of the data set decreases the chance of re-indetification. First, due to the lack of official records of the tournament, it means that the exact make up of the sample (based on unofficial football teams in two separate tournaments) will no longer be rememberd. Furthermore, if it is rembered that someone is in the sample, their characteristics at the time may not be exactly remembered. Finally, if somehow a respondent is re-identified, the risk involved is low. Choices in behavioural experiments, for example, were sensitive at the time, since they could affect the relation between participant; however, after ten years this is unlikely to be the case.
 
-- The data set is old: more than ten years. Given that the attacker must rely on memory to re-identify respondents, this makes overall disclosure risk very low.
-- The composition of the sample is unlikely to be exactly known: the sample consists of football players from teams in two tournaments that were based on streets. The composition of these teams is unlikely to be exactly remembered, especially ten years later. This makes re-identification difficult.
+Given the low chance of re-identification and mild consequences of re-identification, I argue that a low number of *k* suffices. To maximize data utility, I choose a value of 3. This means that any combination of key variables is shared by at least three observations.
 
-I therefore argue that a low number of *k* suffices to prevent re-identification. To maximize data utility, I choose a value of 3.
+One feature of the data is the team structure. However, because of the fluid nature of the teams, and the lack of official record about their membership, it is highly unlikely that this structure can be used to re-identify respondents and as such I don't take it into account here.
+
+Even though the risk of re-identification is very small, I apply Post RAndomization Method (PRAM) to the most sensitive variables relating to conflict exposure. This means I randomly change the values of a small subset of observation, in such a way that the overall distribution remains the same. As a consequence, in the unlikely event a respondent is re-identified, it cannot be ascertained whether the answers in the data set are the same as given during the original interview.
 
 ## Data utility 
 
-Achieving *k*-anonimity is not difficult. We can just group and/or suppress as many values as needed so no one can make inferences about the data. However, this involves data loss and so makes the data less useful. Anonymization thus always presents a trade-off between anonymity and utitlity. The standard I will use to judge utility is the ability to replicate the original paper with the anonymized data. An exact replication will be impossible, as anonymization will involve changing the data set, but replicating the paper approximately, where coefficients of our main findings don't change qualitatively should be possible. To this end, my procedure revolves around identifying ways to achieve k-anonyity with changes to the data that are as small as possible. It also means that I limit the variables from the raw data set to be published to those used in the paper.
+The use of both local suppression to achieve 3-anonimity and PRAM ensure that the risk to respondents from the release of this data set is very low. However, this risk has to be weighed against the utility in releasing the data set. Achieving *k*-anonimity is not difficult. We can just group and/or suppress as many values as needed so no one can make inferences about the data. However, this involves data loss and so makes the data less useful. Anonymization thus always presents a trade-off between anonymity and utitlity. The standard I will use to judge utility is the ability to replicate the original paper with the anonymized data. An exact replication will be impossible, as anonymization will involve changing the data set, but replicating the paper approximately, where coefficients of our main findings don't change qualitatively should be possible. To this end, my procedure revolves around identifying ways to achieve k-anonyity with changes to the data that are as small as possible. It also means that I limit the variables from the raw data set to be published to those used in the paper.
 
 # Anonymization process
 
@@ -57,12 +61,12 @@ Load the libraries and the data:
 library(sdcMicro) #for the anonymization
 library(tidyverse) #for data manipulation
 library(haven) #for using stata files
+library(labelled)
 
 data <- read_dta("D:/PhD/Papers/Football/pAPER/Replication/Cleaned Data/foot_cleaned.dta")
 
 #set k
 k = 3
-#datadf <- as.data.frame(data)
 ```
 
 The first step is to categorize each variable. To more easily do this, I included all the variables present in foot_cleaned.dta in a CSV file, with two more columns: "action", which contains the characterization, and "explanation", explaining the characterization. The column action contains the following: 
@@ -135,6 +139,7 @@ sdcInitial <- createSdcObj(dat = data,
 
 sdcInitial <- localSuppression(sdcInitial, k = k)
 sdcInitial
+
 ```
 
 By far the most local suppressions (`r sdcInitial@localSuppression$supps['ind_age'] `) took place in age, because that variable has the most unique values (17) of all variables, so we bin it by five-year increments and see again:
@@ -259,7 +264,10 @@ sdcInitial
 
 Now there's still  `r sum(sdcInitial@localSuppression$supps)` local suppressions left, about `r round(sum(sdcInitial@localSuppression$supps) / nrow(data) * 100,0)` % of the data. This is higher than the intended 10%. I could bin age further, but considering the importance of the variable, I choose not to bin any further and keep the data as it is.
 
+
+
 Now, I PRAM
+
 ```{r}
 
 #pramming needs factor vars:
@@ -273,35 +281,11 @@ sdcInitial <- createSdcObj(dat = data,
 
 sdcInitial <- pram(obj = sdcInitial, 
 									 variables = pramVars,
-									 alpha = 0.25)
+									 alpha = 0.05)
 sdcInitial
 
-```
-
-
-I calculate the risk.
-
-```{r}
-
-## calculating suda2 riskmeasure
-sdcInitial <- suda2(obj=sdcInitial, DisFraction=0.1, missing=NA)
-sdcInitial@risk$suda2 
-
-# Plot a histogram of disScore
-hist(sdcInitial@risk$suda2$disScore, main = 'Histogram of DIS-SUDA scores')
-
-# Density plot
-density <- density(sdcInitial@risk$suda2$disScore)
-plot(density, main = 'Density plot of DIS-SUDA scores')
-
-## calculating l-diversity measure
-sdcInitial <- ldiversity(obj=sdcInitial, ldiv_index=c("we_displace","we_sawinj","we_wasinj","life_dictout","life_dictin"), l_recurs_c=2, missing=NA)
-sdcInitial@risk$ldiversity 
-sdcInitial@risk$global
-sdcInitial@risk$global$risk_ER
 
 ```
-
 
 I update the data with the manipKeyVars from the sdcInitial object, and reconstruct the ethnicity dummy for Mende:
 
@@ -311,10 +295,37 @@ data[,KeyVars] <- sdcInitial@manipKeyVars
 
 #reconstruct the ethnicity dummy
 data$ind_mende <- (data$ind_ethn == 1)*1
+var_label(data$ind_mende) <- "Mende"
 data$ind_ethn <- NULL
 
 data$ind_age2 <- NULL
 
+
+
+
+#reconstruct factors
+undofactor <- function(x) {
+	return(as.numeric(as.character(x)))
+}
+for (var in pramVars) {
+	data[,var] <- undofactor(data[[var]])
+}
+
+
+
+
+data$we_all <- (data$we_hear + data$we_sawinj + data$we_wasinj) / 3
+var_label(data$we_all) <- "Exposure to conflict"
+
+data$we_alldisp <- (data$we_hear + data$we_sawinj + data$we_wasinj + data$we_displace) / 4
+var_label(data$we_alldisp) <- "Exposure to conflict"
+
+data$we_level <- 0
+data$we_level[data$we_all > 0.3] <- 1
+data$we_level[data$we_all > 0.6] <- 2
+data$we_level[data$we_all == 1] <- 3
+var_label(data$we_level) <- "Exposure to conflict"
+val_labels(data$we_level) <- c("0" = 0, "0.33" = 1, "0.66" = 2, "1" = 3)
 ```
 
 Finally, I export the data, ready to be used in Stata:
@@ -335,6 +346,17 @@ write_csv(
 
 ```
 
+# Utility
+
+The resulting data set can't be used to exactly redo the analyses from the original paper; the original paper uses age squared in many analyses, which is a variable that can't be reconstructed using our binned data. However, adapting the analyses to not use age and age squared but indicators for each age bin is straightforward. In the appendix below, most tables and figures from the original paper are replicated using anonymized data. Table A1 could not be replicated since it relies on age-fixed effects which can't be implemented using the new bins, and likewise, figure 1 isn't implemented since detailed the conflict history isn't included in the anonymized data set, as it's correlated strongly with age and only used in one figure. Comparing the tables, the main results of the orignal paper are qualitatively replicated:
+
+- Table 3: as in the original paper, exposure to conflict is not significantly correlated to anything but age.
+- Table 4: the result that football players who have been exposed to violent conflict are more likely to get a foul card in the tournament is replicated with anonymized data. As is the result that they have a higher propensity for risk, however this effect is not present in the full model specification (column 4).
+- Table 5: football players who have been exposed to conflict are more likely to send money to their teammates in a dictator game.
+- Table 6: football players who have been exposed to conflict are more likely to choose the tournament option in the effort game (i.e. they are more competitive.); this is the main result of the paper, so having it replicated using the anonymized data set means the anonymized data set is of use.
+
+Overall this indicates that while we have performed more local suppressions than intended, this number is not so high that it makes the data meaningless. This could potentially make the data meaningful for other researchers doing research into conflict.
+
 # Summary
 
 To summarize:
@@ -348,13 +370,257 @@ To summarize:
    - 30 - 34
 - I have removed all non-mende ethnicity categories
 - I have combined the education categories "Senior Secondary 3" and "Tertiary and higher" into one category
-- I suppressed 22 values
+- I suppressed `r sum(sdcInitial@localSuppression$supps)` values
 
 The fact that I changed the structure of the age variable means that I can't run the analysis code for the paper on the anonymized data set. However, when I simply replace the ind_age and ind_age2 (age squared) variables by dummies for the age bins I can get a very similar analysis. THe results of these are reasonably close the results in the published paper, indicating that the anonymized data can be useful.
 
-# Limitations
+```{=latex}
+\clearpage
+```
 
-- I have not checked whether there is variation in the sensitive variables: for example, if there are two observations with a certain combination of key variables, but both of them reported seeing fighting I can still infer information about these two observations.
-- I am assuming that all senstive variables are unknown to a possible attacker. (In reality, this attacker may a data-savvy football player who knows the respondents well.) However, the attacker may know both the key varaibles and the war exposure status of one or more respondents, but still be interested in their dictator game payments.
-- Theoretically, team composition may be used to identify players. If there's three left-footed non-Mende's that's not a problem. But if one team had two such players, and another team had only one, you could identify the one. However, given the fluid nature of the teams, it is impossible that aggregate information about the teams is still know after this time.
-- I am not sure if the data can be considered fully anonymous, since a data set still exists that can be merged to it: our raw data. However, nothing new can be inferred from merging with the raw data, as there is no data in the anonymous data that is not already in the raw data. 
+
+# Appendix: comparison tables
+
+```{=latex}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\begin{figure}
+  \begin{center}
+    \caption{Figure 1 Cannot be replicated using anonymized data} \label{fig:slf:conflictexposure}
+  \end{center}
+\end{figure}
+
+%tables
+\begin{table}[h]
+  \begin{threeparttable}
+    \caption{Descriptive Statistics}
+    \label{tab:slf:summstats}
+    \renewcommand{\arraystretch}{0.6}
+    % \tiny 
+    % \scriptsize
+    %\footnotesize
+    % \small
+    % \normalsize
+    \input{"Outputs_anon/tables/t1.tex"}
+    \begin{tablenotes}
+      \footnotesize
+      \item \textit{Notes:} See Appendix I for variable definitions.
+    \end{tablenotes}
+   \end{threeparttable}
+\end{table}
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=\linewidth]{"Outputs_anon/figures/f2_agefreq_agewe.eps"}
+    \caption{Age in sample and exposure to conflict}
+    \label{fig:slf:ageconflict}
+    \subcaption*{\textit{Notes:} panel A shows the distribution of age in our sample. Panel B shows the relationship between age and victimization index.}
+  \end{center}
+\end{figure}
+
+\begin{figure}
+  \begin{centering}
+    \includegraphics[width=0.6\linewidth]{"Outputs_anon/figures/f3_ballshit.eps"}
+    \caption{Balls hit in the effort game}
+    \label{fig:slf:ballshit}
+    \subcaption*{\textit{Notes:} distribution of number of balls hit for four subsamples: Panel A: Out-group, opted for tournament; Panel B: In-group opted for tournament; C: Out-group, did not opt for tournament; D: In-group, did not opt for tournament }
+  \end{centering}
+\end{figure}
+
+\begin{table}
+  \centering
+  \begin{threeparttable}
+  \singlespacing
+  \caption{Risk Propensity Game Choice Sets}
+  \begin{tabular}{cccc}
+    \toprule
+          & \multicolumn{2}{c}{Coin Toss} &  \\
+    Choice set & If heads & If tails & For certain \\
+    \midrule
+    1    & 3000  & 0     & 100 \\
+    2    & 3000  & 0     & 500 \\
+    3    & 3000  & 0     & 1000 \\
+    4    & 3000  & 0     & 1500 \\
+    5    & 3000  & 0     & 2000 \\
+    6    & 3000  & 0     & 2500 \\
+    \bottomrule
+  \end{tabular}%
+  \begin{tablenotes}
+    \item \textit{Notes:} monetary amounts are reported in Leones. The exchange rate at the time of data collection was about 4400 Leones to 1 USD.
+    \item
+  \end{tablenotes}
+  \label{tab:sl:riskchoice}%
+  \end{threeparttable}%
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{threeparttable}[p!]
+    \caption{Exposure to Conflict}
+    \singlespacing
+    %\setlength\extrarowheight{-10pt}
+    %\renewcommand{\arraystretch}{0.6}
+    % \tiny 
+    % \scriptsize
+    %\footnotesize
+    \small
+    % \normalsize
+    \label{tab:slf:conflictexposure}
+    \input{"Outputs_anon/tables/t3.tex"}
+    \begin{tablenotes}
+      \footnotesize
+      \item \textit{Notes:} Ordinary Least Squares regressions. Robust standard errors in parentheses. Column 1 reports the marginal effect of age and age squared on exposure to conflict related violence (as measured by the individual victimization index, see Appendix I for variable definitions). Column 2 adds individual controls. Column 3 tests for the effect of active parental belligerence at any moment and for any faction during the civil war. Column 4 includes education, number of meals per day, and a series of football related variables as additional controls.  * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+      \item
+    \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}
+\centering
+\begin{threeparttable}
+  \caption{Aggressiveness and Risk Propensity}
+  \label{tab:slf:aggrisk}
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  % \small
+  % \normalsize
+  \input{"Outputs_anon/tables/t4.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects in (1) and (2), Ordinary Least Squares estimates in (3) and (4). Column 1 reports the univariate marginal effect of exposure to conflict on the likelihood of having received at least one foul card. Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on an experimental measure of risk propensity (see Appendix I for variable definitions). Column 4 adds individual and football game related controls. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[p!]
+\centering
+\begin{threeparttable}
+  \caption{Dictator Game Donations}
+  \label{tab:slf:dictator}
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  \small
+  % \normalsize
+  \input{"Outputs_anon/tables/t5.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Ordinary Least Squares regressions. Column 1 reports the univariate marginal effect of exposure to conflict on dictator game donations towards the out-group (see Appendix I for variable definitions). Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on dictator game donations towards the in-group. Column 4 adds individual and football game related controls. Column 5 reports the pooled marginal effect of exposure to conflict on dictator game, including individual and football game related controls, a group dummy, and an interaction term. Robust standard errors in parentheses. 162 individual-level clusters in (5). * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=0.8\linewidth]{"Outputs_anon/figures/f4_we_competition.eps"}
+  \caption{Foul cards, competitiveness and exposure to violence}
+  \label{fig:slf:we_competition}
+  \subcaption*{\textit{Notes:} Competition and war expose: Panel A: Foul Card and war exposure for the entire sample; Panel B: willingness to compete and war exposure, entire sample; Panel C: willingness to compete and war exposure,  out-group only; Panel D: willingness to compete and war exposure, in-group only. All panels show binomial confidence intervals at the 95\% level.}
+  \end{center}
+\end{figure}
+
+\begin{table}[p!]
+\centering
+\caption{Willingness to Compete}
+\label{tab:slf:compete}
+\begin{threeparttable}
+  \singlespacing
+  \small
+  \input{"Outputs_anon/tables/t6.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} robit marginal effects. Column 1 reports the univariate marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions). Column 2 adds individual and football game related controls. Column 3 reports the univariate marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the in-group. Column 4 adds individual and football game related controls. Column 5 reports the pooled marginal effect of exposure to conflict our experimental measure of willingness to compete, including individual and football game related controls, a group dummy, and an interaction term. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_fe}
+  Table A.1 Cannot be replicated using anonymized data.
+\end{table}
+
+\pagebreak
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_migrate}
+\begin{threeparttable}[p!]
+
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  \footnotesize
+  %\small
+  % \normalsize
+  \input{"Outputs_anon/tables/ta2.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, for the subsample of respondents who were born and had never moved out of Kenema district. Column 2 presents the outcomes for the remaining subsample, born elsewhere or temporarily out-migrated from Kenema district during the conflict. Column 3 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group, including individual and football game related controls, and a variable capturing the absence of temporary out-migration. Column 4 presents the outcome for the pooled sample (in-group and out-group). Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\pagebreak
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_disp}
+\begin{threeparttable}[p!]
+
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  \small
+  % \normalsize
+  \input{"Outputs_anon/tables/ta3.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, were the exposure to conflict includes a dummy for forced displacement as additional measure of victimization. Column 2 includes football match fixed effects. Column 3 includes team fixed effects. Column 4 clusters standard errors at the team level. 7 Observations dropped in (3) due to quasi-separation issues related to small group fixed effects. Robust standard errors in parentheses. * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\pagebreak
+
+\begin{table}[htp]
+  \caption{Willingness to Compete (out-group)}
+  \label{tab:slf:compete_abl}
+\begin{threeparttable}[p!]
+
+  \singlespacing
+  %\renewcommand{\arraystretch}{0.6}
+  % \tiny 
+  % \scriptsize
+  %\footnotesize
+  \small
+  % \normalsize
+  \input{"Outputs_anon/tables/ta4.tex"}
+  \begin{tablenotes}
+    \footnotesize
+    \item \textit{Notes:} Probit marginal effects. Column 1 reports the marginal effect of exposure to conflict on our experimental measure of willingness to compete towards the out-group (see Appendix I for variable definitions), including individual and football game related controls, and our experimental measure of risk preferences. Column 2 includes expected relative performance, standardized between 0 (the worst) and 1 (the best). Column 3 includes actual performance in terms of the number of balls on target (standardized). Column 4 includes all three measures risk preferences, performance expectation, and skills. Robust standard errors in parentheses.  * p $<$ 0.10, ** p $<$ 0.05, *** p $<$ 0.01.
+    \item
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+```
